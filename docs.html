@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentation & Features — Andromeda Writer</title>
+  <meta name="description" content="Complete documentation, user guide, keyboard shortcuts, and feature showcase for Andromeda LaTeX Writer.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/docs.css">
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+</head>
+<body>
+
+  <!-- Ambient Glow Elements -->
+  <div class="ambient-glow-1"></div>
+  <div class="ambient-glow-2"></div>
+
+  <!-- Header & Navigation -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" id="brand-logo-link">
+        <img src="assets/images/logo.png" alt="Andromeda Logo">
+        <span>Andromeda</span>
+        <span class="brand-badge">Docs</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="index.html#features" class="nav-link">Features</a></li>
+          <li><a href="linux-download.html" class="nav-link">Linux Hub</a></li>
+          <li><a href="docs.html" class="nav-link active">Documentation</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="index.html#download" class="btn btn-primary">Download</a>
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Docs Layout Container -->
+  <div class="container docs-layout">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="docs-sidebar">
+      <div class="docs-search">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="docsSearchInput" placeholder="Search documentation..." autocomplete="off">
+      </div>
+
+      <div class="docs-nav-group">
+        <div class="docs-nav-title">Getting Started</div>
+        <ul class="docs-nav-list">
+          <li class="docs-nav-item"><a href="#quickstart" class="docs-nav-link active">Quick Start Guide</a></li>
+          <li class="docs-nav-item"><a href="#tex-engine" class="docs-nav-link">TeX Engine Auto-Detection</a></li>
+          <li class="docs-nav-item"><a href="#first-document" class="docs-nav-link">Compiling First Document</a></li>
+        </ul>
+      </div>
+
+      <div class="docs-nav-group">
+        <div class="docs-nav-title">Core Features</div>
+        <ul class="docs-nav-list">
+          <li class="docs-nav-item"><a href="#monaco" class="docs-nav-link">Monaco Editor & Features</a></li>
+          <li class="docs-nav-item"><a href="#synctex" class="docs-nav-link">SyncTeX Bidirectional Jump</a></li>
+          <li class="docs-nav-item"><a href="#math-preview" class="docs-nav-link">Live Math Hover Tooltip</a></li>
+          <li class="docs-nav-item"><a href="#ai-assistant" class="docs-nav-link">AI Writing Assistant</a></li>
+        </ul>
+      </div>
+
+      <div class="docs-nav-group">
+        <div class="docs-nav-title">Reference</div>
+        <ul class="docs-nav-list">
+          <li class="docs-nav-item"><a href="#shortcuts" class="docs-nav-link">Keyboard Shortcuts</a></li>
+          <li class="docs-nav-item"><a href="#privacy" class="docs-nav-link">Privacy & Offline Security</a></li>
+          <li class="docs-nav-item"><a href="#troubleshooting" class="docs-nav-link">FAQ & Troubleshooting</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main Documentation Content -->
+    <main class="docs-content">
+
+      <!-- 1. Quick Start -->
+      <section id="quickstart" class="doc-section">
+        <span class="doc-badge">Getting Started</span>
+        <h1 class="doc-title">Quick Start Guide</h1>
+        <p class="doc-lead">
+          Welcome to Andromeda Writer. This guide covers how to download, launch, and configure your local compilation environment in under two minutes.
+        </p>
+
+        <p class="doc-text">
+          Andromeda is built from the ground up as a native desktop application. It requires no user registrations, internet connections, or recurring cloud subscriptions.
+        </p>
+
+        <div class="callout callout-info">
+          <div class="callout-title">💡 Instant First Launch</div>
+          <p style="font-size: 0.9rem; color: #cbd5e1;">
+            On first startup, Andromeda automatically inspects your system <code>PATH</code> to locate existing LaTeX binaries (such as TeX Live, MiKTeX, or MacTeX). If detected, compilation is ready out-of-the-box.
+          </p>
+        </div>
+      </section>
+
+      <!-- 2. TeX Engine Setup -->
+      <section id="tex-engine" class="doc-section">
+        <span class="doc-badge">Toolchain</span>
+        <h2 class="doc-title">TeX Engine Auto-Detection & Config</h2>
+        <p class="doc-lead">
+          Andromeda supports multiple LaTeX compilers including <code>pdflatex</code>, <code>xelatex</code>, <code>lualatex</code>, and <code>latexmk</code>.
+        </p>
+
+        <h3 class="doc-h3">Automatic Discovery Strategy</h3>
+        <p class="doc-text">
+          During initialization, Andromeda queries the OS environment:
+        </p>
+        <ul style="color: var(--text-secondary); margin-left: 24px; margin-bottom: 18px; line-height: 1.7;">
+          <li><strong>Windows:</strong> Checks standard registry keys and paths like <code>C:\texlive\2026\bin\windows</code> and <code>C:\Program Files\MiKTeX\miktex\bin\x64</code>.</li>
+          <li><strong>Linux:</strong> Resolves system binary symlinks in <code>/usr/bin/pdflatex</code>, <code>/usr/local/texlive/2026/bin/x86_64-linux</code>.</li>
+        </ul>
+
+        <h3 class="doc-h3">Configuring Custom Binary Paths</h3>
+        <p class="doc-text">
+          If you use a custom or portable TeX distribution, you can specify the binary path directly in <code>settings.json</code>:
+        </p>
+
+        <div class="code-block">
+          <div class="code-block-header">
+            <span>settings.json</span>
+            <span>JSON</span>
+          </div>
+          <pre><code>{
+  "tex_path": "C:\\texlive\\2026\\bin\\windows",
+  "default_engine": "pdflatex",
+  "auto_compile_on_save": true,
+  "synctex_enabled": true
+}</code></pre>
+        </div>
+      </section>
+
+      <!-- 3. Compiling First Document -->
+      <section id="first-document" class="doc-section">
+        <span class="doc-badge">Workflow</span>
+        <h2 class="doc-title">Creating & Compiling Your First Document</h2>
+        <p class="doc-lead">
+          Create academic articles, conference papers, and slide decks effortlessly with instant PDF split-view.
+        </p>
+
+        <p class="doc-text">
+          Press <kbd>Ctrl</kbd> + <kbd>B</kbd> (or <kbd>F5</kbd>) to trigger immediate compilation. The background worker compiles your document and automatically refreshes the PDF canvas without resetting your scroll position.
+        </p>
+
+        <div class="code-block">
+          <div class="code-block-header">
+            <span>paper.tex</span>
+            <span>LaTeX</span>
+          </div>
+          <pre><code>\documentclass{article}
+\usepackage{amsmath}
+
+\title{My First Andromeda Document}
+\author{Your Name}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+Andromeda provides instantaneous rendering for inline formulas like $E = mc^2$ 
+and multi-line equations:
+
+\begin{equation}
+  \int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
+\end{equation}
+
+\end{document}</code></pre>
+        </div>
+      </section>
+
+      <!-- 4. Monaco Editor -->
+      <section id="monaco" class="doc-section">
+        <span class="doc-badge">Editor Features</span>
+        <h2 class="doc-title">Monaco Editor Capabilities</h2>
+        <p class="doc-lead">
+          Powered by the industry standard Monaco Engine (the core of VS Code).
+        </p>
+
+        <p class="doc-text">
+          Enjoy modern editor capabilities including multi-cursor editing (<kbd>Alt</kbd> + Click), automatic bracket closing, intelligent code folding, syntax color customization, and live error underlines parsed directly from LaTeX log files.
+        </p>
+      </section>
+
+      <!-- 5. SyncTeX Navigation -->
+      <section id="synctex" class="doc-section">
+        <span class="doc-badge">Navigation</span>
+        <h2 class="doc-title">SyncTeX Bidirectional Jump</h2>
+        <p class="doc-lead">
+          Never lose your place in 50-page manuscripts with real-time coordinate synchronization.
+        </p>
+
+        <div class="grid-3" style="margin: 24px 0;">
+          <div class="feature-card" style="padding: 20px;">
+            <h4 style="color: var(--accent-cyan); margin-bottom: 8px;">Direct Jump (Editor → PDF)</h4>
+            <p style="font-size: 0.88rem; color: var(--text-secondary);">
+              Place your cursor on any line in the code editor and press <kbd>Ctrl</kbd> + Click to highlight the corresponding paragraph in the PDF preview.
+            </p>
+          </div>
+          <div class="feature-card" style="padding: 20px;">
+            <h4 style="color: var(--accent-purple); margin-bottom: 8px;">Reverse Jump (PDF → Editor)</h4>
+            <p style="font-size: 0.88rem; color: var(--text-secondary);">
+              Double click any word or equation in the PDF preview canvas to scroll the Monaco code editor directly to that exact line number.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. Live Math Hover -->
+      <section id="math-preview" class="doc-section">
+        <span class="doc-badge">Math Preview</span>
+        <h2 class="doc-title">Live Math Hover Tooltip</h2>
+        <p class="doc-lead">
+          Instant visual confirmation of complex LaTeX equations before compiling.
+        </p>
+
+        <p class="doc-text">
+          Hover your mouse pointer over any <code>$...$</code> or <code>\begin{equation}</code> block. Andromeda's embedded KaTeX sub-engine instantly generates a rendered mathematical tooltip above the cursor, ensuring syntax errors are caught before running the full compiler.
+        </p>
+      </section>
+
+      <!-- 7. AI Assistant -->
+      <section id="ai-assistant" class="doc-section">
+        <span class="doc-badge">AI Integration</span>
+        <h2 class="doc-title">AI Academic Assistant & Model Tuning</h2>
+        <p class="doc-lead">
+          Accelerate your paper writing with context-aware AI tools.
+        </p>
+
+        <p class="doc-text">
+          Andromeda features fine-tuned model integration with Google Gemini:
+        </p>
+        <ul style="color: var(--text-secondary); margin-left: 24px; line-height: 1.8;">
+          <li><strong>Compile Error Diagnostic:</strong> Translates cryptic TeX errors (e.g. <code>! Missing $ inserted</code>) into exact code fix proposals.</li>
+          <li><strong>Table & Matrix Formatter:</strong> Converts raw CSV/Markdown tables into clean, beautiful <code>booktabs</code> LaTeX tables.</li>
+          <li><strong>BibTeX Generator:</strong> Generate clean BibTeX citations from DOIs, arXiv URLs, or paper titles.</li>
+        </ul>
+      </section>
+
+      <!-- 8. Keyboard Shortcuts Table -->
+      <section id="shortcuts" class="doc-section">
+        <span class="doc-badge">Reference</span>
+        <h2 class="doc-title">Keyboard Shortcuts Cheat Sheet</h2>
+        <p class="doc-lead">
+          Boost your productivity with Andromeda's default keybindings.
+        </p>
+
+        <table class="shortcut-table">
+          <thead>
+            <tr>
+              <th>Action</th>
+              <th>Shortcut (Windows & Linux)</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Compile Document</strong></td>
+              <td><kbd>Ctrl</kbd> + <kbd>B</kbd> / <kbd>F5</kbd></td>
+              <td>Runs the local TeX engine and updates live PDF</td>
+            </tr>
+            <tr>
+              <td><strong>SyncTeX Jump to PDF</strong></td>
+              <td><kbd>Ctrl</kbd> + <kbd>Click</kbd></td>
+              <td>Navigates PDF preview to source code cursor position</td>
+            </tr>
+            <tr>
+              <td><strong>Toggle File Explorer</strong></td>
+              <td><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd></td>
+              <td>Opens/closes the project workspace sidebar</td>
+            </tr>
+            <tr>
+              <td><strong>Toggle PDF Split Pane</strong></td>
+              <td><kbd>Ctrl</kbd> + <kbd>\</kbd></td>
+              <td>Expands code editor to full window width</td>
+            </tr>
+            <tr>
+              <td><strong>Open Settings Panel</strong></td>
+              <td><kbd>Ctrl</kbd> + <kbd>,</kbd></td>
+              <td>Configure TeX engine path and editor preferences</td>
+            </tr>
+            <tr>
+              <td><strong>AI Assistant Panel</strong></td>
+              <td><kbd>Ctrl</kbd> + <kbd>Space</kbd></td>
+              <td>Trigger AI diagnostics and writing tools</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 9. Privacy & Offline Security -->
+      <section id="privacy" class="doc-section">
+        <span class="doc-badge">Security</span>
+        <h2 class="doc-title">Offline Architecture & Privacy</h2>
+        <p class="doc-lead">
+          Your manuscripts belong to you. Andromeda operates entirely on local hardware.
+        </p>
+
+        <div class="callout callout-tip">
+          <div class="callout-title">🔒 Absolute Data Ownership</div>
+          <p style="font-size: 0.9rem; color: #cbd5e1;">
+            Andromeda has zero tracking pixels, analytics beacons, or telemetry. LaTeX compilation runs strictly via local OS subprocesses. Your files never touch a remote server.
+          </p>
+        </div>
+      </section>
+
+      <!-- 10. Troubleshooting -->
+      <section id="troubleshooting" class="doc-section">
+        <span class="doc-badge">Support</span>
+        <h2 class="doc-title">Frequently Asked Questions & Troubleshooting</h2>
+        
+        <h3 class="doc-h3">Q: "pdflatex not found" error during first compile?</h3>
+        <p class="doc-text">
+          Ensure you have a working TeX distribution (such as TeX Live or MiKTeX) installed. Open Andromeda Settings (<kbd>Ctrl</kbd> + <kbd>,</kbd>) and enter the full directory path to your <code>pdflatex.exe</code> or <code>pdflatex</code> binary.
+        </p>
+
+        <h3 class="doc-h3">Q: Can I use custom .cls or .sty journal templates?</h3>
+        <p class="doc-text">
+          Yes! Place your custom <code>.cls</code>, <code>.sty</code>, and <code>.bib</code> files directly into your project folder. Andromeda preserves the working directory during compilation so all local assets are linked smoothly.
+        </p>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Andromeda Writer Project. Documentation & Specification.</p>
+        <a href="index.html" style="color: var(--accent-cyan);">Back to Main Site →</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/docs.js"></script>
+</body>
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Andromeda Writer — Next-Gen Offline LaTeX Suite</title>
+  <meta name="description" content="Andromeda Writer is a lightning-fast, 100% offline LaTeX desktop editor with embedded live PDF preview, instant math rendering, Monaco editor, and AI assistance.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+</head>
+<body>
+
+  <!-- Ambient Glow Elements -->
+  <div class="ambient-glow-1"></div>
+  <div class="ambient-glow-2"></div>
+
+  <!-- Header & Navigation -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" id="brand-logo-link">
+        <img src="assets/images/logo.png" alt="Andromeda Logo">
+        <span>Andromeda</span>
+        <span class="brand-badge">Writer</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link active">Home</a></li>
+          <li><a href="#features" class="nav-link">Features</a></li>
+          <li><a href="linux-download.html" class="nav-link">Linux Hub</a></li>
+          <li><a href="docs.html" class="nav-link">Documentation</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="#download" class="btn btn-primary" id="nav-download-btn">Get Andromeda</a>
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-pill">
+          <span class="dot"></span>
+          <span>Version 1.0 Available • 100% Offline & Private</span>
+        </div>
+
+        <h1 class="hero-title">
+          Precision LaTeX Editing. <br>
+          <span class="gradient-text">Zero Cloud Lag.</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          The high-performance desktop LaTeX suite designed for researchers, mathematicians, and engineers. Featuring embedded live PDF rendering, instant math hover tooltips, and intelligent TeX engine detection.
+        </p>
+
+        <!-- Two Prominent Download Options (Windows & Linux) -->
+        <div class="hero-download-box" id="download">
+          <!-- Windows Option (Redirects to Microsoft Store) -->
+          <a href="https://apps.microsoft.com/detail/Andromeda" class="download-card-btn btn-windows-store" id="btn-download-windows" title="Download on Microsoft Store">
+            <div class="card-icon">
+              <!-- Windows SVG Logo -->
+              <svg width="28" height="28" viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 12.402L35.688 7.5V41.812H0V12.402ZM35.688 46.188V80.5L0 75.598V46.188H35.688ZM40.312 6.852L88 0V41.812H40.312V6.852ZM88 46.188L40.312 81.148V46.188H88Z" fill="#00A4EF"/>
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="card-badge">Windows 10 / 11</span>
+              <div class="card-title">Microsoft Store</div>
+              <span class="card-meta">Instant Install & Auto Updates →</span>
+            </div>
+          </a>
+
+          <!-- Linux Option (Redirects to Linux Hub) -->
+          <a href="linux-download.html" class="download-card-btn linux-card" id="btn-download-linux" title="Explore Linux Packages">
+            <div class="card-icon">
+              <!-- Linux Tux SVG Logo -->
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2C9.5 2 7.5 4 7.5 6.5C7.5 7.5 7.8 8.5 8.3 9.3C6.4 10.5 5 12.6 5 15C5 18.9 8.1 22 12 22C15.9 22 19 18.9 19 15C19 12.6 17.6 10.5 15.7 9.3C16.2 8.5 16.5 7.5 16.5 6.5C16.5 4 14.5 2 12 2Z" fill="#FFA000" stroke="#FF6F00"/>
+                <circle cx="10" cy="6" r="1" fill="#212121"/>
+                <circle cx="14" cy="6" r="1" fill="#212121"/>
+                <path d="M10 9C10.5 9.8 11.2 10.2 12 10.2C12.8 10.2 13.5 9.8 14 9" stroke="#E65100"/>
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="card-badge">Linux Distributions</span>
+              <div class="card-title">APT, Flatpak, Snap</div>
+              <span class="card-meta">View all Linux install options →</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- App Showcase Mockup -->
+        <div class="showcase-wrapper">
+          <div class="showcase-window">
+            <div class="window-header">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <img src="assets/images/logo.png" alt="Andromeda" style="width: 20px; height: 20px; border-radius: 4px;">
+                <span style="font-weight: 700; font-size: 0.85rem; color: var(--text-primary);">Andromeda Writer</span>
+                <span style="font-size: 0.75rem; color: var(--accent-purple); background: rgba(124, 58, 237, 0.08); padding: 2px 8px; border-radius: 4px; font-family: var(--font-mono); font-weight: 600;">main.tex</span>
+              </div>
+              <div style="font-size: 0.75rem; color: #059669; font-weight: 600; display: flex; align-items: center; gap: 6px;">
+                <span style="width: 7px; height: 7px; border-radius: 50%; background: #059669; display: inline-block;"></span> TeX Live (pdflatex) Connected
+              </div>
+              <div class="win-controls">
+                <span class="win-control-btn" title="Minimize">─</span>
+                <span class="win-control-btn" title="Maximize">▢</span>
+                <span class="win-control-btn close" title="Close">✕</span>
+              </div>
+            </div>
+
+            <div class="window-body">
+              <!-- Left Monaco Editor Code -->
+              <div class="pane-editor">
+                <div class="code-line"><span class="line-num">1</span><span><span class="tex-cmd">\documentclass</span><span class="tex-brace">[</span>journal<span class="tex-brace">]</span><span class="tex-brace">{</span><span class="tex-arg">IEEEtran</span><span class="tex-brace">}</span></span></div>
+                <div class="code-line"><span class="line-num">2</span><span><span class="tex-cmd">\usepackage</span><span class="tex-brace">{</span><span class="tex-arg">amsmath, amssymb</span><span class="tex-brace">}</span></span></div>
+                <div class="code-line"><span class="line-num">3</span><span><span class="tex-cmd">\title</span><span class="tex-brace">{</span><span class="tex-arg">Quantum Superposition in Andromeda</span><span class="tex-brace">}</span></span></div>
+                <div class="code-line"><span class="line-num">4</span><span><span class="tex-cmd">\author</span><span class="tex-brace">{</span><span class="tex-arg">Dr. Alexis Vance, Ph.D.</span><span class="tex-brace">}</span></span></div>
+                <div class="code-line"><span class="line-num">5</span><span><span class="tex-cmd">\begin</span><span class="tex-brace">{</span><span class="tex-arg">document</span><span class="tex-brace">}</span></span></div>
+                <div class="code-line"><span class="line-num">6</span><span><span class="tex-cmd">\maketitle</span></span></div>
+                <div class="code-line"><span class="line-num">7</span><span><span class="tex-comment">% Dynamic math hover & real-time SyncTeX</span></span></div>
+                <div class="code-line"><span class="line-num">8</span><span><span class="tex-cmd">\section</span><span class="tex-brace">{</span><span class="tex-arg">Field Equations</span><span class="tex-brace">}</span></span></div>
+                <div class="code-line"><span class="line-num">9</span><span>Let the state vector <span class="tex-math">$|\psi(t)\rangle$</span> evolve according to:</span></div>
+                <div class="code-line"><span class="line-num">10</span><span><span class="tex-cmd">\begin</span><span class="tex-brace">{</span><span class="tex-arg">equation</span><span class="tex-brace">}</span></span></div>
+                <div class="code-line"><span class="line-num">11</span><span>&nbsp;&nbsp;i\hbar \frac{\partial}{\partial t} |\psi(t)\rangle = \hat{H} |\psi(t)\rangle</span></div>
+                <div class="code-line"><span class="line-num">12</span><span><span class="tex-cmd">\end</span><span class="tex-brace">{</span><span class="tex-arg">equation</span><span class="tex-brace">}</span></span></div>
+                <div class="code-line"><span class="line-num">13</span><span><span class="tex-cmd">\end</span><span class="tex-brace">{</span><span class="tex-arg">document</span><span class="tex-brace">}</span></span></div>
+              </div>
+
+              <!-- Right Split PDF Viewer -->
+              <div class="pane-preview">
+                <div class="preview-paper">
+                  <div class="paper-title">Quantum Superposition in Andromeda</div>
+                  <div class="paper-author">Dr. Alexis Vance, Ph.D. — Department of Physics</div>
+                  <div class="paper-abstract">
+                    <strong>Abstract</strong>—We present a low-latency offline framework for real-time mathematical compilation, verifying state vector convergence with zero cloud dependency.
+                  </div>
+                  <div class="paper-section">I. FIELD EQUATIONS</div>
+                  <p style="font-size: 0.85rem; line-height: 1.4;">
+                    Let the quantum state vector evolve smoothly according to the time-dependent Schrödinger equation:
+                  </p>
+                  <div class="paper-math-box">
+                    <em>i ℏ</em> ∂/∂t |ψ(t)⟩ = <strong>Ĥ</strong> |ψ(t)⟩ &nbsp;&nbsp;&nbsp;&nbsp;(1)
+                  </div>
+                  <p style="font-size: 0.82rem; color: #475569;">
+                    [Live SyncTeX active: Click any symbol to jump to editor line]
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Key Features Section -->
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Engineered for Scholars</span>
+          <h2 class="section-title">Everything You Need for Academic Excellence</h2>
+          <p class="section-desc">Andromeda Writer combines the power of VS Code's editor engine with the speed of a local TeX pipeline.</p>
+        </div>
+
+        <div class="grid-3">
+          <!-- Feature 1 -->
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <h3 class="feature-title">100% Offline & Private</h3>
+            <p class="feature-text">
+              Your research, unreleased equations, and confidential manuscripts never leave your machine. No mandatory accounts, telemetry, or third-party servers.
+            </p>
+          </div>
+
+          <!-- Feature 2 -->
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6"/>
+                <polyline points="8 6 2 12 8 18"/>
+              </svg>
+            </div>
+            <h3 class="feature-title">Monaco Editor Core</h3>
+            <p class="feature-text">
+              Equipped with VS Code's Monaco engine: multi-cursor editing, bracket colorization, intelligent LaTeX snippets, and automated BibTeX citation completion.
+            </p>
+          </div>
+
+          <!-- Feature 3 -->
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 7l-6-6M3 17l6 6M21 7H8a5 5 0 0 0-5 5v1M3 17h13a5 5 0 0 0 5-5v-1"/>
+              </svg>
+            </div>
+            <h3 class="feature-title">SyncTeX Bidirectional Jump</h3>
+            <p class="feature-text">
+              Click any sentence or math equation in the rendered PDF to instantly jump to the exact line in your `.tex` source code, and vice-versa.
+            </p>
+          </div>
+
+          <!-- Feature 4 -->
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                <line x1="11" y1="8" x2="11" y2="14"/>
+                <line x1="8" y1="11" x2="14" y2="11"/>
+              </svg>
+            </div>
+            <h3 class="feature-title">Live Math Hover Preview</h3>
+            <p class="feature-text">
+              Hover over complex matrices or integrals in the code editor to view a crisp, rendered visual preview instantly without having to recompile the document.
+            </p>
+          </div>
+
+          <!-- Feature 5 -->
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+              </svg>
+            </div>
+            <h3 class="feature-title">Smart TeX Auto-Detection</h3>
+            <p class="feature-text">
+              Automatically discovers your existing TeX Live, MiKTeX, or MacTeX installation across system paths and configures the build toolchain seamlessly.
+            </p>
+          </div>
+
+          <!-- Feature 6 (Andromeda Actual AI Agent SVG) -->
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2v2M2 11h2M20 11h2"/>
+                <rect x="5" y="7" width="14" height="12" rx="2.5"/>
+                <path d="M9 13h.01M15 13h.01M8 17h8"/>
+              </svg>
+            </div>
+            <h3 class="feature-title">AI Academic Assistant</h3>
+            <p class="feature-text">
+              Integrated AI writing assistant capable of fixing compilation errors, formatting tables, suggesting bibliography entries, and proofreading mathematical text.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action Banner -->
+    <section class="section" style="background: linear-gradient(180deg, transparent 0%, rgba(124, 58, 237, 0.05) 100%);">
+      <div class="container" style="text-align: center;">
+        <h2 class="section-title">Ready to Elevate Your LaTeX Workflow?</h2>
+        <p class="section-desc" style="margin-bottom: 36px;">
+          Available natively on Windows 10/11 and all modern Linux distributions.
+        </p>
+        <div class="btn-group" style="justify-content: center;">
+          <a href="https://apps.microsoft.com/detail/Andromeda" class="btn btn-windows btn-lg btn-windows-store">
+            <span>Microsoft Store (Windows)</span>
+          </a>
+          <a href="linux-download.html" class="btn btn-linux btn-lg">
+            <span>Linux Packages & Hub</span>
+          </a>
+          <a href="docs.html" class="btn btn-outline btn-lg">
+            <span>Read Documentation</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-logo">
+            <img src="assets/images/logo.png" alt="Andromeda Logo">
+            <span>Andromeda</span>
+          </div>
+          <p>The high-performance, privacy-first LaTeX editor engineered for academics and researchers worldwide.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Download</h4>
+          <ul>
+            <li><a href="https://apps.microsoft.com/detail/Andromeda" class="btn-windows-store">Microsoft Store</a></li>
+            <li><a href="linux-download.html#deb">Ubuntu / Debian (.deb)</a></li>
+            <li><a href="linux-download.html#flatpak">Flatpak / Flathub</a></li>
+            <li><a href="linux-download.html#snap">Snapcraft</a></li>
+            <li><a href="linux-download.html#appimage">Universal AppImage</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Documentation</h4>
+          <ul>
+            <li><a href="docs.html#quickstart">Quick Start Guide</a></li>
+            <li><a href="docs.html#tex-engine">TeX Engine Setup</a></li>
+            <li><a href="docs.html#shortcuts">Keyboard Shortcuts</a></li>
+            <li><a href="docs.html#synctex">SyncTeX Guide</a></li>
+            <li><a href="docs.html#ai-assistant">AI Model Setup</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Community & Security</h4>
+          <ul>
+            <li><a href="docs.html#privacy">Privacy & Offline Policy</a></li>
+            <li><a href="linux-download.html#checksums">SHA256 Checksums</a></li>
+            <li><a href="docs.html#troubleshooting">FAQ & Support</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Andromeda Writer Project. All rights reserved.</p>
+        <p>Built with ❤️ for the academic research community.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

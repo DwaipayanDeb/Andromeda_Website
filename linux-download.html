@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download Andromeda Writer for Linux — Multi-Distro Hub</title>
+  <meta name="description" content="Download and install Andromeda LaTeX Writer on Ubuntu, Debian, Fedora, Arch Linux, Manjaro, and openSUSE via APT, Flatpak, Snap, AppImage, or AUR.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+</head>
+<body>
+
+  <!-- Ambient Glow Elements -->
+  <div class="ambient-glow-1"></div>
+  <div class="ambient-glow-2"></div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" id="brand-logo-link">
+        <img src="assets/images/logo.png" alt="Andromeda Logo">
+        <span>Andromeda</span>
+        <span class="brand-badge">Linux Hub</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="index.html#features" class="nav-link">Features</a></li>
+          <li><a href="linux-download.html" class="nav-link active">Linux Hub</a></li>
+          <li><a href="docs.html" class="nav-link">Documentation</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="index.html#download" class="btn btn-outline">Windows Store</a>
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main style="padding-top: 130px; padding-bottom: 90px;">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag" style="color: var(--accent-purple);">Universal Linux Distribution</span>
+        <h1 class="section-title">Install Andromeda on Any Linux Distro</h1>
+        <p class="section-desc">
+          Choose your preferred packaging format below. All binaries are cryptographically signed, stripped, and packaged with zero cloud telemetry.
+        </p>
+      </div>
+
+      <!-- Linux Package Distribution Grid -->
+      <div class="distro-grid">
+
+        <!-- 1. Ubuntu / Debian (.deb) -->
+        <div class="distro-card" id="deb">
+          <div>
+            <div class="distro-header">
+              <div class="distro-icon" style="color: #e95420;">
+                <!-- Ubuntu / Debian Icon -->
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                  <circle cx="12" cy="12" r="10" fill="#E95420"/>
+                  <path d="M12 4a8 8 0 100 16 8 8 0 000-16zm-5 8a2 2 0 114 0 2 2 0 01-4 0zm6 5a2 2 0 110-4 2 2 0 010 4zm0-10a2 2 0 110 4 2 2 0 010-4z" fill="#FFF"/>
+                </svg>
+              </div>
+              <div class="distro-meta">
+                <div class="distro-name">Ubuntu / Debian / Mint</div>
+                <span class="distro-badge">Native .deb package</span>
+              </div>
+            </div>
+            <p style="color: var(--text-secondary); font-size: 0.9rem;">
+              Recommended for Ubuntu 22.04+, Debian 12+, Linux Mint, and Pop!_OS. Resolves all WebKitGTK dependencies in one shot.
+            </p>
+            <div class="terminal-box">
+              <span class="terminal-code" id="cmd-apt">sudo apt install ./andromeda-writer_1.0.0_amd64.deb</span>
+              <button class="btn-copy" data-target="cmd-apt">Copy</button>
+            </div>
+          </div>
+          <div class="btn-group" style="margin-top: 16px;">
+            <a href="#download-deb" class="btn btn-primary" style="width: 100%;">
+              <span>Download .deb (64-bit)</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 2. Flatpak / Flathub -->
+        <div class="distro-card" id="flatpak">
+          <div>
+            <div class="distro-header">
+              <div class="distro-icon" style="color: #4a90e2;">
+                <!-- Flatpak Icon -->
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                  <rect width="24" height="24" rx="6" fill="#4A90E2"/>
+                  <path d="M6 8l6-4 6 4v8l-6 4-6-4V8z" fill="#FFF"/>
+                </svg>
+              </div>
+              <div class="distro-meta">
+                <div class="distro-name">Flatpak / Flathub</div>
+                <span class="distro-badge">Sandboxed Universal</span>
+              </div>
+            </div>
+            <p style="color: var(--text-secondary); font-size: 0.9rem;">
+              Full sandboxing and seamless automatic background updates across all modern Linux desktops.
+            </p>
+            <div class="terminal-box">
+              <span class="terminal-code" id="cmd-flatpak">flatpak install flathub dev.andromeda.Writer</span>
+              <button class="btn-copy" data-target="cmd-flatpak">Copy</button>
+            </div>
+          </div>
+          <div class="btn-group" style="margin-top: 16px;">
+            <a href="https://flathub.org" target="_blank" class="btn btn-outline" style="width: 100%;">
+              <span>View on Flathub</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 3. Snapcraft -->
+        <div class="distro-card" id="snap">
+          <div>
+            <div class="distro-header">
+              <div class="distro-icon" style="color: #82be00;">
+                <!-- Snap Icon -->
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2L2 8l10 6 10-6-10-6zm0 8.5L5.5 8 12 4.1 18.5 8 12 10.5zM2 10.5L12 17l10-6.5v3L12 20 2 13.5v-3z" fill="#E95420"/>
+                </svg>
+              </div>
+              <div class="distro-meta">
+                <div class="distro-name">Snap Store</div>
+                <span class="distro-badge">Canonical Snapcraft</span>
+              </div>
+            </div>
+            <p style="color: var(--text-secondary); font-size: 0.9rem;">
+              One-line install for Ubuntu, Manjaro, Zorin, and any distribution with snapd support.
+            </p>
+            <div class="terminal-box">
+              <span class="terminal-code" id="cmd-snap">sudo snap install andromeda-writer</span>
+              <button class="btn-copy" data-target="cmd-snap">Copy</button>
+            </div>
+          </div>
+          <div class="btn-group" style="margin-top: 16px;">
+            <a href="https://snapcraft.io" target="_blank" class="btn btn-outline" style="width: 100%;">
+              <span>Snap Store Page</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 4. Universal AppImage -->
+        <div class="distro-card" id="appimage">
+          <div>
+            <div class="distro-header">
+              <div class="distro-icon" style="color: #10b981;">
+                <!-- AppImage Icon -->
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                  <circle cx="12" cy="12" r="10" fill="#10B981"/>
+                  <path d="M7 12l4 4 6-8" stroke="#FFF" stroke-width="2" fill="none"/>
+                </svg>
+              </div>
+              <div class="distro-meta">
+                <div class="distro-name">Universal AppImage</div>
+                <span class="distro-badge">Zero Install • Portable</span>
+              </div>
+            </div>
+            <p style="color: var(--text-secondary); font-size: 0.9rem;">
+              Single executable that runs immediately on any Linux distro without root privileges or package manager locks.
+            </p>
+            <div class="terminal-box">
+              <span class="terminal-code" id="cmd-appimage">chmod +x Andromeda-x86_64.AppImage && ./Andromeda-x86_64.AppImage</span>
+              <button class="btn-copy" data-target="cmd-appimage">Copy</button>
+            </div>
+          </div>
+          <div class="btn-group" style="margin-top: 16px;">
+            <a href="#download-appimage" class="btn btn-primary" style="width: 100%;">
+              <span>Download .AppImage</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 5. Arch Linux / Manjaro (AUR) -->
+        <div class="distro-card" id="aur">
+          <div>
+            <div class="distro-header">
+              <div class="distro-icon" style="color: #1793d1;">
+                <!-- Arch Icon -->
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 3L2 21h20L12 3zm0 4.5l6.5 11.5H5.5L12 7.5z" fill="#1793D1"/>
+                </svg>
+              </div>
+              <div class="distro-meta">
+                <div class="distro-name">Arch Linux / Manjaro</div>
+                <span class="distro-badge">AUR Package</span>
+              </div>
+            </div>
+            <p style="color: var(--text-secondary); font-size: 0.9rem;">
+              Available via the Arch User Repository (AUR). Build and update effortlessly using yay or paru.
+            </p>
+            <div class="terminal-box">
+              <span class="terminal-code" id="cmd-aur">yay -S andromeda-writer-bin</span>
+              <button class="btn-copy" data-target="cmd-aur">Copy</button>
+            </div>
+          </div>
+          <div class="btn-group" style="margin-top: 16px;">
+            <a href="https://aur.archlinux.org" target="_blank" class="btn btn-outline" style="width: 100%;">
+              <span>View AUR Package</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 6. Fedora / RHEL / CentOS (.rpm) -->
+        <div class="distro-card" id="rpm">
+          <div>
+            <div class="distro-header">
+              <div class="distro-icon" style="color: #51a2da;">
+                <!-- Fedora Icon -->
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                  <circle cx="12" cy="12" r="10" fill="#51A2DA"/>
+                  <path d="M12 6v6m0 0l4 4m-4-4l-4 4" stroke="#FFF" stroke-width="2" fill="none"/>
+                </svg>
+              </div>
+              <div class="distro-meta">
+                <div class="distro-name">Fedora / RHEL / openSUSE</div>
+                <span class="distro-badge">RPM Package</span>
+              </div>
+            </div>
+            <p style="color: var(--text-secondary); font-size: 0.9rem;">
+              Native RPM package for Fedora 38+, Red Hat Enterprise Linux, CentOS Stream, and openSUSE.
+            </p>
+            <div class="terminal-box">
+              <span class="terminal-code" id="cmd-dnf">sudo dnf install ./andromeda-writer-1.0.0.x86_64.rpm</span>
+              <button class="btn-copy" data-target="cmd-dnf">Copy</button>
+            </div>
+          </div>
+          <div class="btn-group" style="margin-top: 16px;">
+            <a href="#download-rpm" class="btn btn-primary" style="width: 100%;">
+              <span>Download .rpm</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- System Requirements & One-Shot Dependencies Note -->
+      <div style="margin-top: 60px; background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 32px;">
+        <h3 style="font-size: 1.3rem; margin-bottom: 12px; display: flex; align-items: center; gap: 10px;">
+          <span>📦</span> Automated Dependency Resolution
+        </h3>
+        <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; margin-bottom: 16px;">
+          Andromeda Writer uses the native system web rendering engine (WebKitGTK). When installed via <code>.deb</code>, <code>.rpm</code>, Flatpak, or Snap, all required libraries (<code>libwebkit2gtk-4.1-0</code>, <code>libgtk-3-0</code>) are <strong>automatically downloaded and configured in one shot</strong> with zero manual intervention.
+        </p>
+        <p style="color: var(--text-muted); font-size: 0.85rem;">
+          To verify package integrity, SHA256 checksums are signed with Andromeda's release key: <code>SHA256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</code>
+        </p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Andromeda Writer Project. Cross-platform Linux release.</p>
+        <a href="index.html" style="color: var(--accent-cyan);">Back to Main Site →</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
