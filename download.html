@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download Andromeda Writer — Windows & Linux</title>
+  <meta name="description" content="Download Andromeda Writer for Windows 10/11 and Linux distributions. Microsoft Store, Standalone EXE, Portable ZIP, DEB, Flatpak, Snap, AppImage, and AUR.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+  <style>
+    .os-switch-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+    .os-tab-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 28px;
+      border-radius: var(--radius-pill);
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: all var(--transition-fast);
+    }
+    .os-tab-btn:hover {
+      border-color: var(--accent-purple);
+      color: var(--accent-purple);
+      transform: translateY(-2px);
+    }
+    .os-tab-btn.active {
+      background: var(--gradient-cosmic);
+      color: #ffffff;
+      border-color: transparent;
+      box-shadow: 0 4px 18px rgba(124, 58, 237, 0.35);
+    }
+    .os-section {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .download-hero-card {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Glow Elements -->
+  <div class="ambient-glow-1"></div>
+  <div class="ambient-glow-2"></div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" id="brand-logo-link">
+        <img src="assets/images/logo.png" alt="Andromeda Logo">
+        <span>Andromeda</span>
+        <span class="brand-badge">Writer</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="index.html#features" class="nav-link">Features</a></li>
+          <li><a href="download.html" class="nav-link active">Download</a></li>
+          <li><a href="docs.html" class="nav-link">Documentation</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="docs.html" class="btn btn-outline">Documentation</a>
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main style="padding-top: 130px; padding-bottom: 90px;">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Cross-Platform Releases</span>
+        <h1 class="section-title">Get Andromeda Writer</h1>
+        <p class="section-desc">
+          Choose your operating system below for detailed installation channels and portable binaries.
+        </p>
+      </div>
+
+      <!-- OS Switcher Tabs (Windows / Linux) -->
+      <div class="os-switch-tabs">
+        <button class="os-tab-btn active" id="tab-btn-windows" onclick="switchOS('windows')">
+          <svg width="20" height="20" viewBox="0 0 88 88" fill="none" style="vertical-align: middle;">
+            <path d="M0 12.402L35.688 7.5V41.812H0V12.402ZM35.688 46.188V80.5L0 75.598V46.188H35.688ZM40.312 6.852L88 0V41.812H40.312V6.852ZM88 46.188L40.312 81.148V46.188H88Z" fill="currentColor"/>
+          </svg>
+          <span>Windows 10 / 11</span>
+        </button>
+
+        <button class="os-tab-btn" id="tab-btn-linux" onclick="switchOS('linux')">
+          <!-- Tux Penguin SVG Icon -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle;">
+            <!-- Outer Body & Wings -->
+            <path d="M12 2C9.2 2 7 4.2 7 7c0 1.2.4 2.3 1.2 3.2C6.8 11.5 6 13.6 6 16c0 2.2 1.8 4 4 4h4c2.2 0 4-1.8 4-4 0-2.4-.8-4.5-2.2-5.8.8-.9 1.2-2 1.2-3.2 0-2.8-2.2-5-5-5z" fill="#1e1b4b"/>
+            <!-- White Chest & Face -->
+            <path d="M12 8.5c-2.2 0-3.8 1.8-3.8 4 0 2.6 1.4 4.8 3.8 4.8s3.8-2.2 3.8-4.8c0-2.2-1.6-4-3.8-4z" fill="#ffffff"/>
+            <!-- Eyes -->
+            <circle cx="10.2" cy="6.2" r="0.8" fill="#ffffff"/>
+            <circle cx="10.2" cy="6.2" r="0.4" fill="#1e1b4b"/>
+            <circle cx="13.8" cy="6.2" r="0.8" fill="#ffffff"/>
+            <circle cx="13.8" cy="6.2" r="0.4" fill="#1e1b4b"/>
+            <!-- Orange Beak -->
+            <polygon points="12,7.2 10.3,8.6 13.7,8.6" fill="#f59e0b"/>
+            <!-- Orange Feet -->
+            <ellipse cx="8.5" cy="20.2" rx="2.5" ry="1.2" fill="#f59e0b"/>
+            <ellipse cx="15.5" cy="20.2" rx="2.5" ry="1.2" fill="#f59e0b"/>
+          </svg>
+          <span>Linux Distributions</span>
+        </button>
+      </div>
+
+      <!-- ===================================================================
+           WINDOWS DOWNLOAD SECTION
+           =================================================================== -->
+      <div id="section-windows" class="os-section">
+        
+        <!-- Primary Windows Recommended: Microsoft Store -->
+        <div class="download-hero-card">
+          <div>
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+              <span class="distro-badge" style="background: rgba(0, 120, 212, 0.1); color: #0078d4;">Recommended for Windows 10 & 11</span>
+            </div>
+            <h2 style="font-size: 1.6rem; margin-bottom: 8px;">
+              <a href="https://apps.microsoft.com/detail/Andromeda" target="_blank" class="btn-windows-store" style="color: var(--text-primary); text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+                <span>Microsoft Store Edition</span>
+                <span style="font-size: 1.1rem; color: #0078d4;">↗</span>
+              </a>
+            </h2>
+            <p style="color: var(--text-secondary); font-size: 0.95rem; max-width: 580px;">
+              Seamless 1-click installation, background automatic updates, and sandboxed security directly from Microsoft.
+            </p>
+          </div>
+          <div>
+            <a href="https://apps.microsoft.com/detail/Andromeda" target="_blank" class="btn btn-windows btn-lg btn-windows-store" style="display: inline-flex; align-items: center; gap: 12px;">
+              <!-- Official Microsoft Store Bag with 4-Color Brand Tiles -->
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; flex-shrink: 0;">
+                <path d="M4 6.5h16l1.2 14.5H2.8L4 6.5z" fill="#ffffff" fill-opacity="0.12" stroke="#ffffff" stroke-width="1.8" stroke-linejoin="round"/>
+                <path d="M8.5 7.5V4.5C8.5 3.12 10.07 2 12 2s3.5 1.12 3.5 2.5v3" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round"/>
+                <rect x="8.5" y="10" width="3" height="3" fill="#F25022"/>
+                <rect x="12.5" y="10" width="3" height="3" fill="#7FBA00"/>
+                <rect x="8.5" y="14" width="3" height="3" fill="#00A4EF"/>
+                <rect x="12.5" y="14" width="3" height="3" fill="#FFB900"/>
+              </svg>
+              <span>Get from Microsoft Store →</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Additional Windows Options Grid -->
+        <div class="distro-grid">
+          
+          <!-- 1. Standalone Setup EXE -->
+          <div class="distro-card">
+            <div>
+              <div class="distro-header">
+                <div class="distro-icon" style="color: #0078d4;">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                  </svg>
+                </div>
+                <div class="distro-meta">
+                  <div class="distro-name">Standalone Setup (.exe)</div>
+                  <span class="distro-badge">Installer (64-bit)</span>
+                </div>
+              </div>
+              <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                Standard offline installer with desktop shortcut, start menu entry, and uninstaller.
+              </p>
+            </div>
+            <div class="btn-group" style="margin-top: 20px;">
+              <a href="#download-exe" class="btn btn-primary" style="width: 100%;">
+                <span>Download Setup.exe</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- 2. Portable ZIP -->
+          <div class="distro-card">
+            <div>
+              <div class="distro-header">
+                <div class="distro-icon" style="color: var(--accent-purple);">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <polyline points="21 8 21 21 3 21 3 8"/>
+                    <rect x="1" y="3" width="22" height="5"/>
+                    <line x1="10" y1="12" x2="14" y2="12"/>
+                  </svg>
+                </div>
+                <div class="distro-meta">
+                  <div class="distro-name">Portable Package (.zip)</div>
+                  <span class="distro-badge">Zero Install • Portable</span>
+                </div>
+              </div>
+              <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                No admin privileges or installation required. Extract to any folder or USB flash drive and run.
+              </p>
+            </div>
+            <div class="btn-group" style="margin-top: 20px;">
+              <a href="#download-zip" class="btn btn-outline" style="width: 100%;">
+                <span>Download Portable .zip</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- 3. Winget Package Manager -->
+          <div class="distro-card">
+            <div>
+              <div class="distro-header">
+                <div class="distro-icon" style="color: #059669;">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <polyline points="4 17 10 11 4 5"/>
+                    <line x1="12" y1="19" x2="20" y2="19"/>
+                  </svg>
+                </div>
+                <div class="distro-meta">
+                  <div class="distro-name">Windows Package Manager</div>
+                  <span class="distro-badge">winget CLI</span>
+                </div>
+              </div>
+              <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                Install and update directly from PowerShell or Command Prompt.
+              </p>
+              <div class="terminal-box">
+                <span class="terminal-code" id="cmd-winget">winget install Andromeda.Writer</span>
+                <button class="btn-copy" data-target="cmd-winget">Copy</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Windows System Requirements Card -->
+        <div style="margin-top: 40px; background: #ffffff; border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 28px; box-shadow: var(--shadow-sm);">
+          <h3 style="font-size: 1.15rem; color: var(--text-primary); margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+            <span>ℹ️</span> Windows System Requirements
+          </h3>
+          <ul style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.8; margin-left: 20px;">
+            <li><strong>Operating System:</strong> Windows 10 (Version 1809 or later) or Windows 11 (64-bit).</li>
+            <li><strong>WebView2 Runtime:</strong> Pre-installed out of the box on Windows 10/11.</li>
+            <li><strong>TeX Engine:</strong> Andromeda automatically connects to any existing TeX Live or MiKTeX on your machine.</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- ===================================================================
+           LINUX DOWNLOAD SECTION
+           =================================================================== -->
+      <div id="section-linux" class="os-section" style="display: none;">
+
+        <div class="distro-grid">
+
+          <!-- 1. Ubuntu / Debian (.deb) -->
+          <div class="distro-card" id="deb">
+            <div>
+              <div class="distro-header">
+                <div class="distro-icon" style="color: #e95420;">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                    <circle cx="12" cy="12" r="10" fill="#E95420"/>
+                    <path d="M12 4a8 8 0 100 16 8 8 0 000-16zm-5 8a2 2 0 114 0 2 2 0 01-4 0zm6 5a2 2 0 110-4 2 2 0 010 4zm0-10a2 2 0 110 4 2 2 0 010-4z" fill="#FFF"/>
+                  </svg>
+                </div>
+                <div class="distro-meta">
+                  <div class="distro-name">Ubuntu / Debian / Mint</div>
+                  <span class="distro-badge">Native .deb package</span>
+                </div>
+              </div>
+              <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                Recommended for Ubuntu 22.04+, Debian 12+, Linux Mint, and Pop!_OS. Resolves WebKitGTK in one shot.
+              </p>
+              <div class="terminal-box">
+                <span class="terminal-code" id="cmd-apt">sudo apt install ./andromeda-writer_1.0.0_amd64.deb</span>
+                <button class="btn-copy" data-target="cmd-apt">Copy</button>
+              </div>
+            </div>
+            <div class="btn-group" style="margin-top: 16px;">
+              <a href="#download-deb" class="btn btn-primary" style="width: 100%;">
+                <span>Download .deb (64-bit)</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- 2. Flatpak / Flathub -->
+          <div class="distro-card" id="flatpak">
+            <div>
+              <div class="distro-header">
+                <div class="distro-icon" style="color: #4a90e2;">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                    <rect width="24" height="24" rx="6" fill="#4A90E2"/>
+                    <path d="M6 8l6-4 6 4v8l-6 4-6-4V8z" fill="#FFF"/>
+                  </svg>
+                </div>
+                <div class="distro-meta">
+                  <div class="distro-name">Flatpak / Flathub</div>
+                  <span class="distro-badge">Sandboxed Universal</span>
+                </div>
+              </div>
+              <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                Full sandboxing and automatic updates across all modern Linux desktop environments.
+              </p>
+              <div class="terminal-box">
+                <span class="terminal-code" id="cmd-flatpak">flatpak install flathub dev.andromeda.Writer</span>
+                <button class="btn-copy" data-target="cmd-flatpak">Copy</button>
+              </div>
+            </div>
+            <div class="btn-group" style="margin-top: 16px;">
+              <a href="https://flathub.org" target="_blank" class="btn btn-outline" style="width: 100%;">
+                <span>View on Flathub</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- 3. Snapcraft -->
+          <div class="distro-card" id="snap">
+            <div>
+              <div class="distro-header">
+                <div class="distro-icon" style="color: #82be00;">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2L2 8l10 6 10-6-10-6zm0 8.5L5.5 8 12 4.1 18.5 8 12 10.5zM2 10.5L12 17l10-6.5v3L12 20 2 13.5v-3z" fill="#E95420"/>
+                  </svg>
+                </div>
+                <div class="distro-meta">
+                  <div class="distro-name">Snap Store</div>
+                  <span class="distro-badge">Canonical Snapcraft</span>
+                </div>
+              </div>
+              <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                One-line install for Ubuntu, Manjaro, Zorin, and distributions with snapd.
+              </p>
+              <div class="terminal-box">
+                <span class="terminal-code" id="cmd-snap">sudo snap install andromeda-writer</span>
+                <button class="btn-copy" data-target="cmd-snap">Copy</button>
+              </div>
+            </div>
+            <div class="btn-group" style="margin-top: 16px;">
+              <a href="https://snapcraft.io" target="_blank" class="btn btn-outline" style="width: 100%;">
+                <span>Snap Store Page</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- 4. Universal AppImage -->
+          <div class="distro-card" id="appimage">
+            <div>
+              <div class="distro-header">
+                <div class="distro-icon" style="color: #10b981;">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                    <circle cx="12" cy="12" r="10" fill="#10B981"/>
+                    <path d="M7 12l4 4 6-8" stroke="#FFF" stroke-width="2" fill="none"/>
+                  </svg>
+                </div>
+                <div class="distro-meta">
+                  <div class="distro-name">Universal AppImage</div>
+                  <span class="distro-badge">Zero Install • Portable</span>
+                </div>
+              </div>
+              <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                Single executable that runs immediately on any Linux distro without root privileges.
+              </p>
+              <div class="terminal-box">
+                <span class="terminal-code" id="cmd-appimage">chmod +x Andromeda-x86_64.AppImage && ./Andromeda-x86_64.AppImage</span>
+                <button class="btn-copy" data-target="cmd-appimage">Copy</button>
+              </div>
+            </div>
+            <div class="btn-group" style="margin-top: 16px;">
+              <a href="#download-appimage" class="btn btn-primary" style="width: 100%;">
+                <span>Download .AppImage</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- 5. Arch Linux / Manjaro (AUR) -->
+          <div class="distro-card" id="aur">
+            <div>
+              <div class="distro-header">
+                <div class="distro-icon" style="color: #1793d1;">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 3L2 21h20L12 3zm0 4.5l6.5 11.5H5.5L12 7.5z" fill="#1793D1"/>
+                  </svg>
+                </div>
+                <div class="distro-meta">
+                  <div class="distro-name">Arch Linux / Manjaro</div>
+                  <span class="distro-badge">AUR Package</span>
+                </div>
+              </div>
+              <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                Available via the Arch User Repository (AUR). Build and update effortlessly using yay.
+              </p>
+              <div class="terminal-box">
+                <span class="terminal-code" id="cmd-aur">yay -S andromeda-writer-bin</span>
+                <button class="btn-copy" data-target="cmd-aur">Copy</button>
+              </div>
+            </div>
+            <div class="btn-group" style="margin-top: 16px;">
+              <a href="https://aur.archlinux.org" target="_blank" class="btn btn-outline" style="width: 100%;">
+                <span>View AUR Package</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- 6. Fedora / RHEL / openSUSE (.rpm) -->
+          <div class="distro-card" id="rpm">
+            <div>
+              <div class="distro-header">
+                <div class="distro-icon" style="color: #51a2da;">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                    <circle cx="12" cy="12" r="10" fill="#51A2DA"/>
+                    <path d="M12 6v6m0 0l4 4m-4-4l-4 4" stroke="#FFF" stroke-width="2" fill="none"/>
+                  </svg>
+                </div>
+                <div class="distro-meta">
+                  <div class="distro-name">Fedora / RHEL / openSUSE</div>
+                  <span class="distro-badge">RPM Package</span>
+                </div>
+              </div>
+              <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                Native RPM package for Fedora 38+, Red Hat Enterprise Linux, CentOS Stream, and openSUSE.
+              </p>
+              <div class="terminal-box">
+                <span class="terminal-code" id="cmd-dnf">sudo dnf install ./andromeda-writer-1.0.0.x86_64.rpm</span>
+                <button class="btn-copy" data-target="cmd-dnf">Copy</button>
+              </div>
+            </div>
+            <div class="btn-group" style="margin-top: 16px;">
+              <a href="#download-rpm" class="btn btn-primary" style="width: 100%;">
+                <span>Download .rpm</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Andromeda Writer Project. Official Download Hub.</p>
+        <a href="index.html" style="color: var(--accent-purple); font-weight: 600;">Back to Main Site →</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    function switchOS(os) {
+      const btnWin = document.getElementById('tab-btn-windows');
+      const btnLinux = document.getElementById('tab-btn-linux');
+      const secWin = document.getElementById('section-windows');
+      const secLinux = document.getElementById('section-linux');
+
+      if (os === 'windows') {
+        btnWin.classList.add('active');
+        btnLinux.classList.remove('active');
+        secWin.style.display = 'block';
+        secLinux.style.display = 'none';
+      } else {
+        btnLinux.classList.add('active');
+        btnWin.classList.remove('active');
+        secLinux.style.display = 'block';
+        secWin.style.display = 'none';
+      }
+    }
+
+    // Auto-detect OS on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      const isLinux = navigator.userAgent.toLowerCase().includes('linux') && !navigator.userAgent.toLowerCase().includes('android');
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('os') === 'linux' || isLinux) {
+        switchOS('linux');
+      }
+    });
+  </script>
+</body>
+</html>

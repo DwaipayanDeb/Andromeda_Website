@@ -27,13 +27,13 @@
         <ul class="nav-links">
           <li><a href="index.html" class="nav-link active">Home</a></li>
           <li><a href="#features" class="nav-link">Features</a></li>
-          <li><a href="linux-download.html" class="nav-link">Linux Hub</a></li>
+          <li><a href="download.html" class="nav-link">Download</a></li>
           <li><a href="docs.html" class="nav-link">Documentation</a></li>
         </ul>
       </nav>
 
       <div class="nav-actions">
-        <a href="#download" class="btn btn-primary" id="nav-download-btn">Get Andromeda</a>
+        <a href="download.html" class="btn btn-primary" id="nav-download-btn">Get Andromeda</a>
         <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
       </div>
     </div>
@@ -59,8 +59,8 @@
 
         <!-- Two Prominent Download Options (Windows & Linux) -->
         <div class="hero-download-box" id="download">
-          <!-- Windows Option (Redirects to Microsoft Store) -->
-          <a href="https://apps.microsoft.com/detail/Andromeda" class="download-card-btn btn-windows-store" id="btn-download-windows" title="Download on Microsoft Store">
+          <!-- Windows Option -->
+          <a href="download.html?os=windows" class="download-card-btn" id="btn-download-windows" title="Download for Windows">
             <div class="card-icon">
               <!-- Windows SVG Logo -->
               <svg width="28" height="28" viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -69,26 +69,31 @@
             </div>
             <div class="card-content">
               <span class="card-badge">Windows 10 / 11</span>
-              <div class="card-title">Microsoft Store</div>
-              <span class="card-meta">Instant Install & Auto Updates →</span>
+              <div class="card-title">Microsoft Store & EXE</div>
+              <span class="card-meta">View all Windows options →</span>
             </div>
           </a>
 
-          <!-- Linux Option (Redirects to Linux Hub) -->
-          <a href="linux-download.html" class="download-card-btn linux-card" id="btn-download-linux" title="Explore Linux Packages">
+          <!-- Linux Option -->
+          <a href="download.html?os=linux" class="download-card-btn linux-card" id="btn-download-linux" title="Download for Linux">
             <div class="card-icon">
-              <!-- Linux Tux SVG Logo -->
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2C9.5 2 7.5 4 7.5 6.5C7.5 7.5 7.8 8.5 8.3 9.3C6.4 10.5 5 12.6 5 15C5 18.9 8.1 22 12 22C15.9 22 19 18.9 19 15C19 12.6 17.6 10.5 15.7 9.3C16.2 8.5 16.5 7.5 16.5 6.5C16.5 4 14.5 2 12 2Z" fill="#FFA000" stroke="#FF6F00"/>
-                <circle cx="10" cy="6" r="1" fill="#212121"/>
-                <circle cx="14" cy="6" r="1" fill="#212121"/>
-                <path d="M10 9C10.5 9.8 11.2 10.2 12 10.2C12.8 10.2 13.5 9.8 14 9" stroke="#E65100"/>
+              <!-- Tux Penguin SVG Logo -->
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C9.2 2 7 4.2 7 7c0 1.2.4 2.3 1.2 3.2C6.8 11.5 6 13.6 6 16c0 2.2 1.8 4 4 4h4c2.2 0 4-1.8 4-4 0-2.4-.8-4.5-2.2-5.8.8-.9 1.2-2 1.2-3.2 0-2.8-2.2-5-5-5z" fill="#1e1b4b"/>
+                <path d="M12 8.5c-2.2 0-3.8 1.8-3.8 4 0 2.6 1.4 4.8 3.8 4.8s3.8-2.2 3.8-4.8c0-2.2-1.6-4-3.8-4z" fill="#ffffff"/>
+                <circle cx="10.2" cy="6.2" r="0.8" fill="#ffffff"/>
+                <circle cx="10.2" cy="6.2" r="0.4" fill="#1e1b4b"/>
+                <circle cx="13.8" cy="6.2" r="0.8" fill="#ffffff"/>
+                <circle cx="13.8" cy="6.2" r="0.4" fill="#1e1b4b"/>
+                <polygon points="12,7.2 10.3,8.6 13.7,8.6" fill="#f59e0b"/>
+                <ellipse cx="8.5" cy="20.2" rx="2.5" ry="1.2" fill="#f59e0b"/>
+                <ellipse cx="15.5" cy="20.2" rx="2.5" ry="1.2" fill="#f59e0b"/>
               </svg>
             </div>
             <div class="card-content">
               <span class="card-badge">Linux Distributions</span>
-              <div class="card-title">APT, Flatpak, Snap</div>
-              <span class="card-meta">View all Linux install options →</span>
+              <div class="card-title">DEB, Flatpak, Snap, AppImage</div>
+              <span class="card-meta">View all Linux options →</span>
             </div>
           </a>
         </div>
@@ -263,11 +268,11 @@
           Available natively on Windows 10/11 and all modern Linux distributions.
         </p>
         <div class="btn-group" style="justify-content: center;">
-          <a href="https://apps.microsoft.com/detail/Andromeda" class="btn btn-windows btn-lg btn-windows-store">
-            <span>Microsoft Store (Windows)</span>
+          <a href="download.html?os=windows" class="btn btn-windows btn-lg">
+            <span>Windows Downloads</span>
           </a>
-          <a href="linux-download.html" class="btn btn-linux btn-lg">
-            <span>Linux Packages & Hub</span>
+          <a href="download.html?os=linux" class="btn btn-linux btn-lg">
+            <span>Linux Packages</span>
           </a>
           <a href="docs.html" class="btn btn-outline btn-lg">
             <span>Read Documentation</span>
@@ -292,11 +297,11 @@
         <div class="footer-col">
           <h4>Download</h4>
           <ul>
-            <li><a href="https://apps.microsoft.com/detail/Andromeda" class="btn-windows-store">Microsoft Store</a></li>
-            <li><a href="linux-download.html#deb">Ubuntu / Debian (.deb)</a></li>
-            <li><a href="linux-download.html#flatpak">Flatpak / Flathub</a></li>
-            <li><a href="linux-download.html#snap">Snapcraft</a></li>
-            <li><a href="linux-download.html#appimage">Universal AppImage</a></li>
+            <li><a href="download.html?os=windows">Microsoft Store (Windows)</a></li>
+            <li><a href="download.html?os=windows">Standalone .exe & Portable</a></li>
+            <li><a href="download.html?os=linux">Ubuntu / Debian (.deb)</a></li>
+            <li><a href="download.html?os=linux">Flatpak & Flathub</a></li>
+            <li><a href="download.html?os=linux">Universal AppImage</a></li>
           </ul>
         </div>
 
