@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Figures, Graphics & Diagrams — Andromeda Writer</title>
+  <meta name="description" content="Floating figure environments, subfigures, framed boxes, text-wrapped graphics, Minipage side-by-side layouts, and TikZ diagrams.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/docs.css">
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+  <style>
+    .ref-commands-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 20px;
+    }
+    .callout {
+      padding: 16px 20px;
+      border-radius: var(--radius-md);
+      margin: 14px 0;
+      border-left: 4px solid;
+    }
+    .callout-info {
+      border-color: var(--accent-purple);
+      background: rgba(124, 58, 237, 0.05);
+    }
+    .callout-tip {
+      border-color: var(--accent-green);
+      background: rgba(5, 150, 105, 0.05);
+    }
+    .callout-warning {
+      border-color: #d97706;
+      background: rgba(217, 119, 6, 0.05);
+    }
+    .callout-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .callout-info .callout-title { color: #6d28d9; }
+    .callout-tip .callout-title { color: #047857; }
+    .callout-warning .callout-title { color: #b45309; }
+    .callout p {
+      color: #334155 !important;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+    .callout strong {
+      color: #0f172a !important;
+      font-weight: 700;
+    }
+    .callout code {
+      background: rgba(124, 58, 237, 0.08);
+      color: #6d28d9;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 0.88em;
+      border: 1px solid rgba(124, 58, 237, 0.2);
+      font-weight: 600;
+    }
+    .ref-command-item {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+      transition: all var(--transition-fast);
+      scroll-margin-top: 110px;
+    }
+    .ref-command-item:hover, .ref-command-item.highlighted {
+      border-color: var(--accent-purple);
+      box-shadow: 0 6px 24px rgba(124, 58, 237, 0.12);
+    }
+    .ref-command-item.highlighted {
+      animation: pulseGlow 1.5s ease;
+    }
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.4); }
+      50% { box-shadow: 0 0 0 8px rgba(124, 58, 237, 0.2); }
+      100% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0); }
+    }
+    .ref-cmd-header {
+      margin-bottom: 12px;
+    }
+    .ref-cmd-title {
+      margin: 8px 0 6px 0;
+      font-size: 1.15rem;
+    }
+    .ref-cmd-title code {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: #5b21b6;
+      background: rgba(124, 58, 237, 0.08);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    .ref-cmd-desc {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin: 0;
+    }
+    .docs-search {
+      position: relative;
+    }
+    .search-dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15);
+      max-height: 380px;
+      overflow-y: auto;
+      z-index: 1000;
+      margin-top: 6px;
+    }
+    .search-dropdown.hidden {
+      display: none;
+    }
+    .search-result-item {
+      padding: 10px 14px;
+      border-bottom: 1px solid #f1f3f9;
+      cursor: pointer;
+      display: block;
+      text-decoration: none;
+      transition: background var(--transition-fast);
+    }
+    .search-result-item:hover, .search-result-item.selected {
+      background: #f8f9fe;
+    }
+    .search-result-item:last-child {
+      border-bottom: none;
+    }
+    .s-item-cmd {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #5b21b6;
+    }
+    .s-item-desc {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      margin-top: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .s-item-cat {
+      font-size: 0.68rem;
+      color: var(--accent-purple);
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-left: 6px;
+    }
+    .code-box {
+      background: #1e1b4b;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 1px solid rgba(124, 58, 237, 0.2);
+      margin-top: 8px;
+    }
+    .code-box-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 12px;
+      background: rgba(255, 255, 255, 0.06);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.72rem;
+      color: #a5b4fc;
+      font-weight: 500;
+    }
+    .btn-copy-snippet {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 4px;
+      color: #ffffff;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all var(--transition-fast);
+    }
+    .btn-copy-snippet:hover {
+      background: var(--accent-purple);
+      border-color: var(--accent-purple-light);
+    }
+    .btn-copy-snippet.copied {
+      background: #059669;
+      border-color: #10b981;
+    }
+    .code-box pre {
+      margin: 0;
+      padding: 12px;
+      overflow-x: auto;
+    }
+    .code-box code {
+      font-family: var(--font-mono);
+      font-size: 0.84rem;
+      line-height: 1.5;
+      color: #c7d2fe;
+      white-space: pre;
+    }
+    .ref-toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #1e1b4b;
+      color: #ffffff;
+      padding: 12px 20px;
+      border-radius: var(--radius-pill);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      z-index: 10000;
+      border: 1px solid rgba(124, 58, 237, 0.4);
+      animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .ref-toast.hidden { display: none; }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Glow Elements -->
+  <div class="ambient-glow-1"></div>
+  <div class="ambient-glow-2"></div>
+
+  <!-- Header & Navigation -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" id="brand-logo-link">
+        <img src="assets/images/logo.png" alt="Andromeda Logo">
+        <span>Andromeda</span>
+        <span class="brand-badge">Reference</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="index.html#features" class="nav-link">Features</a></li>
+          <li><a href="download.html" class="nav-link">Download</a></li>
+          <li><a href="docs.html" class="nav-link">Documentation</a></li>
+          <li><a href="latex-reference.html" class="nav-link active">LaTeX Reference</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="download.html" class="btn btn-primary">Get Andromeda</a>
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Docs Layout Container -->
+  <div class="container docs-layout">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="docs-sidebar">
+      
+        <div class="docs-search">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="docsSearchInput" placeholder="Search LaTeX reference (e.g. italics, table, htbp)..." autocomplete="off">
+          <div id="searchDropdown" class="search-dropdown hidden"></div>
+        </div>
+        
+<div class="docs-nav-group"><div class="docs-nav-title">Reference Modules</div><ul class="docs-nav-list">
+<li class="docs-nav-item"><a href="latex-reference.html" class="docs-nav-link">LaTeX Reference Hub & Overview</a></li>
+<li class="docs-nav-item"><a href="ref-structure.html" class="docs-nav-link">Document Structure & Sectioning</a></li>
+<li class="docs-nav-item"><a href="ref-formatting.html" class="docs-nav-link">Text Formatting, Fonts & Environments</a></li>
+<li class="docs-nav-item"><a href="ref-math.html" class="docs-nav-link">Mathematics, Equations & Symbols</a></li>
+<li class="docs-nav-item"><a href="ref-tables.html" class="docs-nav-link">Tables & Tabular Designs</a></li>
+<li class="docs-nav-item"><a href="ref-figures.html" class="docs-nav-link active">Figures, Graphics & Diagrams</a></li>
+<li class="docs-nav-item"><a href="ref-citations.html" class="docs-nav-link">Citations, Cross-References & Hyperlinks</a></li>
+<li class="docs-nav-item"><a href="ref-code-algo.html" class="docs-nav-link">Source Code, Algorithms & Theorems</a></li>
+<li class="docs-nav-item"><a href="ref-layout.html" class="docs-nav-link">Spacing, Layout, Beamer & TeX Internals</a></li>
+</ul></div>
+<div class="docs-nav-group"><div class="docs-nav-title">Page Topics</div><ul class="docs-nav-list">
+<li class="docs-nav-item"><a href="#figures_advanced" class="docs-nav-link">Advanced Figures & Subfigures (8)</a></li>
+<li class="docs-nav-item"><a href="#colors_and_graphics" class="docs-nav-link">Colors & Image Inclusion (8)</a></li>
+<li class="docs-nav-item"><a href="#tikz_graphics" class="docs-nav-link">TikZ Vector Graphics (9)</a></li>
+</ul></div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="docs-content">
+      
+      <!-- Module Header Section -->
+      <section class="doc-section" style="padding-bottom: 10px;">
+        <span class="doc-badge">Graphics & Figures</span>
+        <h1 class="doc-title">Figures, Graphics & Diagrams</h1>
+        <p class="doc-lead">Detailed guide on floating figures, graphicx inclusion options (width, scale, angle, clip), subcaption side-by-side figures, and TikZ vector diagrams.</p>
+      </section>
+
+      
+    <div class="callout callout-tip" style="margin-bottom: 30px;">
+      <div class="callout-title">🖼️ 6 Essential Figure & Subfigure Styles</div>
+      <p>
+        Choose between standard centered floats, side-by-side subfigures with (a) & (b) labels, framed border boxes, text-wrapped inline illustrations, or side-by-side figure+table pairs.
+      </p>
+    </div>
+    
+
+      
+            <section id="figures_advanced" class="doc-section">
+              <span class="doc-badge">Advanced Figures & Subfigures</span>
+              <h2 class="doc-title">Advanced Figures & Subfigures</h2>
+              <p class="doc-lead">Comprehensive syntax, arguments, options, and copyable snippets for advanced figures & subfigures.</p>
+              
+              <div class="ref-commands-list">
+                
+                <div class="ref-command-item" id="cmd-begin-subfigure-width-dots-end-subfigure">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(13, 148, 136, 0.15); color: #0f766e;">Environment</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\begin{subfigure}{width}...\end{subfigure}</code></h3>
+                    <p class="ref-cmd-desc">Places one panel of a multi-part figure (subcaption package)</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\begin{subfigure}{0.45\textwidth}
+\includegraphics{a.png}
+\caption{Sample A}
+\end{subfigure}</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-subcaption-text">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\subcaption{text}</code></h3>
+                    <p class="ref-cmd-desc">Caption for an individual subfigure panel (subcaption package)</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\subcaption{Left panel}</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-begin-wrapfigure-pos-width-dots-end-wrapfigure">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(13, 148, 136, 0.15); color: #0f766e;">Environment</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\begin{wrapfigure}{pos}{width}...\end{wrapfigure}</code></h3>
+                    <p class="ref-cmd-desc">Wraps body text around a figure (wrapfig package)</p>
+                  </div>
+                  <div class="callout callout-info" style="margin-top: 10px; margin-bottom: 12px;"><div class="callout-title">💡 Deep Dive Explanation & Options</div><p><strong>Text-Wrapped Inline Graphic:</strong> <code>pos</code> specifies alignment (<code>r</code>: right, <code>l</code>: left). <code>width</code> sets reserved horizontal box width.</p></div>
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\begin{wrapfigure}{r}{0.4\textwidth}
+\includegraphics[width=\linewidth]{fig.png}
+\end{wrapfigure}</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-begin-longtable-cols-dots-end-longtable">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(13, 148, 136, 0.15); color: #0f766e;">Environment</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\begin{longtable}{cols}...\end{longtable}</code></h3>
+                    <p class="ref-cmd-desc">Multi-page table that can break across pages (longtable package)</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\begin{longtable}{cc}
+A &amp; B \\
+\hline
+\endhead
+1 &amp; 2 \\
+\end{longtable}</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-endhead">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span></div>
+                    <h3 class="ref-cmd-title"><code>\endhead</code></h3>
+                    <p class="ref-cmd-desc">Marks the header row(s) to repeat on every page of a longtable</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\endhead</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-endfirsthead">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span></div>
+                    <h3 class="ref-cmd-title"><code>\endfirsthead</code></h3>
+                    <p class="ref-cmd-desc">Marks the header shown only on the first page of a longtable</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\endfirsthead</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-endfoot">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span></div>
+                    <h3 class="ref-cmd-title"><code>\endfoot</code></h3>
+                    <p class="ref-cmd-desc">Marks the footer row(s) to repeat on every page of a longtable</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\endfoot</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-sidewaystable">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span></div>
+                    <h3 class="ref-cmd-title"><code>\sidewaystable</code></h3>
+                    <p class="ref-cmd-desc">Rotates a table 90 degrees on its own page (rotating package)</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\begin{sidewaystable}
+\caption{Wide data}
+\end{sidewaystable}</code></pre>
+                  </div>
+                </div>
+                
+              </div>
+            </section>
+            
+            <section id="colors_and_graphics" class="doc-section">
+              <span class="doc-badge">Colors & Image Inclusion</span>
+              <h2 class="doc-title">Colors & Image Inclusion</h2>
+              <p class="doc-lead">Comprehensive syntax, arguments, options, and copyable snippets for colors & image inclusion.</p>
+              
+              <div class="ref-commands-list">
+                
+                <div class="ref-command-item" id="cmd-textcolor-color-text">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\textcolor{color}{text}</code></h3>
+                    <p class="ref-cmd-desc">Colors text (xcolor)</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\textcolor{red}{Warning!}</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-colorbox-color-text">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\colorbox{color}{text}</code></h3>
+                    <p class="ref-cmd-desc">Colored background box (xcolor)</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\colorbox{yellow}{Highlighted}</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-fcolorbox-border-bg-text">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\fcolorbox{border}{bg}{text}</code></h3>
+                    <p class="ref-cmd-desc">Framed and colored box (xcolor)</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\fcolorbox{black}{yellow}{Boxed text}</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-pagecolor-color">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\pagecolor{color}</code></h3>
+                    <p class="ref-cmd-desc">Sets page background color (xcolor)</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\pagecolor{lightgray}</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-definecolor-name-model-spec">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\definecolor{name}{model}{spec}</code></h3>
+                    <p class="ref-cmd-desc">Defines a custom color (xcolor)</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\definecolor{myblue}{RGB}{0,102,204}</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-rotatebox-angle-text">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\rotatebox{angle}{text}</code></h3>
+                    <p class="ref-cmd-desc">Rotates content (graphicx)</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\rotatebox{45}{Tilted text}</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-scalebox-factor-text">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\scalebox{factor}{text}</code></h3>
+                    <p class="ref-cmd-desc">Scales content (graphicx)</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\scalebox{2}{Big text}</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-resizebox-width-height-text">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\resizebox{width}{height}{text}</code></h3>
+                    <p class="ref-cmd-desc">Resizes content to given dimensions (graphicx)</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\resizebox{3cm}{1cm}{Stretched text}</code></pre>
+                  </div>
+                </div>
+                
+              </div>
+            </section>
+            
+            <section id="tikz_graphics" class="doc-section">
+              <span class="doc-badge">TikZ Vector Graphics</span>
+              <h2 class="doc-title">TikZ Vector Graphics</h2>
+              <p class="doc-lead">Comprehensive syntax, arguments, options, and copyable snippets for tikz vector graphics.</p>
+              
+              <div class="ref-commands-list">
+                
+                <div class="ref-command-item" id="cmd-begin-tikzpicture-dots-end-tikzpicture">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(13, 148, 136, 0.15); color: #0f766e;">Environment</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\begin{tikzpicture}...\end{tikzpicture}</code></h3>
+                    <p class="ref-cmd-desc">Container for a TikZ vector drawing (tikz package)</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\begin{tikzpicture}
+\draw (0,0) circle (1cm);
+\end{tikzpicture}</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-draw">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span></div>
+                    <h3 class="ref-cmd-title"><code>\draw</code></h3>
+                    <p class="ref-cmd-desc">Draws a path, line, or shape in TikZ</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\draw (0,0) -- (2,2);</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-node">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span></div>
+                    <h3 class="ref-cmd-title"><code>\node</code></h3>
+                    <p class="ref-cmd-desc">Places a labeled node/point in TikZ</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\node at (1,1) {$P$};</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-coordinate">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span></div>
+                    <h3 class="ref-cmd-title"><code>\coordinate</code></h3>
+                    <p class="ref-cmd-desc">Defines a named coordinate point in TikZ</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\coordinate (A) at (0,0);</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-fill">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span></div>
+                    <h3 class="ref-cmd-title"><code>\fill</code></h3>
+                    <p class="ref-cmd-desc">Draws and fills a closed shape in TikZ</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\fill[blue] (0,0) rectangle (1,1);</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-filldraw">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span></div>
+                    <h3 class="ref-cmd-title"><code>\filldraw</code></h3>
+                    <p class="ref-cmd-desc">Fills and outlines a shape in one command (TikZ)</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\filldraw[fill=yellow, draw=black] (0,0) circle (0.5);</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-begin-axis-dots-end-axis">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(13, 148, 136, 0.15); color: #0f766e;">Environment</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\begin{axis}...\end{axis}</code></h3>
+                    <p class="ref-cmd-desc">Plots data/functions on labeled axes (pgfplots package)</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\begin{axis}
+\addplot {x^2};
+\end{axis}</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-addplot">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span></div>
+                    <h3 class="ref-cmd-title"><code>\addplot</code></h3>
+                    <p class="ref-cmd-desc">Adds a data series or function plot inside an axis environment (pgfplots)</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\addplot table {data.dat};</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-usetikzlibrary-name">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\usetikzlibrary{name}</code></h3>
+                    <p class="ref-cmd-desc">Loads a TikZ library for extra shapes/features</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\usetikzlibrary{arrows.meta}</code></pre>
+                  </div>
+                </div>
+                
+              </div>
+            </section>
+            
+
+    </main>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="refToast" class="ref-toast hidden">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+    <span id="refToastMsg">Code copied to clipboard!</span>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Andromeda Writer Project. Comprehensive LaTeX Specification & Reference.</p>
+        <a href="latex-reference.html" style="color: var(--accent-purple); font-weight: 600;">Reference Index →</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/search_index.js"></script>
+  <script src="js/docs_search.js"></script>
+</body>
+</html>

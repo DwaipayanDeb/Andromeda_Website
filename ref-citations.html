@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Citations, Cross-References & Hyperlinks — Andromeda Writer</title>
+  <meta name="description" content="Cross-referencing mechanisms, cleveref, hyperref links, footnotes, thebibliography, BibLaTeX bibliographies, and glossaries.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/docs.css">
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+  <style>
+    .ref-commands-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 20px;
+    }
+    .callout {
+      padding: 16px 20px;
+      border-radius: var(--radius-md);
+      margin: 14px 0;
+      border-left: 4px solid;
+    }
+    .callout-info {
+      border-color: var(--accent-purple);
+      background: rgba(124, 58, 237, 0.05);
+    }
+    .callout-tip {
+      border-color: var(--accent-green);
+      background: rgba(5, 150, 105, 0.05);
+    }
+    .callout-warning {
+      border-color: #d97706;
+      background: rgba(217, 119, 6, 0.05);
+    }
+    .callout-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .callout-info .callout-title { color: #6d28d9; }
+    .callout-tip .callout-title { color: #047857; }
+    .callout-warning .callout-title { color: #b45309; }
+    .callout p {
+      color: #334155 !important;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+    .callout strong {
+      color: #0f172a !important;
+      font-weight: 700;
+    }
+    .callout code {
+      background: rgba(124, 58, 237, 0.08);
+      color: #6d28d9;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 0.88em;
+      border: 1px solid rgba(124, 58, 237, 0.2);
+      font-weight: 600;
+    }
+    .ref-command-item {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+      transition: all var(--transition-fast);
+      scroll-margin-top: 110px;
+    }
+    .ref-command-item:hover, .ref-command-item.highlighted {
+      border-color: var(--accent-purple);
+      box-shadow: 0 6px 24px rgba(124, 58, 237, 0.12);
+    }
+    .ref-command-item.highlighted {
+      animation: pulseGlow 1.5s ease;
+    }
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.4); }
+      50% { box-shadow: 0 0 0 8px rgba(124, 58, 237, 0.2); }
+      100% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0); }
+    }
+    .ref-cmd-header {
+      margin-bottom: 12px;
+    }
+    .ref-cmd-title {
+      margin: 8px 0 6px 0;
+      font-size: 1.15rem;
+    }
+    .ref-cmd-title code {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: #5b21b6;
+      background: rgba(124, 58, 237, 0.08);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    .ref-cmd-desc {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin: 0;
+    }
+    .docs-search {
+      position: relative;
+    }
+    .search-dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15);
+      max-height: 380px;
+      overflow-y: auto;
+      z-index: 1000;
+      margin-top: 6px;
+    }
+    .search-dropdown.hidden {
+      display: none;
+    }
+    .search-result-item {
+      padding: 10px 14px;
+      border-bottom: 1px solid #f1f3f9;
+      cursor: pointer;
+      display: block;
+      text-decoration: none;
+      transition: background var(--transition-fast);
+    }
+    .search-result-item:hover, .search-result-item.selected {
+      background: #f8f9fe;
+    }
+    .search-result-item:last-child {
+      border-bottom: none;
+    }
+    .s-item-cmd {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #5b21b6;
+    }
+    .s-item-desc {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      margin-top: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .s-item-cat {
+      font-size: 0.68rem;
+      color: var(--accent-purple);
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-left: 6px;
+    }
+    .code-box {
+      background: #1e1b4b;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 1px solid rgba(124, 58, 237, 0.2);
+      margin-top: 8px;
+    }
+    .code-box-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 12px;
+      background: rgba(255, 255, 255, 0.06);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.72rem;
+      color: #a5b4fc;
+      font-weight: 500;
+    }
+    .btn-copy-snippet {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 4px;
+      color: #ffffff;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all var(--transition-fast);
+    }
+    .btn-copy-snippet:hover {
+      background: var(--accent-purple);
+      border-color: var(--accent-purple-light);
+    }
+    .btn-copy-snippet.copied {
+      background: #059669;
+      border-color: #10b981;
+    }
+    .code-box pre {
+      margin: 0;
+      padding: 12px;
+      overflow-x: auto;
+    }
+    .code-box code {
+      font-family: var(--font-mono);
+      font-size: 0.84rem;
+      line-height: 1.5;
+      color: #c7d2fe;
+      white-space: pre;
+    }
+    .ref-toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #1e1b4b;
+      color: #ffffff;
+      padding: 12px 20px;
+      border-radius: var(--radius-pill);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      z-index: 10000;
+      border: 1px solid rgba(124, 58, 237, 0.4);
+      animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .ref-toast.hidden { display: none; }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Glow Elements -->
+  <div class="ambient-glow-1"></div>
+  <div class="ambient-glow-2"></div>
+
+  <!-- Header & Navigation -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" id="brand-logo-link">
+        <img src="assets/images/logo.png" alt="Andromeda Logo">
+        <span>Andromeda</span>
+        <span class="brand-badge">Reference</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="index.html#features" class="nav-link">Features</a></li>
+          <li><a href="download.html" class="nav-link">Download</a></li>
+          <li><a href="docs.html" class="nav-link">Documentation</a></li>
+          <li><a href="latex-reference.html" class="nav-link active">LaTeX Reference</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="download.html" class="btn btn-primary">Get Andromeda</a>
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Docs Layout Container -->
+  <div class="container docs-layout">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="docs-sidebar">
+      
+        <div class="docs-search">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="docsSearchInput" placeholder="Search LaTeX reference (e.g. italics, table, htbp)..." autocomplete="off">
+          <div id="searchDropdown" class="search-dropdown hidden"></div>
+        </div>
+        
+<div class="docs-nav-group"><div class="docs-nav-title">Reference Modules</div><ul class="docs-nav-list">
+<li class="docs-nav-item"><a href="latex-reference.html" class="docs-nav-link">LaTeX Reference Hub & Overview</a></li>
+<li class="docs-nav-item"><a href="ref-structure.html" class="docs-nav-link">Document Structure & Sectioning</a></li>
+<li class="docs-nav-item"><a href="ref-formatting.html" class="docs-nav-link">Text Formatting, Fonts & Environments</a></li>
+<li class="docs-nav-item"><a href="ref-math.html" class="docs-nav-link">Mathematics, Equations & Symbols</a></li>
+<li class="docs-nav-item"><a href="ref-tables.html" class="docs-nav-link">Tables & Tabular Designs</a></li>
+<li class="docs-nav-item"><a href="ref-figures.html" class="docs-nav-link">Figures, Graphics & Diagrams</a></li>
+<li class="docs-nav-item"><a href="ref-citations.html" class="docs-nav-link active">Citations, Cross-References & Hyperlinks</a></li>
+<li class="docs-nav-item"><a href="ref-code-algo.html" class="docs-nav-link">Source Code, Algorithms & Theorems</a></li>
+<li class="docs-nav-item"><a href="ref-layout.html" class="docs-nav-link">Spacing, Layout, Beamer & TeX Internals</a></li>
+</ul></div>
+<div class="docs-nav-group"><div class="docs-nav-title">Page Topics</div><ul class="docs-nav-list">
+<li class="docs-nav-item"><a href="#references_and_citations" class="docs-nav-link">Labels, Footnotes & Citations (15)</a></li>
+<li class="docs-nav-item"><a href="#cross_referencing_advanced" class="docs-nav-link">Advanced Cross-Referencing (cleveref) (3)</a></li>
+<li class="docs-nav-item"><a href="#bibliography_biblatex" class="docs-nav-link">BibLaTeX Bibliographies (6)</a></li>
+<li class="docs-nav-item"><a href="#cross_document_and_hyperlinks" class="docs-nav-link">Hyperlinks & URLs (4)</a></li>
+<li class="docs-nav-item"><a href="#glossaries_and_acronyms" class="docs-nav-link">Glossaries & Acronyms (5)</a></li>
+</ul></div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="docs-content">
+      
+      <!-- Module Header Section -->
+      <section class="doc-section" style="padding-bottom: 10px;">
+        <span class="doc-badge">Referencing</span>
+        <h1 class="doc-title">Citations, Cross-References & Hyperlinks</h1>
+        <p class="doc-lead">Automated numbering and linking for equations, sections, figures, dynamic hyperlinks, BibTeX/BibLaTeX citations, and acronyms.</p>
+      </section>
+
+      
+
+      
+            <section id="references_and_citations" class="doc-section">
+              <span class="doc-badge">Labels, Footnotes & Citations</span>
+              <h2 class="doc-title">Labels, Footnotes & Citations</h2>
+              <p class="doc-lead">Comprehensive syntax, arguments, options, and copyable snippets for labels, footnotes & citations.</p>
+              
+              <div class="ref-commands-list">
+                
+                <div class="ref-command-item" id="cmd-label-key">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\label{key}</code></h3>
+                    <p class="ref-cmd-desc">Defines a label for a numbered element</p>
+                  </div>
+                  <div class="callout callout-info" style="margin-top: 10px; margin-bottom: 12px;"><div class="callout-title">💡 Deep Dive Explanation & Options</div><p><strong>Label Anchor Placement:</strong> Must be placed <em>after</em> (or inside) <code>\caption{...}</code> for figures and tables, or inside an equation, so <code>\ref{key}</code> retrieves the correct counter.</p></div>
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\label{sec:intro}</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-ref-key">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\ref{key}</code></h3>
+                    <p class="ref-cmd-desc">References a labeled element&#x27;s number</p>
+                  </div>
+                  <div class="callout callout-info" style="margin-top: 10px; margin-bottom: 12px;"><div class="callout-title">💡 Deep Dive Explanation & Options</div><p><strong>Counter Cross-Reference:</strong> Generates the numeric value of the labeled object. For equations with parentheses, use <code>\eqref{key}</code>.</p></div>
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>See Section~\ref{sec:intro}.</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-pageref-key">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\pageref{key}</code></h3>
+                    <p class="ref-cmd-desc">References the page number of a label</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>See page~\pageref{sec:intro}.</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-eqref-key">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\eqref{key}</code></h3>
+                    <p class="ref-cmd-desc">References an equation number in parentheses (amsmath)</p>
+                  </div>
+                  <div class="callout callout-info" style="margin-top: 10px; margin-bottom: 12px;"><div class="callout-title">💡 Deep Dive Explanation & Options</div><p><strong>Equation Reference:</strong> Produces formatted equation numbers with parentheses (e.g. '(4)') and clickable hyperref link.</p></div>
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>As shown in \eqref{eq:energy}.</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-cite-key">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\cite{key}</code></h3>
+                    <p class="ref-cmd-desc">Cites a bibliography entry</p>
+                  </div>
+                  <div class="callout callout-info" style="margin-top: 10px; margin-bottom: 12px;"><div class="callout-title">💡 Deep Dive Explanation & Options</div><p><strong>Citation:</strong> Inserts reference citing entry <code>key</code> in your <code>.bib</code> file. Supports page optional argument: <code>\cite[p.~45]{key}</code>.</p></div>
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\cite{smith2020}</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-citep-key">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\citep{key}</code></h3>
+                    <p class="ref-cmd-desc">Parenthetical citation (natbib)</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\citep{smith2020}</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-citet-key">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\citet{key}</code></h3>
+                    <p class="ref-cmd-desc">Textual citation (natbib)</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\citet{smith2020} showed that...</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-nocite-key">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\nocite{key}</code></h3>
+                    <p class="ref-cmd-desc">Includes a reference without citing it in text</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\nocite{smith2020}</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-bibliography-file">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\bibliography{file}</code></h3>
+                    <p class="ref-cmd-desc">Specifies BibTeX database file(s)</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\bibliography{references}</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-bibliographystyle-style">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\bibliographystyle{style}</code></h3>
+                    <p class="ref-cmd-desc">Sets the bibliography style</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\bibliographystyle{plain}</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-begin-thebibliography-widest-dots-end-thebibliography">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(13, 148, 136, 0.15); color: #0f766e;">Environment</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\begin{thebibliography}{widest}...\end{thebibliography}</code></h3>
+                    <p class="ref-cmd-desc">Manual bibliography environment</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\begin{thebibliography}{9}
+\bibitem{smith2020} J. Smith, \textit{Title}, 2020.
+\end{thebibliography}</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-bibitem-key">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\bibitem{key}</code></h3>
+                    <p class="ref-cmd-desc">Defines a manual bibliography entry</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\bibitem{smith2020} J. Smith, \textit{Title}, 2020.</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-footnote-text">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\footnote{text}</code></h3>
+                    <p class="ref-cmd-desc">Inserts a footnote</p>
+                  </div>
+                  <div class="callout callout-info" style="margin-top: 10px; margin-bottom: 12px;"><div class="callout-title">💡 Deep Dive Explanation & Options</div><p><strong>Footnote:</strong> Inserts a numbered superscript in text and places the note at the page footer.</p></div>
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>This is a claim.\footnote{See the appendix for details.}</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-footnotemark">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span></div>
+                    <h3 class="ref-cmd-title"><code>\footnotemark</code></h3>
+                    <p class="ref-cmd-desc">Inserts a footnote marker without text</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>This needs a note.\footnotemark</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-footnotetext-text">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\footnotetext{text}</code></h3>
+                    <p class="ref-cmd-desc">Inserts footnote text for a prior footnotemark</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\footnotetext{Details given later.}</code></pre>
+                  </div>
+                </div>
+                
+              </div>
+            </section>
+            
+            <section id="cross_referencing_advanced" class="doc-section">
+              <span class="doc-badge">Advanced Cross-Referencing (cleveref)</span>
+              <h2 class="doc-title">Advanced Cross-Referencing (cleveref)</h2>
+              <p class="doc-lead">Comprehensive syntax, arguments, options, and copyable snippets for advanced cross-referencing (cleveref).</p>
+              
+              <div class="ref-commands-list">
+                
+                <div class="ref-command-item" id="cmd-cref-key">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\cref{key}</code></h3>
+                    <p class="ref-cmd-desc">Smart cross-reference that auto-inserts the label type, e.g. &#x27;Figure 1&#x27; (cleveref package)</p>
+                  </div>
+                  <div class="callout callout-info" style="margin-top: 10px; margin-bottom: 12px;"><div class="callout-title">💡 Deep Dive Explanation & Options</div><p><strong>Clever Reference (cleveref):</strong> Automatically detects object type and prepends the noun (e.g. 'Figure 2', 'Table 1', 'Equation (3)').</p></div>
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\cref{fig:setup}</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-cref-key">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\Cref{key}</code></h3>
+                    <p class="ref-cmd-desc">Like \cref but capitalizes the label type at the start of a sentence (cleveref)</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\Cref{fig:setup} shows the apparatus.</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-crefrange-key1-key2">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\crefrange{key1}{key2}</code></h3>
+                    <p class="ref-cmd-desc">References a range of labels, e.g. &#x27;Equations 1-3&#x27; (cleveref)</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\crefrange{eq:one}{eq:three}</code></pre>
+                  </div>
+                </div>
+                
+              </div>
+            </section>
+            
+            <section id="bibliography_biblatex" class="doc-section">
+              <span class="doc-badge">BibLaTeX Bibliographies</span>
+              <h2 class="doc-title">BibLaTeX Bibliographies</h2>
+              <p class="doc-lead">Comprehensive syntax, arguments, options, and copyable snippets for biblatex bibliographies.</p>
+              
+              <div class="ref-commands-list">
+                
+                <div class="ref-command-item" id="cmd-printbibliography">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span></div>
+                    <h3 class="ref-cmd-title"><code>\printbibliography</code></h3>
+                    <p class="ref-cmd-desc">Prints the bibliography (biblatex package)</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\printbibliography</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-addbibresource-file">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\addbibresource{file}</code></h3>
+                    <p class="ref-cmd-desc">Registers a bibliography database file (biblatex)</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\addbibresource{references.bib}</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-parencite-key">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\parencite{key}</code></h3>
+                    <p class="ref-cmd-desc">Parenthetical citation (biblatex)</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\parencite{smith2020}</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-textcite-key">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\textcite{key}</code></h3>
+                    <p class="ref-cmd-desc">In-text citation with author outside parentheses (biblatex)</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\textcite{smith2020} argued that...</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-footcite-key">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\footcite{key}</code></h3>
+                    <p class="ref-cmd-desc">Citation placed in a footnote (biblatex)</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\footcite{smith2020}</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-fullcite-key">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\fullcite{key}</code></h3>
+                    <p class="ref-cmd-desc">Prints a full bibliographic entry inline (biblatex)</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\fullcite{smith2020}</code></pre>
+                  </div>
+                </div>
+                
+              </div>
+            </section>
+            
+            <section id="cross_document_and_hyperlinks" class="doc-section">
+              <span class="doc-badge">Hyperlinks & URLs</span>
+              <h2 class="doc-title">Hyperlinks & URLs</h2>
+              <p class="doc-lead">Comprehensive syntax, arguments, options, and copyable snippets for hyperlinks & urls.</p>
+              
+              <div class="ref-commands-list">
+                
+                <div class="ref-command-item" id="cmd-url-link">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\url{link}</code></h3>
+                    <p class="ref-cmd-desc">Typesets a URL (url/hyperref)</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\url{https://www.arxiv.org}</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-href-link-text">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\href{link}{text}</code></h3>
+                    <p class="ref-cmd-desc">Creates a hyperlink with display text (hyperref)</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\href{https://www.arxiv.org}{arXiv}</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-hyperref-label-text">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span> <span class="doc-badge" style="background: rgba(100, 116, 139, 0.15); color: #475569;">Optional [ ]</span></div>
+                    <h3 class="ref-cmd-title"><code>\hyperref[label]{text}</code></h3>
+                    <p class="ref-cmd-desc">Hyperlinked cross-reference (hyperref)</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\hyperref[sec:intro]{Introduction}</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-autoref-label">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\autoref{label}</code></h3>
+                    <p class="ref-cmd-desc">Auto-typed cross-reference (hyperref)</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>See \autoref{sec:intro}.</code></pre>
+                  </div>
+                </div>
+                
+              </div>
+            </section>
+            
+            <section id="glossaries_and_acronyms" class="doc-section">
+              <span class="doc-badge">Glossaries & Acronyms</span>
+              <h2 class="doc-title">Glossaries & Acronyms</h2>
+              <p class="doc-lead">Comprehensive syntax, arguments, options, and copyable snippets for glossaries & acronyms.</p>
+              
+              <div class="ref-commands-list">
+                
+                <div class="ref-command-item" id="cmd-newglossaryentry-key--dots">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\newglossaryentry{key}{...}</code></h3>
+                    <p class="ref-cmd-desc">Defines a glossary entry (glossaries package)</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\newglossaryentry{ray}{name=ray, description={A line used to model light propagation}}</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-gls-key">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\gls{key}</code></h3>
+                    <p class="ref-cmd-desc">Inserts a glossary term, using its short/first-use form (glossaries)</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\gls{ray}</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-gls-key">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\Gls{key}</code></h3>
+                    <p class="ref-cmd-desc">Inserts a glossary term capitalized (glossaries)</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\Gls{ray}</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-newacronym-key-short-long">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span> <span class="doc-badge" style="background: rgba(245, 158, 11, 0.15); color: #d97706;">Mandatory { }</span></div>
+                    <h3 class="ref-cmd-title"><code>\newacronym{key}{short}{long}</code></h3>
+                    <p class="ref-cmd-desc">Defines an acronym entry (glossaries package)</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\newacronym{sem}{SEM}{Scanning Electron Microscope}</code></pre>
+                  </div>
+                </div>
+                
+                <div class="ref-command-item" id="cmd-printglossary">
+                  <div class="ref-cmd-header">
+                    <div><span class="doc-badge" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">Command</span></div>
+                    <h3 class="ref-cmd-title"><code>\printglossary</code></h3>
+                    <p class="ref-cmd-desc">Prints the glossary (glossaries package)</p>
+                  </div>
+                  
+                  <div class="code-box">
+                    <div class="code-box-header">
+                      <span>Example Code</span>
+                      <button class="btn-copy-snippet" title="Copy to clipboard">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                    <pre><code>\printglossary</code></pre>
+                  </div>
+                </div>
+                
+              </div>
+            </section>
+            
+
+    </main>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="refToast" class="ref-toast hidden">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+    <span id="refToastMsg">Code copied to clipboard!</span>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Andromeda Writer Project. Comprehensive LaTeX Specification & Reference.</p>
+        <a href="latex-reference.html" style="color: var(--accent-purple); font-weight: 600;">Reference Index →</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/search_index.js"></script>
+  <script src="js/docs_search.js"></script>
+</body>
+</html>
