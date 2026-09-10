@@ -12,17 +12,17 @@
       display: flex;
       justify-content: center;
       gap: 12px;
-      margin-bottom: 40px;
+      margin-bottom: 28px;
     }
     .os-tab-btn {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      padding: 12px 28px;
+      gap: 8px;
+      padding: 9px 20px;
       border-radius: var(--radius-pill);
-      background: #ffffff;
-      border: 1px solid var(--border-subtle);
-      font-size: 1rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-medium);
+      font-size: 0.9rem;
       font-weight: 700;
       color: var(--text-secondary);
       cursor: pointer;
@@ -30,35 +30,35 @@
       transition: all var(--transition-fast);
     }
     .os-tab-btn:hover {
-      border-color: var(--accent-purple);
-      color: var(--accent-purple);
-      transform: translateY(-2px);
+      border-color: var(--accent-cyan);
+      color: #ffffff;
+      transform: translateY(-1px);
     }
     .os-tab-btn.active {
       background: var(--gradient-cosmic);
       color: #ffffff;
       border-color: transparent;
-      box-shadow: 0 4px 18px rgba(124, 58, 237, 0.35);
+      box-shadow: 0 2px 14px rgba(139, 92, 246, 0.45);
     }
     .os-section {
       display: block;
       animation: fadeIn 0.3s ease;
     }
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
+      from { opacity: 0; transform: translateY(6px); }
       to { opacity: 1; transform: translateY(0); }
     }
     .download-hero-card {
-      background: #ffffff;
-      border: 1px solid var(--border-subtle);
+      background: var(--bg-card);
+      border: 1px solid var(--border-medium);
       border-radius: var(--radius-lg);
-      padding: 36px;
-      box-shadow: var(--shadow-sm);
-      margin-bottom: 32px;
+      padding: 24px 28px;
+      box-shadow: var(--shadow-md);
+      margin-bottom: 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
+      gap: 20px;
       flex-wrap: wrap;
     }
   </style>
@@ -95,7 +95,7 @@
     </div>
   </header>
 
-  <main style="padding-top: 130px; padding-bottom: 90px;">
+  <main style="padding-top: 84px; padding-bottom: 40px;">
     <div class="container">
       <div class="section-header">
         <span class="section-tag">Cross-Platform Releases</span>

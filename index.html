@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Andromeda Writer — Next-Gen Offline LaTeX Suite</title>
-  <meta name="description" content="Andromeda Writer is a lightning-fast, 100% offline LaTeX desktop editor with embedded live PDF preview, instant math rendering, Monaco editor, and AI assistance.">
+  <title>Andromeda Writer — High-Performance Offline LaTeX Suite</title>
+  <meta name="description"
+    content="Andromeda Writer is a lightning-fast, 100% offline LaTeX desktop editor with embedded live PDF preview, instant math hover rendering, Monaco editor, and SyncTeX.">
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" type="image/png" href="assets/images/logo.png">
 </head>
+
 <body>
 
   <!-- Ambient Glow Elements -->
@@ -27,258 +30,379 @@
         <ul class="nav-links">
           <li><a href="index.html" class="nav-link active">Home</a></li>
           <li><a href="#features" class="nav-link">Features</a></li>
+          <li><a href="#comparison" class="nav-link">Why Andromeda</a></li>
           <li><a href="download.html" class="nav-link">Download</a></li>
           <li><a href="docs.html" class="nav-link">Documentation</a></li>
-          <li><a href="latex-reference.html" class="nav-link">LaTeX Reference</a></li>
+          <li><a href="latex-reference.html" class="nav-link">LaTeX Reference (420+)</a></li>
         </ul>
       </nav>
 
       <div class="nav-actions">
-        <a href="download.html" class="btn btn-primary" id="nav-download-btn">Get Andromeda</a>
+        <a href="download.html" class="btn btn-primary btn-sm" id="nav-download-btn">Get Andromeda v1.0</a>
         <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
       </div>
     </div>
   </header>
 
-  <!-- Hero Section -->
+  <!-- Hero Section: High-Density 2-Column (Everything visible above the fold) -->
   <main>
     <section class="hero">
       <div class="container">
-        <div class="hero-pill">
-          <span class="dot"></span>
-          <span>Version 1.0 Available • 100% Offline & Private</span>
-        </div>
+        <div class="hero-grid">
 
-        <h1 class="hero-title">
-          Precision LaTeX Editing. <br>
-          <span class="gradient-text">Zero Cloud Lag.</span>
-        </h1>
-
-        <p class="hero-subtitle">
-          The high-performance desktop LaTeX suite designed for researchers, mathematicians, and engineers. Featuring embedded live PDF rendering, instant math hover tooltips, and intelligent TeX engine detection.
-        </p>
-
-        <!-- Two Prominent Download Options (Windows & Linux) -->
-        <div class="hero-download-box" id="download">
-          <!-- Windows Option -->
-          <a href="download.html?os=windows" class="download-card-btn" id="btn-download-windows" title="Download for Windows">
-            <div class="card-icon">
-              <!-- Windows SVG Logo -->
-              <svg width="28" height="28" viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 12.402L35.688 7.5V41.812H0V12.402ZM35.688 46.188V80.5L0 75.598V46.188H35.688ZM40.312 6.852L88 0V41.812H40.312V6.852ZM88 46.188L40.312 81.148V46.188H88Z" fill="#00A4EF"/>
-              </svg>
+          <!-- Left Column: Pitch & Direct Actions -->
+          <div class="hero-left">
+            <div class="hero-pill">
+              <span class="dot"></span>
+              <span>100% Offline • Zero Cloud Lag • SyncTeX Ready</span>
             </div>
-            <div class="card-content">
-              <span class="card-badge">Windows 10 / 11</span>
-              <div class="card-title">Microsoft Store & EXE</div>
-              <span class="card-meta">View all Windows options →</span>
-            </div>
-          </a>
 
-          <!-- Linux Option -->
-          <a href="download.html?os=linux" class="download-card-btn linux-card" id="btn-download-linux" title="Download for Linux">
-            <div class="card-icon">
-              <!-- Tux Penguin SVG Logo -->
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2C9.2 2 7 4.2 7 7c0 1.2.4 2.3 1.2 3.2C6.8 11.5 6 13.6 6 16c0 2.2 1.8 4 4 4h4c2.2 0 4-1.8 4-4 0-2.4-.8-4.5-2.2-5.8.8-.9 1.2-2 1.2-3.2 0-2.8-2.2-5-5-5z" fill="#1e1b4b"/>
-                <path d="M12 8.5c-2.2 0-3.8 1.8-3.8 4 0 2.6 1.4 4.8 3.8 4.8s3.8-2.2 3.8-4.8c0-2.2-1.6-4-3.8-4z" fill="#ffffff"/>
-                <circle cx="10.2" cy="6.2" r="0.8" fill="#ffffff"/>
-                <circle cx="10.2" cy="6.2" r="0.4" fill="#1e1b4b"/>
-                <circle cx="13.8" cy="6.2" r="0.8" fill="#ffffff"/>
-                <circle cx="13.8" cy="6.2" r="0.4" fill="#1e1b4b"/>
-                <polygon points="12,7.2 10.3,8.6 13.7,8.6" fill="#f59e0b"/>
-                <ellipse cx="8.5" cy="20.2" rx="2.5" ry="1.2" fill="#f59e0b"/>
-                <ellipse cx="15.5" cy="20.2" rx="2.5" ry="1.2" fill="#f59e0b"/>
-              </svg>
-            </div>
-            <div class="card-content">
-              <span class="card-badge">Linux Distributions</span>
-              <div class="card-title">DEB, Flatpak, Snap, AppImage</div>
-              <span class="card-meta">View all Linux options →</span>
-            </div>
-          </a>
-        </div>
+            <h1 class="hero-title">
+              Precision LaTeX.<br>
+              <span class="gradient-text">Zero Cloud Latency.</span>
+            </h1>
 
-        <!-- App Showcase Mockup -->
-        <div class="showcase-wrapper">
-          <div class="showcase-window">
-            <div class="window-header">
-              <div style="display: flex; align-items: center; gap: 10px;">
-                <img src="assets/images/logo.png" alt="Andromeda" style="width: 20px; height: 20px; border-radius: 4px;">
-                <span style="font-weight: 700; font-size: 0.85rem; color: var(--text-primary);">Andromeda Writer</span>
-                <span style="font-size: 0.75rem; color: var(--accent-purple); background: rgba(124, 58, 237, 0.08); padding: 2px 8px; border-radius: 4px; font-family: var(--font-mono); font-weight: 600;">main.tex</span>
+            <p class="hero-subtitle">
+              The high-performance desktop LaTeX suite for researchers, mathematicians, and engineers. Embedded live PDF
+              preview, instant math hover tooltips, and seamless local TeX engine compilation.
+            </p>
+
+            <!-- Direct Download Buttons -->
+            <div class="hero-cta-box">
+              <a href="download.html?os=windows" class="hero-download-btn" id="btn-download-windows"
+                title="Download for Windows">
+                <div class="btn-icon-box">
+                  <svg width="20" height="20" viewBox="0 0 88 88" fill="none">
+                    <path
+                      d="M0 12.402L35.688 7.5V41.812H0V12.402ZM35.688 46.188V80.5L0 75.598V46.188H35.688ZM40.312 6.852L88 0V41.812H40.312V6.852ZM88 46.188L40.312 81.148V46.188H88Z"
+                      fill="#00A4EF" />
+                  </svg>
+                </div>
+                <div>
+                  <span class="btn-label">Windows 10 / 11</span>
+                  <span class="btn-subtext">MS Store, EXE & Portable →</span>
+                </div>
+              </a>
+
+              <a href="download.html?os=linux" class="hero-download-btn linux-btn" id="btn-download-linux"
+                title="Download for Linux">
+                <div class="btn-icon-box">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M12 2C9.2 2 7 4.2 7 7c0 1.2.4 2.3 1.2 3.2C6.8 11.5 6 13.6 6 16c0 2.2 1.8 4 4 4h4c2.2 0 4-1.8 4-4 0-2.4-.8-4.5-2.2-5.8.8-.9 1.2-2 1.2-3.2 0-2.8-2.2-5-5-5z"
+                      fill="#f8fafc" />
+                    <polygon points="12,7.2 10.3,8.6 13.7,8.6" fill="#f59e0b" />
+                    <ellipse cx="8.5" cy="20.2" rx="2.5" ry="1.2" fill="#f59e0b" />
+                    <ellipse cx="15.5" cy="20.2" rx="2.5" ry="1.2" fill="#f59e0b" />
+                  </svg>
+                </div>
+                <div>
+                  <span class="btn-label">Linux Distributions</span>
+                  <span class="btn-subtext">DEB, Flatpak, AppImage →</span>
+                </div>
+              </a>
+            </div>
+
+            <!-- Feature Tags Strip -->
+            <div class="hero-badges-strip">
+              <span class="hero-badge-item">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                100% Private (No Account)
+              </span>
+              <span class="hero-badge-item">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                Monaco Editor Engine
+              </span>
+              <span class="hero-badge-item">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                Bidirectional SyncTeX
+              </span>
+              <span class="hero-badge-item">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                Instant Math Tooltips
+              </span>
+            </div>
+          </div>
+
+          <!-- Right Column: Compact Split Mockup with Live Math Tooltip -->
+          <div class="hero-right">
+            <div class="showcase-window">
+              <div class="window-header">
+                <div class="win-controls">
+                  <span class="win-dot red"></span>
+                  <span class="win-dot yellow"></span>
+                  <span class="win-dot green"></span>
+                  <span
+                    style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-secondary); margin-left: 8px;">main.tex</span>
+                </div>
+                <div
+                  style="font-size: 0.7rem; color: #10b981; font-weight: 600; display: flex; align-items: center; gap: 5px;">
+                  <span
+                    style="width: 6px; height: 6px; border-radius: 50%; background: #10b981; display: inline-block;"></span>
+                  TeX Live (pdflatex) Active
+                </div>
               </div>
-              <div style="font-size: 0.75rem; color: #059669; font-weight: 600; display: flex; align-items: center; gap: 6px;">
-                <span style="width: 7px; height: 7px; border-radius: 50%; background: #059669; display: inline-block;"></span> TeX Live (pdflatex) Connected
-              </div>
-              <div class="win-controls">
-                <span class="win-control-btn" title="Minimize">─</span>
-                <span class="win-control-btn" title="Maximize">▢</span>
-                <span class="win-control-btn close" title="Close">✕</span>
-              </div>
-            </div>
 
-            <div class="window-body">
-              <!-- Left Monaco Editor Code -->
-              <div class="pane-editor">
-                <div class="code-line"><span class="line-num">1</span><span><span class="tex-cmd">\documentclass</span><span class="tex-brace">[</span>journal<span class="tex-brace">]</span><span class="tex-brace">{</span><span class="tex-arg">IEEEtran</span><span class="tex-brace">}</span></span></div>
-                <div class="code-line"><span class="line-num">2</span><span><span class="tex-cmd">\usepackage</span><span class="tex-brace">{</span><span class="tex-arg">amsmath, amssymb</span><span class="tex-brace">}</span></span></div>
-                <div class="code-line"><span class="line-num">3</span><span><span class="tex-cmd">\title</span><span class="tex-brace">{</span><span class="tex-arg">Quantum Superposition in Andromeda</span><span class="tex-brace">}</span></span></div>
-                <div class="code-line"><span class="line-num">4</span><span><span class="tex-cmd">\author</span><span class="tex-brace">{</span><span class="tex-arg">Dr. Alexis Vance, Ph.D.</span><span class="tex-brace">}</span></span></div>
-                <div class="code-line"><span class="line-num">5</span><span><span class="tex-cmd">\begin</span><span class="tex-brace">{</span><span class="tex-arg">document</span><span class="tex-brace">}</span></span></div>
-                <div class="code-line"><span class="line-num">6</span><span><span class="tex-cmd">\maketitle</span></span></div>
-                <div class="code-line"><span class="line-num">7</span><span><span class="tex-comment">% Dynamic math hover & real-time SyncTeX</span></span></div>
-                <div class="code-line"><span class="line-num">8</span><span><span class="tex-cmd">\section</span><span class="tex-brace">{</span><span class="tex-arg">Field Equations</span><span class="tex-brace">}</span></span></div>
-                <div class="code-line"><span class="line-num">9</span><span>Let the state vector <span class="tex-math">$|\psi(t)\rangle$</span> evolve according to:</span></div>
-                <div class="code-line"><span class="line-num">10</span><span><span class="tex-cmd">\begin</span><span class="tex-brace">{</span><span class="tex-arg">equation</span><span class="tex-brace">}</span></span></div>
-                <div class="code-line"><span class="line-num">11</span><span>&nbsp;&nbsp;i\hbar \frac{\partial}{\partial t} |\psi(t)\rangle = \hat{H} |\psi(t)\rangle</span></div>
-                <div class="code-line"><span class="line-num">12</span><span><span class="tex-cmd">\end</span><span class="tex-brace">{</span><span class="tex-arg">equation</span><span class="tex-brace">}</span></span></div>
-                <div class="code-line"><span class="line-num">13</span><span><span class="tex-cmd">\end</span><span class="tex-brace">{</span><span class="tex-arg">document</span><span class="tex-brace">}</span></span></div>
-              </div>
+              <div class="window-body">
+                <!-- Editor Pane -->
+                <div class="pane-editor">
+                  <div class="code-line"><span class="line-num">1</span><span><span
+                        class="tex-cmd">\documentclass</span><span class="tex-brace">[</span>journal<span
+                        class="tex-brace">]</span><span class="tex-brace">{</span><span
+                        class="tex-arg">IEEEtran</span><span class="tex-brace">}</span></span></div>
+                  <div class="code-line"><span class="line-num">2</span><span><span
+                        class="tex-cmd">\usepackage</span><span class="tex-brace">{</span><span class="tex-arg">amsmath,
+                        amssymb</span><span class="tex-brace">}</span></span></div>
+                  <div class="code-line"><span class="line-num">3</span><span><span class="tex-cmd">\title</span><span
+                        class="tex-brace">{</span><span class="tex-arg">Quantum Superposition</span><span
+                        class="tex-brace">}</span></span></div>
+                  <div class="code-line"><span class="line-num">4</span><span><span class="tex-cmd">\begin</span><span
+                        class="tex-brace">{</span><span class="tex-arg">document</span><span
+                        class="tex-brace">}</span></span></div>
+                  <div class="code-line"><span class="line-num">5</span><span><span class="tex-cmd">\section</span><span
+                        class="tex-brace">{</span><span class="tex-arg">Field Equations</span><span
+                        class="tex-brace">}</span></span></div>
+                  <div class="code-line"><span class="line-num">6</span><span>Let state vector <span
+                        class="tex-math">$|\psi(t)\rangle$</span> satisfy:</span></div>
+                  <div class="code-line"><span class="line-num">7</span><span><span class="tex-cmd">\begin</span><span
+                        class="tex-brace">{</span><span class="tex-arg">equation</span><span
+                        class="tex-brace">}</span></span></div>
+                  <div class="code-line"><span class="line-num">8</span><span>&nbsp;&nbsp;i\hbar
+                      \frac{\partial}{\partial t} |\psi(t)\rangle = \hat{H} |\psi(t)\rangle</span></div>
+                  <div class="code-line"><span class="line-num">9</span><span><span class="tex-cmd">\end</span><span
+                        class="tex-brace">{</span><span class="tex-arg">equation</span><span
+                        class="tex-brace">}</span></span></div>
+                  <div class="code-line"><span class="line-num">10</span><span><span class="tex-cmd">\end</span><span
+                        class="tex-brace">{</span><span class="tex-arg">document</span><span
+                        class="tex-brace">}</span></span></div>
 
-              <!-- Right Split PDF Viewer -->
-              <div class="pane-preview">
-                <div class="preview-paper">
-                  <div class="paper-title">Quantum Superposition in Andromeda</div>
-                  <div class="paper-author">Dr. Alexis Vance, Ph.D. — Department of Physics</div>
-                  <div class="paper-abstract">
-                    <strong>Abstract</strong>—We present a low-latency offline framework for real-time mathematical compilation, verifying state vector convergence with zero cloud dependency.
+                  <!-- Live Math Hover Tooltip Simulation -->
+                  <div class="code-tooltip-demo">
+                    <div class="tooltip-header">
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M12 16v-4M12 8h.01" />
+                      </svg>
+                      Live Math Render
+                    </div>
+                    <div class="tooltip-rendered">i ℏ ∂/∂t |ψ(t)⟩ = Ĥ |ψ(t)⟩</div>
                   </div>
-                  <div class="paper-section">I. FIELD EQUATIONS</div>
-                  <p style="font-size: 0.85rem; line-height: 1.4;">
-                    Let the quantum state vector evolve smoothly according to the time-dependent Schrödinger equation:
-                  </p>
-                  <div class="paper-math-box">
-                    <em>i ℏ</em> ∂/∂t |ψ(t)⟩ = <strong>Ĥ</strong> |ψ(t)⟩ &nbsp;&nbsp;&nbsp;&nbsp;(1)
+                </div>
+
+                <!-- Preview Pane -->
+                <div class="pane-preview">
+                  <div class="preview-paper">
+                    <div class="paper-title">Quantum Superposition</div>
+                    <div class="paper-author">Dr. Alexis Vance — IEEE Trans.</div>
+                    <div class="paper-abstract">
+                      <strong>Abstract</strong>—Real-time mathematical compilation with zero cloud overhead.
+                    </div>
+                    <div class="paper-section">I. FIELD EQUATIONS</div>
+                    <div class="paper-math-box">
+                      <em>i ℏ</em> ∂/∂t |ψ(t)⟩ = <strong>Ĥ</strong> |ψ(t)⟩ &nbsp;&nbsp;(1)
+                    </div>
+                    <div style="font-size: 0.58rem; color: #64748b; text-align: center; margin-top: 4px;">
+                      [SyncTeX: Click any symbol to jump to source]
+                    </div>
                   </div>
-                  <p style="font-size: 0.82rem; color: #475569;">
-                    [Live SyncTeX active: Click any symbol to jump to editor line]
-                  </p>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
+        </div>
       </div>
     </section>
 
-    <!-- Key Features Section -->
+    <!-- Specs & Engine Strip -->
+    <section class="specs-strip">
+      <div class="container specs-container">
+        <span class="specs-label">Supported Engines & Toolchains</span>
+        <div class="specs-chips">
+          <span class="spec-chip active">pdflatex</span>
+          <span class="spec-chip active">xelatex</span>
+          <span class="spec-chip active">lualatex</span>
+          <span class="spec-chip">bibtex</span>
+          <span class="spec-chip">biber</span>
+          <span class="spec-chip">TeX Live</span>
+          <span class="spec-chip">MiKTeX</span>
+          <span class="spec-chip">SyncTeX</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Features Section (High Density 6-Card Grid) -->
     <section class="section" id="features">
       <div class="container">
         <div class="section-header">
           <span class="section-tag">Engineered for Scholars</span>
-          <h2 class="section-title">Everything You Need for Academic Excellence</h2>
-          <p class="section-desc">Andromeda Writer combines the power of VS Code's editor engine with the speed of a local TeX pipeline.</p>
+          <h2 class="section-title">Everything You Need for Academic Writing</h2>
+          <p class="section-desc">Combining the full power of VS Code's editor engine with a zero-latency local TeX
+            pipeline.</p>
         </div>
 
         <div class="grid-3">
           <!-- Feature 1 -->
           <div class="feature-card">
             <div class="feature-icon-wrapper">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
               </svg>
             </div>
             <h3 class="feature-title">100% Offline & Private</h3>
             <p class="feature-text">
-              Your research, unreleased equations, and confidential manuscripts never leave your machine. No mandatory accounts, telemetry, or third-party servers.
+              Your research, unreleased equations, and confidential manuscripts never leave your machine. No accounts or
+              tracking.
             </p>
           </div>
 
           <!-- Feature 2 -->
           <div class="feature-card">
             <div class="feature-icon-wrapper">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="16 18 22 12 16 6"/>
-                <polyline points="8 6 2 12 8 18"/>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <polyline points="16 18 22 12 16 6" />
+                <polyline points="8 6 2 12 8 18" />
               </svg>
             </div>
             <h3 class="feature-title">Monaco Editor Core</h3>
             <p class="feature-text">
-              Equipped with VS Code's Monaco engine: multi-cursor editing, bracket colorization, intelligent LaTeX snippets, and automated BibTeX citation completion.
+              Equipped with VS Code's editor engine: multi-cursor, bracket colorization, snippets, and automated BibTeX
+              completion.
             </p>
           </div>
 
           <!-- Feature 3 -->
           <div class="feature-card">
             <div class="feature-icon-wrapper">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 7l-6-6M3 17l6 6M21 7H8a5 5 0 0 0-5 5v1M3 17h13a5 5 0 0 0 5-5v-1"/>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M21 7l-6-6M3 17l6 6M21 7H8a5 5 0 0 0-5 5v1M3 17h13a5 5 0 0 0 5-5v-1" />
               </svg>
             </div>
-            <h3 class="feature-title">SyncTeX Bidirectional Jump</h3>
+            <h3 class="feature-title">SyncTeX Click-Jump</h3>
             <p class="feature-text">
-              Click any sentence or math equation in the rendered PDF to instantly jump to the exact line in your `.tex` source code, and vice-versa.
+              Click any equation or sentence in the rendered PDF to instantly jump to the exact source code line and
+              vice-versa.
             </p>
           </div>
 
           <!-- Feature 4 -->
           <div class="feature-card">
             <div class="feature-icon-wrapper">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="8"/>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-                <line x1="11" y1="8" x2="11" y2="14"/>
-                <line x1="8" y1="11" x2="14" y2="11"/>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                <line x1="11" y1="8" x2="11" y2="14" />
+                <line x1="8" y1="11" x2="14" y2="11" />
               </svg>
             </div>
             <h3 class="feature-title">Live Math Hover Preview</h3>
             <p class="feature-text">
-              Hover over complex matrices or integrals in the code editor to view a crisp, rendered visual preview instantly without having to recompile the document.
+              Hover over complex matrices, fractions, or integrals in the code to view crisp rendered formulas without
+              full recompile.
             </p>
           </div>
 
           <!-- Feature 5 -->
           <div class="feature-card">
             <div class="feature-icon-wrapper">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="3"/>
-                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <circle cx="12" cy="12" r="3" />
+                <path
+                  d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
               </svg>
             </div>
             <h3 class="feature-title">Smart TeX Auto-Detection</h3>
             <p class="feature-text">
-              Automatically discovers your existing TeX Live, MiKTeX, or MacTeX installation across system paths and configures the build toolchain seamlessly.
+              Auto-discovers installed TeX Live, MiKTeX, or MacTeX distributions across your system paths and configures
+              toolchains.
             </p>
           </div>
 
-          <!-- Feature 6 (Andromeda Actual AI Agent SVG) -->
+          <!-- Feature 6 -->
           <div class="feature-card">
             <div class="feature-icon-wrapper">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2v2M2 11h2M20 11h2"/>
-                <rect x="5" y="7" width="14" height="12" rx="2.5"/>
-                <path d="M9 13h.01M15 13h.01M8 17h8"/>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M12 2v2M2 11h2M20 11h2" />
+                <rect x="5" y="7" width="14" height="12" rx="2.5" />
+                <path d="M9 13h.01M15 13h.01M8 17h8" />
               </svg>
             </div>
             <h3 class="feature-title">AI Academic Assistant</h3>
             <p class="feature-text">
-              Integrated AI writing assistant capable of fixing compilation errors, formatting tables, suggesting bibliography entries, and proofreading mathematical text.
+              Integrated helper to fix compilation errors, generate complex tables, format citations, and proofread
+              mathematical text.
             </p>
           </div>
         </div>
+
+        <!-- Comparison / Why Andromeda Section -->
+        <div class="comparison-wrapper" id="comparison">
+          <div class="comparison-grid">
+            <div class="comparison-col highlight">
+              <div class="comparison-header">
+                <span style="color: var(--accent-cyan);">🚀 Andromeda Writer (Desktop)</span>
+                <span
+                  style="font-size: 0.72rem; padding: 2px 8px; background: rgba(56, 189, 248, 0.2); border-radius: 4px; color: var(--accent-cyan); font-weight: 700;">RECOMMENDED</span>
+              </div>
+              <ul class="comparison-list">
+                <li><span class="check-icon">✓</span> <strong>Instant Local Compilation:</strong> 0ms network latency.
+                </li>
+                <li><span class="check-icon">✓</span> <strong>100% Offline & Private:</strong> Works without internet;
+                  no document uploads.</li>
+                <li><span class="check-icon">✓</span> <strong>No Timeouts:</strong> Compile 100+ page books and large
+                  TikZ plots freely.</li>
+                <li><span class="check-icon">✓</span> <strong>Bidirectional SyncTeX:</strong> Seamless PDF-to-code
+                  navigation.</li>
+                <li><span class="check-icon">✓</span> <strong>Free Forever (Basic Version):</strong> The basic version
+                  is 100% free forever.</li>
+              </ul>
+            </div>
+
+            <div class="comparison-col">
+              <div class="comparison-header">
+                <span style="color: var(--text-muted);">☁️ Cloud Editors (Overleaf, etc.)</span>
+              </div>
+              <ul class="comparison-list">
+                <li><span class="cross-icon">✗</span> High latency on keystrokes and remote server queues.</li>
+                <li><span class="cross-icon">✗</span> Confidential research is hosted on third-party servers.</li>
+                <li><span class="cross-icon">✗</span> Strict compile timeout limits on free plans.</li>
+                <li><span class="cross-icon">✗</span> Requires active, fast internet connection at all times.</li>
+                <li><span class="cross-icon">✗</span> Expensive monthly subscription fees for advanced features.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
     <!-- Call to Action Banner -->
-    <section class="section" style="background: linear-gradient(180deg, transparent 0%, rgba(124, 58, 237, 0.05) 100%);">
-      <div class="container" style="text-align: center;">
-        <h2 class="section-title">Ready to Elevate Your LaTeX Workflow?</h2>
-        <p class="section-desc" style="margin-bottom: 36px;">
-          Available natively on Windows 10/11 and all modern Linux distributions.
+    <section class="cta-section">
+      <div class="container">
+        <h2 class="section-title">Ready to Experience Zero-Lag LaTeX?</h2>
+        <p class="section-desc" style="margin-bottom: 24px;">
+          Download Andromeda Writer for Windows 10/11 and Linux distributions.
         </p>
         <div class="btn-group" style="justify-content: center;">
-          <a href="download.html?os=windows" class="btn btn-windows btn-lg">
+          <a href="download.html?os=windows" class="btn btn-windows">
             <span>Windows Downloads</span>
           </a>
-          <a href="download.html?os=linux" class="btn btn-linux btn-lg">
+          <a href="download.html?os=linux" class="btn btn-linux">
             <span>Linux Packages</span>
           </a>
-          <a href="latex-reference.html" class="btn btn-primary btn-lg">
+          <a href="latex-reference.html" class="btn btn-primary">
             <span>LaTeX Reference (420+)</span>
           </a>
-          <a href="docs.html" class="btn btn-outline btn-lg">
+          <a href="docs.html" class="btn btn-outline">
             <span>Documentation</span>
           </a>
         </div>
@@ -295,7 +419,8 @@
             <img src="assets/images/logo.png" alt="Andromeda Logo">
             <span>Andromeda</span>
           </div>
-          <p>The high-performance, privacy-first LaTeX editor engineered for academics and researchers worldwide.</p>
+          <p>The high-performance, privacy-first LaTeX suite engineered for academics, mathematicians, and engineers.
+          </p>
         </div>
 
         <div class="footer-col">
@@ -313,7 +438,6 @@
           <h4>Reference & Docs</h4>
           <ul>
             <li><a href="latex-reference.html">LaTeX Command Reference (420+)</a></li>
-            <li><a href="latex-reference.html#style-showcase">Multi-Style Table & Figure Guide</a></li>
             <li><a href="docs.html#quickstart">Quick Start Guide</a></li>
             <li><a href="docs.html#tex-engine">TeX Engine Setup</a></li>
             <li><a href="docs.html#shortcuts">Keyboard Shortcuts</a></li>
@@ -333,11 +457,12 @@
 
       <div class="footer-bottom">
         <p>&copy; 2026 Andromeda Writer Project. All rights reserved.</p>
-        <p>Built with ❤️ for the academic research community.</p>
+        <p>Built with precision for the academic research community.</p>
       </div>
     </div>
   </footer>
 
   <script src="js/main.js"></script>
 </body>
+
 </html>
