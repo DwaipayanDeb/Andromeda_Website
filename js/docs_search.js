@@ -11,10 +11,17 @@ document.addEventListener('DOMContentLoaded', () => {
   // Highlight anchor card if URL has hash
   function highlightAnchor() {
     if (window.location.hash) {
-      const target = document.querySelector(window.location.hash);
-      if (target && target.classList.contains('ref-command-item')) {
-        target.classList.add('highlighted');
-        setTimeout(() => target.classList.remove('highlighted'), 2500);
+      try {
+        const target = document.querySelector(window.location.hash);
+        if (target) {
+          setTimeout(() => {
+            target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }, 100);
+          target.classList.add('highlighted');
+          setTimeout(() => target.classList.remove('highlighted'), 2500);
+        }
+      } catch (e) {
+        console.error("Error scrolling to hash anchor:", e);
       }
     }
   }
