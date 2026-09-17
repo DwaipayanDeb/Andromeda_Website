@@ -107,6 +107,7 @@
           <li><a href="https://payment.andromedawriter.com" class="nav-link">Plans</a></li>
           <li><a href="download.html" class="nav-link">Download</a></li>
           <li><a href="docs.html" class="nav-link">Docs</a></li>
+          <li><a href="docs.html#troubleshooting" class="nav-link">FAQs</a></li>
         </ul>
       </nav>
 
@@ -147,7 +148,7 @@
       <ul>
         <li><strong>Trial Activation:</strong> Enrolling in a trial requires establishing a valid payment method. An initial authorization charge of $0.00 (or nominal refundable bank verification mandate token) may occur to confirm account validity.</li>
         <li><strong>Automatic Conversion:</strong> At the conclusion of the 14-day trial period, the subscription will automatically convert into a paid recurring billing cycle (Monthly or Annual, as chosen during checkout) unless cancelled prior to expiration.</li>
-        <li><strong>Cancellation:</strong> You may cancel your subscription at any time via your self-service billing management portal or by emailing support. Upon cancellation, you retain access until the end of the paid billing term.</li>
+        <li><strong>Cancellation:</strong> You may cancel your subscription at any time via your self-service billing management portal (<a href="https://payment.andromedawriter.com/account.html">My Account</a>), your designated payment gateway, or by emailing support. Upon cancellation, you retain access until the end of the paid billing term.</li>
       </ul>
 
       <h2>4. Payment Gateways, Merchant of Record & Resolution Support</h2>
@@ -156,7 +157,7 @@
       </p>
       <ul>
         <li><strong>International Payments (Global):</strong> Processed via <strong>Lemon Squeezy</strong> acting as the Merchant of Record (MoR). Lemon Squeezy handles global sales tax, VAT, invoicing, and customer payment processing in accordance with their terms of service.</li>
-        <li><strong>Domestic Payments (India):</strong> Processed via <strong>Razorpay</strong>, supporting domestic UPI, Net Banking, and Indian debit/credit cards.</li>
+        <li><strong>Domestic Payments (India):</strong> Processed via <strong>Razorpay</strong>, supporting domestic UPI AutoPay, Net Banking, and Indian debit/credit cards.</li>
       </ul>
 
       <div class="support-box">
@@ -166,7 +167,7 @@
         </p>
       </div>
 
-      <h2>5. Refund Policy</h2>
+      <h2>5. Refund Policy & Service Modification Rights</h2>
       <p>
         We aim to provide a transparent, risk-free software experience:
       </p>
@@ -174,26 +175,29 @@
         <li><strong>Free Trial Period:</strong> If you cancel during the 14-day free trial, your payment method will not be charged.</li>
         <li><strong>Billing Discrepancies & Duplicate Charges:</strong> Verified duplicate charges, accidental double checkouts, or unfulfilled activations caused by gateway synchronization delays will be promptly refunded via the original payment method upon verification.</li>
         <li><strong>Renewal Inquiries:</strong> If you were unintentionally billed for an automatic subscription renewal, please contact <a href="mailto:contact@andromedawriter.com">contact@andromedawriter.com</a> within 72 hours of the billing event for assistance.</li>
+        <li><strong>Right to Modify, Suspend or Discontinue Services:</strong> Andromeda Writer reserves the right to modify, suspend, revoke, change pricing, or discontinue software services, subscription tiers, or specific online features at any time without prior notice. In the event that Andromeda Writer permanently cancels or discontinues an active paid subscription tier without cause, a pro-rata refund will be issued to the user for the unexpired portion of the month or year for which the user prepaid.</li>
       </ul>
 
-      <h2>6. Offline-First Architecture, Data Ownership & Telemetry</h2>
+      <h2>6. Local Architecture, Data Ownership & Optional Online Services</h2>
       <p>
-        Andromeda Writer is engineered on a strict <strong>offline-first</strong> foundation:
+        Andromeda Writer provides an offline-first editing environment with user-controlled online integrations:
       </p>
       <ul>
         <li><strong>100% User Ownership:</strong> You retain complete, unencumbered intellectual property and copyright ownership over all LaTeX source files, research papers, equations, bibliographies, and compiled PDF documents created or edited within the software.</li>
-        <li><strong>Zero Document Telemetry:</strong> Andromeda Writer does not upload, read, scan, or store your private document contents, TeX source, or compiled PDFs on external servers. All compilation occurs locally.</li>
-        <li><strong>Anonymous Command Telemetry:</strong> To improve LaTeX autocomplete libraries and detect missing package syntax, the desktop client may anonymously aggregate searched missing LaTeX command strings. No user identifiers, document content, or personal data are attached to these telemetry strings. For full details, see our <a href="privacy.html">Privacy Policy</a>.</li>
+        <li><strong>Local Document Processing:</strong> Standard document compilation, TeX engine subprocess execution, SyncTeX jumping, and local project storage occur entirely on your local machine without uploading your files to remote servers.</li>
+        <li><strong>Optional Online & Cloud Services:</strong> If you choose to enable optional online features (such as AI drafting tools, cloud integrations, or multi-device account synchronization), only the specific data payloads, selected text snippets, or prompt inputs necessary to fulfill that specific feature are transmitted over secure encrypted connections (HTTPS) to designated cloud services or third-party API providers.</li>
+        <li><strong>Anonymous Command Telemetry:</strong> To expand LaTeX autocomplete coverage and detect missing package syntax, the desktop client may anonymously aggregate searched missing LaTeX command strings. No user identifiers, document contents, or personal files are attached to these telemetry strings. For full details, see our <a href="privacy.html">Privacy Policy</a>.</li>
       </ul>
 
-      <h2>7. AI Usage & Accuracy Disclaimers</h2>
+      <h2>7. AI Enhancements & Third-Party Cloud Services Disclaimer</h2>
       <p>
-        For features utilizing artificial intelligence ("AI Enhancements"):
+        For features utilizing artificial intelligence ("AI Enhancements", powered by third-party large language models including Google Gemini):
       </p>
       <ul>
-        <li><strong>Data Protection:</strong> User document contents are not used to train or fine-tune public foundation AI models.</li>
-        <li><strong>Verification of Output:</strong> AI-assisted suggestions, code autocompletion, and LaTeX syntax generation are probabilistic and provided solely as editing aids. You are solely responsible for reviewing, testing, and verifying the mathematical, syntactic, and structural accuracy of any AI-generated LaTeX code before compiling or publishing.</li>
-        <li>Licensor disclaims all liability for compilation errors, incorrect bibliographical citations, or inaccuracies resulting from AI suggestions.</li>
+        <li><strong>Transmission of AI Prompts:</strong> To generate AI-assisted LaTeX completions, equations, or structural suggestions, relevant text snippets and prompt inputs are transmitted directly to Google Gemini API servers. By enabling and using AI features, you acknowledge and consent to this data transmission.</li>
+        <li><strong>Data Protection & Training:</strong> According to applicable API data protection standards, user prompt data submitted through official paid enterprise/developer APIs is not retained to train or fine-tune public foundation models.</li>
+        <li><strong>Third-Party Cloud Liability Waiver:</strong> Andromeda Writer and its developers shall NOT be held responsible or liable for any data loss, transmission delays, service interruptions, server downtimes, or security breaches occurring on third-party cloud infrastructure, AI model provider endpoints (such as Google Cloud / Gemini), or external network channels.</li>
+        <li><strong>Verification of Output:</strong> AI-assisted suggestions and LaTeX syntax generation are probabilistic and provided solely as editing aids. You are solely responsible for reviewing, testing, and verifying the mathematical, syntactic, and factual accuracy of any AI-generated LaTeX code before compiling or publishing. Licensor disclaims all liability for compilation errors, incorrect bibliographical citations, or inaccuracies resulting from AI output.</li>
       </ul>
 
       <h2>8. Disclaimer of Warranties</h2>
@@ -203,13 +207,13 @@
 
       <h2>9. Limitation of Liability & Financial Liability Cap</h2>
       <div class="caps-clause">
-        TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL LICENSOR, ITS DEVELOPERS, AFFILIATES, OR CONTRIBUTORS BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS, DATA, USE, GOODWILL, WORK STOPPAGE, OR SYSTEM FAILURE, ARISING OUT OF OR IN CONNECTION WITH THE USE OR INABILITY TO USE ANDROMEDA WRITER.<br><br>
+        TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL LICENSOR, ITS DEVELOPERS, AFFILIATES, OR CONTRIBUTORS BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS, DATA, USE, GOODWILL, WORK STOPPAGE, SYSTEM FAILURE, OR THIRD-PARTY AI SERVICE DISRUPTIONS, ARISING OUT OF OR IN CONNECTION WITH THE USE OR INABILITY TO USE ANDROMEDA WRITER.<br><br>
         IN NO EVENT SHALL THE TOTAL AGGREGATE LIABILITY OF LICENSOR FOR ALL CLAIMS ARISING OUT OF OR RELATING TO THIS AGREEMENT OR THE SOFTWARE EXCEED THE TOTAL FEES ACTUALLY PAID BY YOU TO LICENSOR FOR THE SPECIFIC SOFTWARE LICENSE IN THE TWELVE (12) MONTHS IMMEDIATELY PRECEDING THE EVENT GIVING RISE TO THE CLAIM.
       </div>
 
       <h2>10. Governing Law & Dispute Resolution</h2>
       <p>
-        This Agreement and any disputes arising out of or related to it shall be governed by and construed in accordance with the laws of <strong>India</strong>, without regard to conflict of law principles. Any legal suit, action, or proceeding arising out of or related to this Agreement shall be instituted exclusively in the competent courts located in Assam, India, and each party irrevocably submits to the exclusive jurisdiction of such courts.
+        This Agreement and any disputes arising out of or related to it shall be governed by and construed in accordance with the laws of <strong>India</strong>, without regard to conflict of law principles. Any legal suit, action, or proceeding arising out of or related to this Agreement shall be instituted exclusively in the competent courts located in <strong>Silchar, Assam, India</strong>, and each party irrevocably submits to the exclusive jurisdiction of such courts.
       </p>
 
       <h2>11. Modifications to Terms</h2>
