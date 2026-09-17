@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Account & Subscription — Andromeda Writer</title>
+  <meta name="description" content="Manage your Andromeda Writer account, active subscription tier, 14-day free trial, and billing portal settings.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+  <style>
+    .account-page-wrapper {
+      min-height: calc(100vh - 70px - 140px);
+      padding: 40px 20px 80px;
+    }
+
+    .account-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .account-hero-header {
+      margin-bottom: 32px;
+      text-align: left;
+    }
+
+    .account-hero-header h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+
+    .account-hero-header p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    /* Account Grid */
+    .account-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    @media (min-width: 768px) {
+      .account-grid {
+        grid-template-columns: 320px 1fr;
+      }
+    }
+
+    /* Cards */
+    .account-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: var(--shadow-md);
+      position: relative;
+    }
+
+    /* Profile Side Card */
+    .profile-card {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .account-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--gradient-cosmic);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+      border: 3px solid rgba(255, 255, 255, 0.15);
+      object-fit: cover;
+    }
+
+    .profile-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+
+    .profile-email {
+      font-size: 0.86rem;
+      color: var(--text-secondary);
+      margin-bottom: 14px;
+      word-break: break-all;
+    }
+
+    .profile-badge-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      font-size: 0.76rem;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+    }
+
+    .badge-pill.verified {
+      background: rgba(16, 185, 129, 0.12);
+      border-color: rgba(16, 185, 129, 0.35);
+      color: #6ee7b7;
+    }
+
+    .profile-meta-list {
+      width: 100%;
+      text-align: left;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 16px;
+      margin-bottom: 20px;
+      font-size: 0.85rem;
+    }
+
+    .meta-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      color: var(--text-secondary);
+    }
+
+    .meta-row span:last-child {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    /* Subscription Card */
+    .subscription-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .plan-info-title {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .plan-tier-display {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .status-badge.active {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #34d399;
+    }
+
+    .status-badge.trial {
+      background: rgba(139, 92, 246, 0.15);
+      border: 1px solid rgba(139, 92, 246, 0.45);
+      color: #c084fc;
+    }
+
+    .status-badge.cancelled {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      color: #f87171;
+    }
+
+    .plan-detail-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 26px;
+    }
+
+    .detail-box {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+    }
+
+    .detail-box .detail-label {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .detail-box .detail-value {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    /* Cancellation & Portal Actions */
+    .cancellation-section {
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      margin-top: 24px;
+    }
+
+    .cancellation-section h3 {
+      font-size: 1.05rem;
+      color: #ffffff;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cancellation-section p {
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    .cancellation-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-portal-lemon {
+      background: #ffc233;
+      color: #000000;
+      font-weight: 700;
+      padding: 10px 18px;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      transition: all var(--transition-fast);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-portal-lemon:hover {
+      background: #ffd366;
+      box-shadow: 0 4px 16px rgba(255, 194, 51, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .btn-portal-support {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border-medium);
+      color: #ffffff;
+      font-weight: 600;
+      padding: 10px 18px;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      transition: all var(--transition-fast);
+    }
+
+    .btn-portal-support:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Unauthenticated State */
+    .unauth-card {
+      text-align: center;
+      padding: 60px 24px;
+    }
+
+    .unauth-icon {
+      font-size: 3.5rem;
+      margin-bottom: 16px;
+    }
+
+    .unauth-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .unauth-subtitle {
+      color: var(--text-secondary);
+      font-size: 0.96rem;
+      max-width: 480px;
+      margin: 0 auto 24px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Ambient Glow Elements -->
+  <div class="ambient-glow-1"></div>
+  <div class="ambient-glow-2"></div>
+
+  <!-- Header & Navigation -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" id="brand-logo-link">
+        <img src="assets/images/logo.png" alt="Andromeda Logo">
+        <span>Andromeda</span>
+        <span class="brand-badge">Writer</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="https://payment.andromedawriter.com" class="nav-link">Plans</a></li>
+          <li><a href="download.html" class="nav-link">Download</a></li>
+          <li><a href="docs.html" class="nav-link">Docs</a></li>
+          <li><a href="docs.html#troubleshooting" class="nav-link">FAQs</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions" id="nav-actions">
+        <a href="https://payment.andromedawriter.com/login.html" class="btn btn-primary btn-sm" id="nav-signin-btn">Sign In</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="account-page-wrapper">
+    <div class="container account-container">
+
+      <!-- 1. LOADING STATE -->
+      <div id="account-loading-state" style="text-align: center; padding: 80px 20px;">
+        <div style="display: inline-block; width: 32px; height: 32px; border: 3px solid rgba(255, 255, 255, 0.2); border-radius: 50%; border-top-color: var(--accent-cyan); animation: spin 0.7s linear infinite;"></div>
+        <p style="color: var(--text-secondary); margin-top: 16px; font-size: 0.95rem;">Loading your account profile...</p>
+      </div>
+
+      <!-- 2. UNAUTHENTICATED STATE -->
+      <div id="account-unauth-view" style="display: none;">
+        <div class="account-card unauth-card">
+          <div class="unauth-icon">🔒</div>
+          <h2 class="unauth-title">Sign In to View Your Account</h2>
+          <p class="unauth-subtitle">Access your active subscriptions, manage billing, and download invoices for Andromeda Writer.</p>
+          <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+            <a href="https://payment.andromedawriter.com/login.html?redirect=https://andromedawriter.com/account.html" class="btn btn-primary">Sign In / Register</a>
+            <a href="https://payment.andromedawriter.com" class="btn btn-outline">Explore Plans</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. AUTHENTICATED STATE -->
+      <div id="account-auth-view" style="display: none;">
+        <div class="account-hero-header">
+          <h1>My Account & Subscription</h1>
+          <p>Manage your active license tier, trial status, and payment gateway portal.</p>
+        </div>
+
+        <div class="account-grid">
+
+          <!-- Left Profile Summary Card -->
+          <div class="account-card profile-card">
+            <div id="user-avatar-container">
+              <div class="account-avatar" id="account-avatar-text">U</div>
+            </div>
+            <h2 class="profile-name" id="account-user-name">User Name</h2>
+            <div class="profile-email" id="account-user-email">user@email.com</div>
+
+            <div class="profile-badge-row">
+              <span class="badge-pill verified" id="badge-verified">✓ Verified</span>
+              <span class="badge-pill" id="badge-country">🌐 Global</span>
+            </div>
+
+            <div class="profile-meta-list">
+              <div class="meta-row">
+                <span>Account ID:</span>
+                <span id="meta-uid" style="font-family: var(--font-mono); font-size: 0.76rem;">...</span>
+              </div>
+              <div class="meta-row">
+                <span>Auth Provider:</span>
+                <span id="meta-provider">Google</span>
+              </div>
+              <div class="meta-row">
+                <span>Desktop Connected:</span>
+                <span id="meta-desktop" style="color: #34d399;">✓ Active</span>
+              </div>
+            </div>
+
+            <button type="button" class="btn btn-outline btn-sm" id="btn-account-signout" style="width: 100%;">
+              Sign Out
+            </button>
+          </div>
+
+          <!-- Right License & Subscription Management Card -->
+          <div class="account-card">
+            <div class="subscription-header">
+              <div>
+                <div class="plan-info-title">Current License Tier</div>
+                <div class="plan-tier-display">
+                  <span id="license-tier-text">Basic (Free)</span>
+                </div>
+              </div>
+              <span class="status-badge active" id="license-status-badge">Active</span>
+            </div>
+
+            <div class="plan-detail-grid">
+              <div class="detail-box">
+                <div class="detail-label">Billing Cycle</div>
+                <div class="detail-value" id="detail-billing-cycle">None (Free)</div>
+              </div>
+              <div class="detail-box">
+                <div class="detail-label">Payment Gateway</div>
+                <div class="detail-value" id="detail-gateway">—</div>
+              </div>
+              <div class="detail-box">
+                <div class="detail-label">Next Renewal / Expiry</div>
+                <div class="detail-value" id="detail-renews-at">Lifetime</div>
+              </div>
+            </div>
+
+            <!-- Upgrade Callout (if on Basic plan) -->
+            <div id="upgrade-callout-box" style="display: none; background: rgba(139, 92, 246, 0.1); border: 1px solid rgba(139, 92, 246, 0.3); border-radius: var(--radius-md); padding: 20px; margin-bottom: 20px;">
+              <h3 style="color: #ffffff; font-size: 1.1rem; margin-bottom: 6px;">⚡ Unlock Andromeda Pro or Premium</h3>
+              <p style="color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 14px;">
+                Start your 14-day full access free trial for prioritized AI assistance, multi-device activation, and advanced TeX developer features.
+              </p>
+              <a href="https://payment.andromedawriter.com" class="btn btn-primary btn-sm">Start 14-Day Free Trial →</a>
+            </div>
+
+            <!-- Subscription Management / Cancellation Box (For Paid / Trial Users) -->
+            <div id="cancellation-management-box" class="cancellation-section" style="display: none;">
+              <h3>⚙️ Subscription & Cancellation Management</h3>
+              <p id="cancellation-info-text">
+                You can cancel your subscription or 14-day free trial anytime without penalties. If cancelled during the trial, you will not be charged.
+              </p>
+
+              <!-- Lemon Squeezy Portal Link -->
+              <div id="lemon-portal-actions" style="display: none; margin-bottom: 14px;">
+                <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 10px;">
+                  Your international subscription is managed via <strong>Lemon Squeezy</strong>. Click below to view order receipts, update your credit card, or cancel the subscription in 1 click:
+                </p>
+                <a href="https://app.lemonsqueezy.com/my-orders" target="_blank" rel="noopener noreferrer" class="btn-portal-lemon">
+                  <span>🍋 Open Lemon Squeezy Billing Portal →</span>
+                </a>
+              </div>
+
+              <!-- Razorpay / UPI Instructions -->
+              <div id="razorpay-portal-actions" style="display: none; margin-bottom: 14px;">
+                <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 10px;">
+                  Your domestic subscription is active via <strong>Razorpay UPI AutoPay / e-Mandate</strong>. You can cancel future debits instantly:
+                </p>
+                <ul style="color: var(--text-secondary); font-size: 0.84rem; margin-left: 18px; margin-bottom: 12px; line-height: 1.6;">
+                  <li>Open your UPI App (Google Pay / PhonePe / Paytm) &rarr; <strong>Settings &rarr; UPI AutoPay</strong> &rarr; Select <em>Andromeda Writer</em> &rarr; <strong>Cancel AutoPay</strong>.</li>
+                  <li>Or request immediate manual revocation by our support team below:</li>
+                </ul>
+                <a id="btn-razorpay-cancel-email" href="mailto:contact@andromedawriter.com?subject=Subscription%20Cancellation%20Request" class="btn-portal-support">
+                  <span>✉️ Email Support for Cancellation</span>
+                </a>
+              </div>
+
+              <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 12px;">
+                Need help? Check our <a href="docs.html#troubleshooting" target="_blank" style="color: var(--accent-cyan); text-decoration: underline;">Cancellation FAQs</a> or contact <a href="mailto:contact@andromedawriter.com" style="color: var(--accent-cyan); text-decoration: underline;">contact@andromedawriter.com</a>.
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>© 2026 Andromeda Writer. All rights reserved. • <a href="mailto:contact@andromedawriter.com" style="color: var(--text-muted); text-decoration: none;">contact@andromedawriter.com</a></div>
+        <div>
+          <a href="docs.html#troubleshooting" style="color: var(--text-muted); text-decoration: none; margin-right: 12px;">FAQs & Cancellation</a>
+          <a href="privacy.html" style="color: var(--text-muted); text-decoration: none; margin-right: 12px;">Privacy Policy</a>
+          <a href="terms.html" style="color: var(--text-muted); text-decoration: none;">Terms & Conditions</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Firebase Auth Module -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCt3F5F3Is1iKxLREQJ6MBWT6ATZX2a0pw",
+      authDomain: "andromeda-90dae.firebaseapp.com",
+      databaseURL: "https://andromeda-90dae-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "andromeda-90dae",
+      storageBucket: "andromeda-90dae.firebasestorage.app",
+      messagingSenderId: "475865239286",
+      appId: "1:475865239286:web:3cb0cc663dbf564e1326d7",
+      measurementId: "G-XWCWXHRR1S"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getDatabase(app);
+
+    const loadingState = document.getElementById('account-loading-state');
+    const unauthView = document.getElementById('account-unauth-view');
+    const authView = document.getElementById('account-auth-view');
+
+    onAuthStateChanged(auth, async (user) => {
+      loadingState.style.display = 'none';
+
+      if (!user) {
+        unauthView.style.display = 'block';
+        authView.style.display = 'none';
+        return;
+      }
+
+      unauthView.style.display = 'none';
+      authView.style.display = 'block';
+
+      // 1. Fill basic profile info
+      const displayName = user.displayName || user.email.split('@')[0];
+      document.getElementById('account-user-name').textContent = displayName;
+      document.getElementById('account-user-email').textContent = user.email;
+      document.getElementById('meta-uid').textContent = `${user.uid.slice(0, 10)}...`;
+      
+      const providerId = user.providerData[0]?.providerId || 'password';
+      document.getElementById('meta-provider').textContent = providerId === 'google.com' ? 'Google Sign-In' : 'Email & Password';
+
+      // Avatar
+      const avatarContainer = document.getElementById('user-avatar-container');
+      if (user.photoURL) {
+        avatarContainer.innerHTML = `<img src="${user.photoURL}" class="account-avatar" alt="Avatar" referrerpolicy="no-referrer">`;
+      } else {
+        const initial = (displayName || 'U')[0].toUpperCase();
+        avatarContainer.innerHTML = `<div class="account-avatar">${initial}</div>`;
+      }
+
+      // Verification Badge
+      const verifiedBadge = document.getElementById('badge-verified');
+      if (user.emailVerified || providerId === 'google.com') {
+        verifiedBadge.textContent = '✓ Verified Email';
+        verifiedBadge.className = 'badge-pill verified';
+      } else {
+        verifiedBadge.textContent = '⚠ Unverified Email';
+        verifiedBadge.className = 'badge-pill';
+      }
+
+      // 2. Fetch live license data from Firebase RTDB
+      try {
+        const userRef = ref(db, `UserData/${user.uid}`);
+        const snapshot = await get(userRef);
+        const userData = snapshot.exists() ? snapshot.val() : {};
+
+        // Country
+        if (userData.country) {
+          document.getElementById('badge-country').textContent = `📍 ${userData.country}`;
+        }
+
+        // Tier
+        const tier = (userData.tier || 'basic').toLowerCase();
+        const tierNames = { basic: 'Basic (Free)', pro: 'Pro Edition', premium: 'Premium Edition' };
+        document.getElementById('license-tier-text').textContent = tierNames[tier] || 'Basic (Free)';
+
+        // Status
+        const status = (userData.status || 'active').toLowerCase();
+        const statusBadge = document.getElementById('license-status-badge');
+        statusBadge.textContent = status.charAt(0).toUpperCase() + status.slice(1);
+
+        if (status === 'trialing' || status === 'trial') {
+          statusBadge.textContent = '14-Day Free Trial';
+          statusBadge.className = 'status-badge trial';
+        } else if (status === 'cancelled') {
+          statusBadge.className = 'status-badge cancelled';
+        } else {
+          statusBadge.className = 'status-badge active';
+        }
+
+        // Billing Cycle
+        const cycle = userData.plan_type || userData.billing_cycle || (tier === 'basic' ? 'None (Free)' : 'Monthly');
+        document.getElementById('detail-billing-cycle').textContent = cycle.charAt(0).toUpperCase() + cycle.slice(1);
+
+        // Gateway
+        const gateway = userData.payment_gateway || userData.gateway || (tier === 'basic' ? '—' : 'Lemon Squeezy');
+        document.getElementById('detail-gateway').textContent = gateway.includes('razor') ? 'Razorpay (India)' : (tier === 'basic' ? '—' : 'Lemon Squeezy (Global)');
+
+        // Renewal Date
+        if (userData.renews_at || userData.expiry_timestamp) {
+          const renewDate = new Date(userData.renews_at || userData.expiry_timestamp);
+          document.getElementById('detail-renews-at').textContent = renewDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        } else {
+          document.getElementById('detail-renews-at').textContent = tier === 'basic' ? 'Lifetime Access' : '—';
+        }
+
+        // Display Upgrade or Cancellation Box
+        const upgradeBox = document.getElementById('upgrade-callout-box');
+        const cancelBox = document.getElementById('cancellation-management-box');
+        const lemonActions = document.getElementById('lemon-portal-actions');
+        const razorpayActions = document.getElementById('razorpay-portal-actions');
+
+        if (tier === 'basic') {
+          upgradeBox.style.display = 'block';
+          cancelBox.style.display = 'none';
+        } else {
+          upgradeBox.style.display = 'none';
+          cancelBox.style.display = 'block';
+
+          if (gateway.toLowerCase().includes('razor')) {
+            razorpayActions.style.display = 'block';
+            lemonActions.style.display = 'none';
+            const emailLink = document.getElementById('btn-razorpay-cancel-email');
+            emailLink.href = `mailto:contact@andromedawriter.com?subject=Subscription%20Cancellation%20Request%20(UID:%20${user.uid})&body=Hi%20Andromeda%20Team,%0A%0APlease%20cancel%20my%20Razorpay%20UPI%20AutoPay%20mandate%20for%20my%20account:%0AEmail:%20${encodeURIComponent(user.email)}%0AUID:%20${user.uid}%0A%0AThank%20you!`;
+          } else {
+            lemonActions.style.display = 'block';
+            razorpayActions.style.display = 'none';
+          }
+        }
+
+      } catch (err) {
+        console.warn('Failed to load user license details:', err);
+      }
+    });
+
+    // Sign out handler
+    document.getElementById('btn-account-signout').addEventListener('click', async () => {
+      try {
+        await signOut(auth);
+        window.location.reload();
+      } catch (err) {
+        console.error('Sign out error:', err);
+      }
+    });
+  </script>
+</body>
+
+</html>

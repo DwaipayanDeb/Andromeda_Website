@@ -75,7 +75,7 @@
         <ul class="docs-nav-list">
           <li class="docs-nav-item"><a href="#shortcuts" class="docs-nav-link">Keyboard Shortcuts</a></li>
           <li class="docs-nav-item"><a href="#privacy" class="docs-nav-link">Privacy & Offline Security</a></li>
-          <li class="docs-nav-item"><a href="#troubleshooting" class="docs-nav-link">FAQ & Troubleshooting</a></li>
+          <li class="docs-nav-item"><a href="#troubleshooting" class="docs-nav-link">FAQs & Troubleshooting</a></li>
         </ul>
       </div>
     </aside>
@@ -343,11 +343,41 @@ and multi-line equations:
         </div>
       </section>
 
-      <!-- 10. Troubleshooting -->
+      <!-- 10. Troubleshooting & FAQs -->
       <section id="troubleshooting" class="doc-section">
-        <span class="doc-badge">Support</span>
+        <span class="doc-badge" id="faq">Support & FAQs</span>
         <h2 class="doc-title">Frequently Asked Questions & Troubleshooting</h2>
         
+        <h3 class="doc-h3">Q: How do I cancel my subscription or free trial?</h3>
+        <p class="doc-text">
+          You can cancel your subscription at any time without hassle or penalties. The cancellation process depends on your payment method:
+        </p>
+        
+        <div style="background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: var(--radius-md); padding: 20px; margin: 16px 0 24px;">
+          <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
+            <span>🌐</span> International Subscriptions (Lemon Squeezy — $ USD)
+          </h4>
+          <ul style="color: var(--text-secondary); margin-left: 20px; margin-bottom: 12px; line-height: 1.7; font-size: 0.94rem;">
+            <li><strong>Via Email Receipt:</strong> Open any email receipt sent to you by Lemon Squeezy upon subscribing or renewal, and click the <strong>"Manage Subscription"</strong> or <strong>"View Order"</strong> link.</li>
+            <li><strong>Via Customer Portal:</strong> Log in directly to the <a href="https://app.lemonsqueezy.com/my-orders" target="_blank" rel="noopener noreferrer" style="color: var(--accent-cyan); text-decoration: underline;">Lemon Squeezy Customer Billing Portal</a> with your checkout email to cancel with 1 click.</li>
+            <li><strong>Via Andromeda Web Portal:</strong> Sign in at <a href="https://payment.andromedawriter.com/account.html" style="color: var(--accent-cyan); text-decoration: underline;">payment.andromedawriter.com/account.html</a> and click <strong>"Manage / Cancel Subscription"</strong>.</li>
+          </ul>
+
+          <h4 style="color: #6ee7b7; font-size: 1.05rem; margin: 18px 0 10px; display: flex; align-items: center; gap: 8px;">
+            <span>🇮🇳</span> Domestic Indian Subscriptions (Razorpay — ₹ INR)
+          </h4>
+          <ul style="color: var(--text-secondary); margin-left: 20px; margin-bottom: 0; line-height: 1.7; font-size: 0.94rem;">
+            <li><strong>Directly in your UPI App (Fastest):</strong> Open your UPI app (Google Pay, PhonePe, Paytm, or BHIM) &rarr; navigate to <strong>Settings > UPI AutoPay / Mandates</strong> &rarr; select <em>Andromeda Writer</em> &rarr; tap <strong>"Cancel AutoPay / Revoke Mandate"</strong>. Future debits will stop immediately.</li>
+            <li><strong>Via Razorpay Notifications:</strong> Use the direct subscription management link delivered in Razorpay's SMS/email confirmation.</li>
+            <li><strong>Via Support:</strong> Send an email to <a href="mailto:contact@andromedawriter.com" style="color: var(--accent-cyan); text-decoration: underline;">contact@andromedawriter.com</a> with your account email and our team will revoke the mandate within 24 hours.</li>
+          </ul>
+        </div>
+
+        <h3 class="doc-h3">Q: What happens if I cancel during the 14-day free trial?</h3>
+        <p class="doc-text">
+          If you cancel anytime during your 14-day trial period, your payment method will <strong>not be charged</strong> ($0.00 / ₹0). You will retain full access to all Pro or Premium features for the entire remainder of the 14 days. Once the 14 days conclude, your account will automatically transition to the free Basic tier with zero obligation.
+        </p>
+
         <h3 class="doc-h3">Q: "pdflatex not found" error during first compile?</h3>
         <p class="doc-text">
           Ensure you have a working TeX distribution (such as TeX Live or MiKTeX) installed. Open Andromeda Settings (<kbd>Ctrl</kbd> + <kbd>,</kbd>) and enter the full directory path to your <code>pdflatex.exe</code> or <code>pdflatex</code> binary.
