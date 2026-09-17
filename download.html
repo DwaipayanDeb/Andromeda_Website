@@ -61,6 +61,33 @@
       gap: 20px;
       flex-wrap: wrap;
     }
+    .version-meta-bar {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(139, 92, 246, 0.1);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      padding: 8px 18px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+      backdrop-filter: blur(8px);
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 10px #10b981;
+      display: inline-block;
+      animation: pulseDot 2s infinite;
+    }
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.85); }
+    }
   </style>
 </head>
 <body>
@@ -97,11 +124,18 @@
 
   <main style="padding-top: 84px; padding-bottom: 40px;">
     <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Cross-Platform Releases</span>
+      <div class="section-header" style="text-align: center; margin-bottom: 24px;">
+        <div class="version-meta-bar" id="version-badge-container">
+          <span class="status-dot"></span>
+          <span style="font-weight: 700; color: var(--accent-cyan);" id="version-tag">Latest Version: v1.1.0</span>
+          <span style="color: var(--border-light);">•</span>
+          <span style="color: var(--text-secondary);" id="version-date">Released Sept 6, 2026</span>
+          <span style="color: var(--border-light);">•</span>
+          <span class="distro-badge" style="background: rgba(16, 185, 129, 0.15); color: #10b981; font-weight: 600; font-size: 0.75rem;">Stable</span>
+        </div>
         <h1 class="section-title">Get Andromeda Writer</h1>
-        <p class="section-desc">
-          Choose your operating system below for detailed installation channels and portable binaries.
+        <p class="section-desc" id="version-desc">
+          Official cross-platform release with high-speed TeX engine integration and multi-agent AI LaTeX tools.
         </p>
       </div>
 
@@ -195,7 +229,7 @@
               </p>
             </div>
             <div class="btn-group" style="margin-top: 20px;">
-              <a href="bin/Andromeda-Writer-Setup.exe" download="Andromeda-Writer-Setup.exe" class="btn btn-primary" style="width: 100%;">
+              <a href="bin/Andromeda-Writer-Setup.exe" id="win-setup-download-btn" download="Andromeda-Writer-Setup.exe" class="btn btn-primary" style="width: 100%;">
                 <span>Download Setup.exe</span>
               </a>
             </div>
@@ -222,7 +256,7 @@
               </p>
             </div>
             <div class="btn-group" style="margin-top: 20px;">
-              <a href="bin/Andromeda-Writer-Portable.zip" download="Andromeda-Writer-Portable.zip" class="btn btn-outline" style="width: 100%;">
+              <a href="bin/Andromeda-Writer-Portable.zip" id="win-zip-download-btn" download="Andromeda-Writer-Portable.zip" class="btn btn-outline" style="width: 100%;">
                 <span>Download Portable .zip</span>
               </a>
             </div>
@@ -307,7 +341,7 @@
               </div>
             </div>
             <div class="btn-group" style="margin-top: 16px;">
-              <a href="bin/andromeda-writer_1.0.0_amd64.deb" download="andromeda-writer_1.0.0_amd64.deb" class="btn btn-primary" style="width: 100%;">
+              <a href="bin/andromeda-writer_1.1.0_amd64.deb" id="deb-download-btn" download="andromeda-writer_1.1.0_amd64.deb" class="btn btn-primary" style="width: 100%;">
                 <span>Download .deb (64-bit)</span>
               </a>
             </div>
@@ -396,7 +430,7 @@
               </div>
             </div>
             <div class="btn-group" style="margin-top: 16px;">
-              <a href="bin/Andromeda-x86_64.AppImage" download="Andromeda-x86_64.AppImage" class="btn btn-primary" style="width: 100%;">
+              <a href="bin/Andromeda-x86_64.AppImage" id="appimage-download-btn" download="Andromeda-x86_64.AppImage" class="btn btn-primary" style="width: 100%;">
                 <span>Download .AppImage</span>
               </a>
             </div>
@@ -450,12 +484,12 @@
                 Native RPM package for Fedora 38+, Red Hat Enterprise Linux, CentOS Stream, and openSUSE.
               </p>
               <div class="terminal-box">
-                <span class="terminal-code" id="cmd-dnf">sudo dnf install ./andromeda-writer-1.0.0.x86_64.rpm</span>
+                <span class="terminal-code" id="cmd-dnf">sudo dnf install ./andromeda-writer-1.1.0.x86_64.rpm</span>
                 <button class="btn-copy" data-target="cmd-dnf">Copy</button>
               </div>
             </div>
             <div class="btn-group" style="margin-top: 16px;">
-              <a href="bin/andromeda-writer-1.0.0.x86_64.rpm" download="andromeda-writer-1.0.0.x86_64.rpm" class="btn btn-primary" style="width: 100%;">
+              <a href="bin/andromeda-writer-1.1.0.x86_64.rpm" id="rpm-download-btn" download="andromeda-writer-1.1.0.x86_64.rpm" class="btn btn-primary" style="width: 100%;">
                 <span>Download .rpm</span>
               </a>
             </div>
@@ -499,8 +533,79 @@
       }
     }
 
-    // Auto-detect OS on page load
+    async function loadVersionInfo() {
+      try {
+        const res = await fetch('bin/version.json');
+        if (!res.ok) return;
+        const data = await res.json();
+        
+        if (data.app_version) {
+          const vTag = document.getElementById('version-tag');
+          if (vTag) vTag.textContent = `Latest Version: v${data.app_version}`;
+          
+          const debCode = document.getElementById('cmd-apt');
+          if (debCode) debCode.textContent = `sudo apt install ./andromeda-writer_${data.app_version}_amd64.deb`;
+          
+          const dnfCode = document.getElementById('cmd-dnf');
+          if (dnfCode) dnfCode.textContent = `sudo dnf install ./andromeda-writer-${data.app_version}.x86_64.rpm`;
+        }
+
+        if (data.release_date) {
+          const vDate = document.getElementById('version-date');
+          if (vDate) {
+            const dateParts = data.release_date.split('-');
+            if (dateParts.length === 3) {
+              const d = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
+              const formatted = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+              vDate.textContent = `Released ${formatted}`;
+            } else {
+              vDate.textContent = `Released ${data.release_date}`;
+            }
+          }
+        }
+
+        if (data.message) {
+          const vDesc = document.getElementById('version-desc');
+          if (vDesc) vDesc.textContent = data.message;
+        }
+
+        if (data.binaries) {
+          if (data.binaries.windows_setup) {
+            const el = document.getElementById('win-setup-download-btn');
+            if (el) el.href = data.binaries.windows_setup;
+          }
+          if (data.binaries.windows_portable) {
+            const el = document.getElementById('win-zip-download-btn');
+            if (el) el.href = data.binaries.windows_portable;
+          }
+          if (data.binaries.linux_deb) {
+            const el = document.getElementById('deb-download-btn');
+            if (el) {
+              el.href = data.binaries.linux_deb;
+              el.setAttribute('download', data.binaries.linux_deb.split('/').pop());
+            }
+          }
+          if (data.binaries.linux_appimage) {
+            const el = document.getElementById('appimage-download-btn');
+            if (el) el.href = data.binaries.linux_appimage;
+          }
+          if (data.binaries.linux_rpm) {
+            const el = document.getElementById('rpm-download-btn');
+            if (el) {
+              el.href = data.binaries.linux_rpm;
+              el.setAttribute('download', data.binaries.linux_rpm.split('/').pop());
+            }
+          }
+        }
+      } catch (err) {
+        console.warn('Could not fetch latest version info:', err);
+      }
+    }
+
+    // Auto-detect OS on page load and fetch latest version metadata
     document.addEventListener('DOMContentLoaded', () => {
+      loadVersionInfo();
+
       const isLinux = navigator.userAgent.toLowerCase().includes('linux') && !navigator.userAgent.toLowerCase().includes('android');
       const urlParams = new URLSearchParams(window.location.search);
       if (urlParams.get('os') === 'linux' || isLinux) {

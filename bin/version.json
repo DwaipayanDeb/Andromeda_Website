@@ -4,7 +4,7 @@
   "critical": false,
   "title": "Andromeda Writer v1.1.0 Released",
   "message": "Official cross-platform release with high-speed TeX engine integration and multi-agent AI LaTeX tools.",
-  "release_notes_url": "https://dwaipayandeb.github.io/Andromeda_Website/download.html",
+  "release_notes_url": "https://andromedawriter.com/download.html",
   "binaries": {
     "windows_setup": "bin/Andromeda-Writer-Setup.exe",
     "windows_portable": "bin/Andromeda-Writer-Portable.zip",
