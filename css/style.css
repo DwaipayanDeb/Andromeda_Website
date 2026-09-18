@@ -279,6 +279,33 @@ a:hover {
   color: #ffffff;
 }
 
+.btn-nav-account {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: var(--radius-pill);
+  background: rgba(16, 185, 129, 0.12);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.38);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: all var(--transition-fast);
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.15);
+  white-space: nowrap;
+}
+
+.btn-nav-account:hover {
+  background: rgba(16, 185, 129, 0.24);
+  color: #a7f3d0;
+  border-color: rgba(16, 185, 129, 0.65);
+  transform: translateY(-1px);
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.35);
+}
+
 .btn-windows {
   background: linear-gradient(135deg, #0078d4 0%, #0284c7 100%);
   color: #ffffff;
