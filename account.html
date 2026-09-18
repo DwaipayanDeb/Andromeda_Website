@@ -553,14 +553,34 @@
     onAuthStateChanged(auth, async (user) => {
       loadingState.style.display = 'none';
 
+      const navActions = document.getElementById('nav-actions');
+
       if (!user) {
         unauthView.style.display = 'block';
         authView.style.display = 'none';
+        if (navActions) {
+          navActions.innerHTML = `<a href="https://user.andromedawriter.com/login.html" class="btn btn-primary btn-sm" id="nav-signin-btn">Sign In</a>`;
+        }
         return;
       }
 
       unauthView.style.display = 'none';
       authView.style.display = 'block';
+
+      if (navActions) {
+        navActions.innerHTML = `<button type="button" class="btn btn-outline btn-sm" id="nav-signout-btn" style="border-color: rgba(255, 255, 255, 0.25); cursor: pointer;">Sign Out</button>`;
+        const navSignOut = document.getElementById('nav-signout-btn');
+        if (navSignOut) {
+          navSignOut.addEventListener('click', async () => {
+            try {
+              await signOut(auth);
+              window.location.reload();
+            } catch (e) {
+              console.error('Sign out error:', e);
+            }
+          });
+        }
+      }
 
       // 1. Fill basic profile info
       const displayName = user.displayName || user.email.split('@')[0];
