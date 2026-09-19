@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>System Announcements & Updates — Andromeda Writer</title>
+  <meta name="description" content="Official releases, product updates, feature rollouts, and system announcements for Andromeda Writer desktop LaTeX suite.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+  <style>
+    .announcements-page {
+      padding: 100px 0 80px;
+    }
+
+    .announcements-header {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 48px;
+    }
+
+    .announcements-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 16px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-radius: var(--radius-pill, 999px);
+      background: rgba(139, 92, 246, 0.15);
+      color: var(--accent-purple-light, #c084fc);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      margin-bottom: 14px;
+    }
+
+    .announcements-header h1 {
+      font-size: 2.4rem;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #ffffff 30%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .announcements-header p {
+      color: var(--text-secondary, #94a3b8);
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    /* Filters & Controls */
+    .announcements-controls {
+      max-width: 860px;
+      margin: 0 auto 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-secondary, #94a3b8);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .filter-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .filter-btn.active {
+      background: var(--accent-purple, #8b5cf6);
+      color: #ffffff;
+      border-color: var(--accent-purple, #8b5cf6);
+      box-shadow: 0 4px 14px rgba(139, 92, 246, 0.35);
+    }
+
+    .search-box {
+      position: relative;
+      min-width: 240px;
+      flex: 1;
+      max-width: 320px;
+    }
+
+    .search-box input {
+      width: 100%;
+      background: rgba(18, 22, 31, 0.8);
+      border: 1px solid var(--border-medium, rgba(255, 255, 255, 0.12));
+      border-radius: 8px;
+      padding: 8px 14px 8px 36px;
+      color: #f8fafc;
+      font-size: 0.88rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .search-box input:focus {
+      border-color: var(--accent-cyan, #38bdf8);
+    }
+
+    .search-box .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #64748b;
+      font-size: 0.85rem;
+      pointer-events: none;
+    }
+
+    /* Feed Container */
+    .announcements-feed {
+      max-width: 860px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* Announcement Card */
+    .announcement-card {
+      background: var(--bg-card, rgba(22, 27, 34, 0.75));
+      border: 1px solid var(--border-medium, rgba(255, 255, 255, 0.1));
+      border-radius: var(--radius-lg, 12px);
+      padding: 28px;
+      box-shadow: var(--shadow-md, 0 8px 24px rgba(0, 0, 0, 0.3));
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      position: relative;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .announcement-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(139, 92, 246, 0.35);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+    }
+
+    .announcement-card.card-release {
+      border-left: 4px solid #10b981;
+    }
+
+    .announcement-card.card-critical {
+      border-left: 4px solid #ef4444;
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.06), var(--bg-card, rgba(22, 27, 34, 0.75)) 50%);
+    }
+
+    .announcement-card.card-warning {
+      border-left: 4px solid #f59e0b;
+    }
+
+    .announcement-card.card-maintenance {
+      border-left: 4px solid #a855f7;
+    }
+
+    .announcement-card.card-offer {
+      border-left: 4px solid #ec4899;
+    }
+
+    .announcement-card.card-info {
+      border-left: 4px solid #38bdf8;
+    }
+
+    .announcement-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .announcement-tags {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .announcement-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .badge-release {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .badge-critical {
+      background: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+
+    .badge-warning {
+      background: rgba(245, 158, 11, 0.15);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+
+    .badge-maintenance {
+      background: rgba(168, 85, 247, 0.15);
+      color: #c084fc;
+      border: 1px solid rgba(168, 85, 247, 0.3);
+    }
+
+    .badge-offer {
+      background: rgba(236, 72, 153, 0.15);
+      color: #f472b6;
+      border: 1px solid rgba(236, 72, 153, 0.3);
+    }
+
+    .badge-info {
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .announcement-date {
+      color: var(--text-muted, #64748b);
+      font-size: 0.82rem;
+    }
+
+    .announcement-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-primary, #f8fafc);
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+
+    .announcement-body {
+      color: var(--text-secondary, #cbd5e1);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .announcement-body ul {
+      margin-left: 20px;
+      margin-top: 8px;
+      margin-bottom: 8px;
+    }
+
+    .announcement-body li {
+      margin-bottom: 6px;
+    }
+
+    .announcement-body strong {
+      color: #f1f5f9;
+    }
+
+    .announcement-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 16px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .announcement-action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+      color: #ffffff;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: filter 0.2s ease, transform 0.15s ease;
+      box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+    }
+
+    .announcement-action-btn:hover {
+      filter: brightness(1.15);
+      transform: translateY(-1px);
+    }
+
+    .announcement-secondary-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #e2e8f0;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s ease;
+    }
+
+    .announcement-secondary-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+    }
+
+    .no-results-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-secondary, #94a3b8);
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Ambient Glow Backgrounds -->
+  <div class="ambient-glow-1"></div>
+  <div class="ambient-glow-2"></div>
+
+  <!-- Header -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" id="brand-logo-link">
+        <img src="assets/images/logo.png" alt="Andromeda Logo">
+        <span>Andromeda</span>
+        <span class="brand-badge">Announcements</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="https://plans.andromedawriter.com" class="nav-link">Plans</a></li>
+          <li><a href="download.html" class="nav-link">Download</a></li>
+          <li><a href="docs.html" class="nav-link">Docs</a></li>
+          <li><a href="docs.html#troubleshooting" class="nav-link">FAQs</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="https://user.andromedawriter.com/account.html" class="btn-nav-account" id="nav-account-btn">My Account</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container announcements-page">
+    
+    <div class="announcements-header">
+      <div class="announcements-badge">📢 System Feed</div>
+      <h1>System Announcements & Updates</h1>
+      <p>Stay informed about official release builds, performance upgrades, feature rollouts, and service notices for the Andromeda ecosystem.</p>
+    </div>
+
+    <!-- Filter & Search Controls -->
+    <div class="announcements-controls">
+      <div class="filter-tabs">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="release">🚀 Releases</button>
+        <button class="filter-btn" data-filter="update">✨ Updates</button>
+        <button class="filter-btn" data-filter="maintenance">🔧 Maintenance</button>
+        <button class="filter-btn" data-filter="offer">⭐ Special Offers</button>
+      </div>
+
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="announcementSearch" placeholder="Search announcements..." autocomplete="off">
+      </div>
+    </div>
+
+    <!-- Feed List -->
+    <div class="announcements-feed" id="announcementsFeed">
+
+      <!-- Item 1: Andromeda Writer v1.2.0 Release -->
+      <article class="announcement-card card-release" data-category="release">
+        <div class="announcement-card-header">
+          <div class="announcement-tags">
+            <span class="announcement-badge badge-release">🚀 Official Release</span>
+            <span class="announcement-badge badge-info">v1.2.0</span>
+          </div>
+          <span class="announcement-date">September 19, 2026</span>
+        </div>
+        <h2 class="announcement-title">Andromeda Writer v1.2.0 Released</h2>
+        <div class="announcement-body">
+          <p>We are excited to announce the official release of <strong>Andromeda Writer v1.2.0</strong> with enhanced TeX compilation pipeline support, instantaneous math hover rendering, and seamless cross-platform binary packages.</p>
+          <ul>
+            <li><strong>High-Speed SyncTeX Navigation:</strong> Millisecond-latency dual-pane source and preview synchronization.</li>
+            <li><strong>Over-the-Air Encrypted AI Models:</strong> In-memory AI model package updates without plain-text file storage.</li>
+            <li><strong>In-App Notifications Hub:</strong> Instant delivery of release notes, tips, and feature updates directly inside your desktop client.</li>
+            <li><strong>Enhanced Linux & Windows Installers:</strong> Native deb, rpm, AppImage, and Windows portable builds.</li>
+          </ul>
+        </div>
+        <div class="announcement-footer">
+          <a href="download.html" class="announcement-action-btn">Download Update v1.2.0 ↗</a>
+          <a href="docs.html" class="announcement-secondary-btn">Explore Documentation</a>
+        </div>
+      </article>
+
+      <!-- Item 2: AI Assistance Model Update -->
+      <article class="announcement-card card-info" data-category="update">
+        <div class="announcement-card-header">
+          <div class="announcement-tags">
+            <span class="announcement-badge badge-info">✨ Model OTA</span>
+            <span class="announcement-badge badge-maintenance">AI Engine</span>
+          </div>
+          <span class="announcement-date">September 16, 2026</span>
+        </div>
+        <h2 class="announcement-title">AI LaTeX Model OTA Package v1.1.0</h2>
+        <div class="announcement-body">
+          <p>The Andromeda AI research assistant and paper writer engine profiles have received major fine-tuning optimizations for mathematical proofs, complex matrix formatting, and automated bibliography citations.</p>
+          <p>Desktop clients automatically download and decrypt this model package directly into memory upon launch with zero downtime.</p>
+        </div>
+        <div class="announcement-footer">
+          <a href="docs.html#ai-assistant" class="announcement-action-btn">Learn About AI Assistant ↗</a>
+        </div>
+      </article>
+
+      <!-- Item 3: Payment Infrastructure & Currency Routing -->
+      <article class="announcement-card card-info" data-category="update">
+        <div class="announcement-card-header">
+          <div class="announcement-tags">
+            <span class="announcement-badge badge-info">💳 Billing & Compliance</span>
+          </div>
+          <span class="announcement-date">September 12, 2026</span>
+        </div>
+        <h2 class="announcement-title">Automated Domestic (INR) & Global (USD) Payment Routing</h2>
+        <div class="announcement-body">
+          <p>We have integrated unified geo-routing across the Andromeda checkout infrastructure. Domestic users in India can now seamlessly subscribe using <strong>Razorpay (UPI, NetBanking, Domestic Cards)</strong> in INR, while international users are automatically routed via <strong>Lemon Squeezy (Cards, Apple Pay, Google Pay, PayPal)</strong> in USD.</p>
+        </div>
+        <div class="announcement-footer">
+          <a href="https://plans.andromedawriter.com" class="announcement-action-btn">View Available Plans ↗</a>
+        </div>
+      </article>
+
+      <!-- Item 4: Cloud Telemetry & Monaco Autocomplete -->
+      <article class="announcement-card card-info" data-category="update">
+        <div class="announcement-card-header">
+          <div class="announcement-tags">
+            <span class="announcement-badge badge-info">⚡ Editor Core</span>
+          </div>
+          <span class="announcement-date">September 05, 2026</span>
+        </div>
+        <h2 class="announcement-title">Expanded LaTeX Autocomplete & Command Coverage</h2>
+        <div class="announcement-body">
+          <p>The Monaco-powered LaTeX engine in Andromeda Writer now includes expanded autocomplete definitions for over 1,200 mathematical symbols, chemistry packages (mhchem), circuit diagrams (circuitikz), and advanced tikz environments.</p>
+        </div>
+        <div class="announcement-footer">
+          <a href="latex-reference.html" class="announcement-action-btn">Browse LaTeX Reference ↗</a>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="no-results-state" id="noResultsState">
+      <div style="font-size: 2.5rem; margin-bottom: 12px;">🔍</div>
+      <h3>No announcements found</h3>
+      <p>Try clearing your search or switching filter categories.</p>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>© 2026 Andromeda Writer. All rights reserved. • <a href="mailto:contact@andromedawriter.com" style="color: var(--text-muted); text-decoration: none;">contact@andromedawriter.com</a></div>
+        <div>
+          <a href="contact.html" style="color: var(--text-muted); text-decoration: none; margin-right: 12px;">Contact Us</a>
+          <a href="docs.html#troubleshooting" style="color: var(--text-muted); text-decoration: none; margin-right: 12px;">FAQs & Cancellation</a>
+          <a href="privacy.html" style="color: var(--text-muted); text-decoration: none; margin-right: 12px;">Privacy Policy</a>
+          <a href="terms.html" style="color: var(--text-muted); text-decoration: none;">Terms & Conditions</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Client-side search and category filtering
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const searchInput = document.getElementById('announcementSearch');
+    const cards = document.querySelectorAll('.announcement-card');
+    const noResults = document.getElementById('noResultsState');
+
+    let currentFilter = 'all';
+    let searchQuery = '';
+
+    function applyFilters() {
+      let visibleCount = 0;
+      cards.forEach(card => {
+        const category = card.getAttribute('data-category');
+        const text = card.textContent.toLowerCase();
+        const matchesCategory = (currentFilter === 'all' || category === currentFilter);
+        const matchesSearch = !searchQuery || text.includes(searchQuery);
+
+        if (matchesCategory && matchesSearch) {
+          card.style.display = 'block';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      if (noResults) {
+        noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+      }
+    }
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentFilter = btn.getAttribute('data-filter');
+        applyFilters();
+      });
+    });
+
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value.trim().toLowerCase();
+        applyFilters();
+      });
+    }
+  </script>
+
+</body>
+
+</html>
