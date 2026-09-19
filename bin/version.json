@@ -1,7 +1,7 @@
 {
-  "app_version": "1.0.0",
+  "app_version": "0.0.0",
   "release_date": "2026-09-06",
-  "critical": true,
+  "critical": false,
   "title": "Andromeda Writer v1.2.0 Released",
   "message": "Official cross-platform release with high-speed TeX engine integration and multi-agent AI LaTeX tools.",
   "release_notes_url": "https://andromedawriter.com/download.html",
