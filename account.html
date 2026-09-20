@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Account & Subscription — Andromeda Writer</title>
-  <meta name="description" content="Manage your Andromeda Writer account, active subscription tier, 14-day free trial, and billing portal settings.">
+  <meta name="description" content="Manage your Andromeda Writer account, active subscription tier, 7-day free trial, and billing portal settings.">
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" type="image/png" href="assets/images/logo.png">
   <style>
@@ -461,16 +461,16 @@
             <div id="upgrade-callout-box" style="display: none; background: rgba(139, 92, 246, 0.1); border: 1px solid rgba(139, 92, 246, 0.3); border-radius: var(--radius-md); padding: 20px; margin-bottom: 20px;">
               <h3 style="color: #ffffff; font-size: 1.1rem; margin-bottom: 6px;">⚡ Unlock Andromeda Pro or Premium</h3>
               <p style="color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 14px;">
-                Start your 14-day full access free trial for prioritized AI assistance, multi-device activation, and advanced TeX developer features.
+                Start your 7-day full access free trial for prioritized AI assistance, multi-device activation, and advanced TeX developer features.
               </p>
-              <a href="https://plans.andromedawriter.com" class="btn btn-primary btn-sm">Start 14-Day Free Trial →</a>
+              <a href="https://plans.andromedawriter.com" class="btn btn-primary btn-sm">Start 7-Day Free Trial →</a>
             </div>
 
             <!-- Subscription Management / Cancellation Box (For Paid / Trial Users) -->
             <div id="cancellation-management-box" class="cancellation-section" style="display: none;">
               <h3>⚙️ Subscription & Cancellation Management</h3>
               <p id="cancellation-info-text">
-                You can cancel your subscription or 14-day free trial anytime without penalties. If cancelled during the trial, you will not be charged.
+                You can cancel your subscription or 7-day free trial anytime without penalties. If cancelled during the trial, you will not be charged.
               </p>
 
               <!-- Lemon Squeezy Portal Link -->
@@ -632,7 +632,7 @@
         statusBadge.textContent = status.charAt(0).toUpperCase() + status.slice(1);
 
         if (status === 'trialing' || status === 'trial') {
-          statusBadge.textContent = '14-Day Free Trial';
+          statusBadge.textContent = '7-Day Free Trial';
           statusBadge.className = 'status-badge trial';
         } else if (status === 'cancelled') {
           statusBadge.className = 'status-badge cancelled';
