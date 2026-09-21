@@ -513,21 +513,26 @@
 
         if (response.status === 200 && result.success) {
           formStatus.className = 'form-status success';
+          formStatus.style.display = 'block';
           formStatus.innerHTML = '<strong>✓ Message Sent Successfully!</strong><br>Thank you for reaching out. We have received your inquiry and will reply to <strong>' + escapeHtml(object.email) + '</strong> within 24–48 business hours.';
           form.reset();
+          formStatus.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         } else {
           // If access key is placeholder, friendly prompt
+          formStatus.className = 'form-status error';
+          formStatus.style.display = 'block';
           if (result.message && result.message.includes('Invalid Access Key') || object.access_key === 'YOUR_WEB3FORMS_ACCESS_KEY') {
-            formStatus.className = 'form-status error';
             formStatus.innerHTML = '<strong>Note:</strong> Web3Forms access key is pending configuration. You can email us directly at <a href="mailto:contact@andromedawriter.com" style="color:#ffffff;text-decoration:underline;">contact@andromedawriter.com</a>.';
           } else {
-            formStatus.className = 'form-status error';
-            formStatus.innerHTML = '<strong>Submission Error:</strong> ' + (result.message || 'Something went wrong. Please email us directly at contact@andromedawriter.com.');
+            formStatus.innerHTML = '<strong>Submission Error:</strong> ' + escapeHtml(result.message || 'Something went wrong. Please email us directly at contact@andromedawriter.com.');
           }
+          formStatus.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
       } catch (err) {
         formStatus.className = 'form-status error';
+        formStatus.style.display = 'block';
         formStatus.innerHTML = '<strong>Network Error:</strong> Unable to connect. Please email us directly at <a href="mailto:contact@andromedawriter.com" style="color:#ffffff;text-decoration:underline;">contact@andromedawriter.com</a>.';
+        formStatus.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       } finally {
         submitBtn.disabled = false;
         btnText.textContent = 'Send Message';
