@@ -67,6 +67,7 @@
           <li class="docs-nav-item"><a href="#synctex" class="docs-nav-link">SyncTeX Bidirectional Jump</a></li>
           <li class="docs-nav-item"><a href="#math-preview" class="docs-nav-link">Live Math Hover Tooltip</a></li>
           <li class="docs-nav-item"><a href="#ai-assistant" class="docs-nav-link">AI Writing Assistant</a></li>
+          <li class="docs-nav-item"><a href="#ai-keywords" class="docs-nav-link">AI Directives & Keywords</a></li>
         </ul>
       </div>
 
@@ -244,6 +245,178 @@ and multi-line equations:
           <li><strong>Table & Matrix Formatter:</strong> Converts raw CSV/Markdown tables into clean, beautiful <code>booktabs</code> LaTeX tables.</li>
           <li><strong>BibTeX Generator:</strong> Generate clean BibTeX citations from DOIs, arXiv URLs, or paper titles.</li>
         </ul>
+      </section>
+
+      <!-- 7b. AI Chatbot Directives & Keywords -->
+      <section id="ai-keywords" class="doc-section">
+        <span class="doc-badge">AI Directives</span>
+        <h2 class="doc-title">AI Chatbot Directives & Keywords</h2>
+        <p class="doc-lead">
+          Supercharge your research and manuscript preparation using Andromeda's specialized Chatbot keywords. Directives allow you to surgically target specific files, trigger LaTeX error correction, cite local references, and discover online scholarly papers.
+        </p>
+
+        <div class="callout callout-info" style="margin: 20px 0;">
+          <div class="callout-title">💡 Context Understanding & Keyword Clarity</div>
+          <p>
+            The Andromeda AI Chatbot is intelligently designed to understand full context and intent directly from your natural language prompt. However, using these explicit <code>@</code> keywords brings <strong>extra clarity</strong> to the chatbot, eliminating ambiguity and ensuring the exact target files, diagnostic engines, and citation workflows are invoked with maximum precision.
+          </p>
+          <p style="margin-top: 8px; font-size: 0.85rem; color: var(--text-secondary);">
+            <em>Note: The AI Chatbot agent and smart editing directives are available exclusively to <strong>Pro</strong> and <strong>Premium</strong> subscribers.</em>
+          </p>
+        </div>
+
+        <p class="doc-text">
+          Type these keywords directly into the AI Chatbot input to invoke specialized engines and tailored workflows:
+        </p>
+
+        <!-- Summary Table -->
+        <table class="shortcut-table" style="margin: 24px 0;">
+          <thead>
+            <tr>
+              <th>Directive Keyword</th>
+              <th>Tier Required</th>
+              <th>Core Functionality</th>
+              <th>Review Mode</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code style="color: #38bdf8; font-weight: 700;">@thisdoc</code></td>
+              <td><span style="padding: 2px 8px; border-radius: 4px; background: rgba(168,85,247,0.15); color: #c084fc; font-size: 0.75rem; font-weight: 600;">Pro & Premium</span></td>
+              <td>Directly scopes edits and actions to the active document currently open in the editor</td>
+              <td>Active File Diff</td>
+            </tr>
+            <tr>
+              <td><code style="color: #38bdf8; font-weight: 700;">@&lt;filename&gt;</code></td>
+              <td><span style="padding: 2px 8px; border-radius: 4px; background: rgba(168,85,247,0.15); color: #c084fc; font-size: 0.75rem; font-weight: 600;">Pro & Premium</span></td>
+              <td>Points chatbot to any file (.tex, .bib, .csv, .txt, images, etc.) in the workspace</td>
+              <td>Target File Diff</td>
+            </tr>
+            <tr>
+              <td><code style="color: var(--accent-cyan); font-weight: 700;">@latexerrors</code></td>
+              <td><span style="padding: 2px 8px; border-radius: 4px; background: rgba(168,85,247,0.15); color: #c084fc; font-size: 0.75rem; font-weight: 600;">Pro & Premium</span></td>
+              <td>LaTeX Engine error diagnosis, intent-preserving repair & log parsing</td>
+              <td>Side-by-side Diff</td>
+            </tr>
+            <tr>
+              <td><code style="color: var(--accent-purple); font-weight: 700;">@cite</code></td>
+              <td><span style="padding: 2px 8px; border-radius: 4px; background: rgba(168,85,247,0.15); color: #c084fc; font-size: 0.75rem; font-weight: 600;">Pro & Premium</span></td>
+              <td>Extracts references from local PDF/files, appends to BibTeX/thebib & cites in text</td>
+              <td>Side-by-side Diff</td>
+            </tr>
+            <tr>
+              <td><code style="color: #f59e0b; font-weight: 700;">@scholarly</code></td>
+              <td><span style="padding: 2px 8px; border-radius: 4px; background: rgba(245,158,11,0.15); color: #fbbf24; font-size: 0.75rem; font-weight: 600;">Premium Only</span></td>
+              <td>Global literature discovery across Google Scholar, arXiv & Crossref</td>
+              <td>Staged References</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- 1. @thisdoc & @<filename> -->
+        <div class="feature-card" style="margin-bottom: 24px; padding: 24px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+            <h3 style="color: #38bdf8; font-size: 1.25rem; margin: 0;">1. <code>@thisdoc</code> & <code>@&lt;filename&gt;</code> — Target File Directives</h3>
+            <span style="padding: 3px 10px; border-radius: 12px; background: rgba(168,85,247,0.15); color: #c084fc; font-size: 0.75rem; font-weight: 600;">Pro & Premium</span>
+          </div>
+          <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 16px;">
+            Explicitly scopes AI agent edits, transformations, and diagnostics to a designated file. This provides instant clarity to the chatbot, especially in large multi-file projects:
+          </p>
+          <ul style="color: var(--text-secondary); margin-left: 20px; line-height: 1.7; font-size: 0.9rem; margin-bottom: 16px;">
+            <li><strong><code>@thisdoc</code>:</strong> Explicitly targets the document currently active and visible in the Monaco editor.</li>
+            <li><strong><code>@&lt;filename&gt;</code>:</strong> Can point to <em>any</em> file in your workspace — including LaTeX files (<code>@main.tex</code>, <code>@chapter2.tex</code>), bibliography files (<code>@references.bib</code>), tabular data (<code>@results.csv</code>), outline notes (<code>@notes.txt</code>), or illustrations. The chatbot reads the specified file context and targets proposed edits directly to it.</li>
+          </ul>
+          <p style="font-weight: 600; color: var(--text-primary); margin-bottom: 6px;">Usage Examples:</p>
+          <pre style="background: var(--bg-surface); padding: 12px; border-radius: 6px; border: 1px solid var(--border-medium); font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 14px; overflow-x: auto;"><code>@thisdoc check formatting of table 1 and convert to booktabs
+@chapter2.tex expand the proof of Theorem 3
+@references.bib format all entries in IEEE style
+@data.csv convert this dataset into a LaTeX tabular environment</code></pre>
+          <p style="font-weight: 600; color: var(--text-primary); margin-bottom: 6px;">Expected Outcome:</p>
+          <ul style="color: var(--text-secondary); margin-left: 20px; line-height: 1.7; font-size: 0.9rem;">
+            <li>Loads the exact file context and targets proposed edits specifically to the named file.</li>
+            <li>Opens Monaco Diff Review Mode centered on the modified sections of that file with side-by-side Accept/Reject controls.</li>
+          </ul>
+        </div>
+
+        <!-- 2. @latexerrors -->
+        <div class="feature-card" style="margin-bottom: 24px; padding: 24px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+            <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin: 0;">2. <code>@latexerrors</code> — Specialized LaTeX Engine Diagnostics</h3>
+            <span style="padding: 3px 10px; border-radius: 12px; background: rgba(168,85,247,0.15); color: #c084fc; font-size: 0.75rem; font-weight: 600;">Pro & Premium</span>
+          </div>
+          <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 16px;">
+            Directs Andromeda's specialized AI LaTeX Engine (<code>#Latex_Engine</code>) to read the compiler diagnostic log directly and perform surgical, intent-preserving repair of syntax errors, unclosed environments, math mode delimiters, and missing preamble packages.
+          </p>
+          <div class="callout callout-info" style="margin-bottom: 16px;">
+            <div class="callout-title">⚡ Smart Compile Rule</div>
+            <p>
+              The engine directly parses <code>filename.log</code> if it already exists without compiling. Andromeda initiates compilation of <code>filename.tex</code> <strong>only</strong> if asked to correct errors and the corresponding <code>.log</code> file is missing.
+            </p>
+          </div>
+          <p style="font-weight: 600; color: var(--text-primary); margin-bottom: 6px;">Usage Examples:</p>
+          <pre style="background: var(--bg-surface); padding: 12px; border-radius: 6px; border: 1px solid var(--border-medium); font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 14px; overflow-x: auto;"><code>Correct LaTeX errors @latexerrors
+@latexerrors resolve undefined control sequence \nu on line 42 in article.tex
+Please fix compilation issues @latexerrors</code></pre>
+          <p style="font-weight: 600; color: var(--text-primary); margin-bottom: 6px;">Expected Outcome:</p>
+          <ul style="color: var(--text-secondary); margin-left: 20px; line-height: 1.7; font-size: 0.9rem;">
+            <li>Error causing lines are identified and cataloged in <code>.andromeda/.agent/latex_errors.json</code>.</li>
+            <li>Author intent is strictly preserved (e.g. <code>\nu</code> wrapped into <code>$\nu$</code>, <code>\textit{R_cm}</code> inside equations repaired to <code>R_{cm}</code>).</li>
+            <li>Proposed resolution is staged directly to Monaco Diff Review Mode with side-by-side Accept/Reject controls.</li>
+          </ul>
+        </div>
+
+        <!-- 3. @cite -->
+        <div class="feature-card" style="margin-bottom: 24px; padding: 24px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+            <h3 style="color: var(--accent-purple); font-size: 1.25rem; margin: 0;">3. <code>@cite</code> — Local Reference Extraction & In-Text Citation</h3>
+            <span style="padding: 3px 10px; border-radius: 12px; background: rgba(168,85,247,0.15); color: #c084fc; font-size: 0.75rem; font-weight: 600;">Pro & Premium</span>
+          </div>
+          <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 16px;">
+            Instructs the agent to extract reference metadata from local files (PDFs, BibTeX, or text files) stored in your project root or subfolders. The agent automatically executes two synchronized operations:
+          </p>
+          <ol style="color: var(--text-secondary); margin-left: 20px; line-height: 1.7; font-size: 0.9rem; margin-bottom: 16px;">
+            <li><strong>Bibliography Appending:</strong> Appends the formatted citation to your <code>references.bib</code> file or under <code>\begin{thebibliography}</code> (whichever format your target LaTeX document uses).</li>
+            <li><strong>In-Text Citation Placement:</strong> Analyzes the document body and inserts <code>~\cite{cite_key}</code> in the proper contextual location (e.g., in the Introduction, Related Work, or a user-specified section).</li>
+          </ol>
+          <div class="callout callout-info" style="margin-bottom: 16px;">
+            <div class="callout-title">🔒 Privacy & Local Isolation</div>
+            <p>
+              <code>@cite</code> operates entirely on your local project assets and does not consume external literature quota or invoke <code>ai_cite_engine</code>.
+            </p>
+          </div>
+          <p style="font-weight: 600; color: var(--text-primary); margin-bottom: 6px;">Usage Examples:</p>
+          <pre style="background: var(--bg-surface); padding: 12px; border-radius: 6px; border: 1px solid var(--border-medium); font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 14px; overflow-x: auto;"><code>@cite sample_paper.pdf in section 2
+@cite papers/quantum_study.pdf at the end of Introduction
+@cite references.bib</code></pre>
+          <p style="font-weight: 600; color: var(--text-primary); margin-bottom: 6px;">Expected Outcome:</p>
+          <ul style="color: var(--text-secondary); margin-left: 20px; line-height: 1.7; font-size: 0.9rem;">
+            <li>Extracts publication title, authors, year, and a clean cite key (e.g. <code>quantum2024</code>).</li>
+            <li>Inserts <code>~\cite{quantum2024}</code> into the active <code>.tex</code> file at the specified or most contextually relevant position.</li>
+            <li>Appends the BibTeX entry to <code>references.bib</code> or <code>\bibitem</code> before <code>\end{thebibliography}</code>.</li>
+            <li>Stages changes in Monaco Diff Review Mode for side-by-side inspection and acceptance.</li>
+          </ul>
+        </div>
+
+        <!-- 4. @scholarly -->
+        <div class="feature-card" style="padding: 24px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+            <h3 style="color: #f59e0b; font-size: 1.25rem; margin: 0;">4. <code>@scholarly</code> — Academic Literature & Paper Search</h3>
+            <span style="padding: 3px 10px; border-radius: 12px; background: rgba(245,158,11,0.15); color: #fbbf24; font-size: 0.75rem; font-weight: 600;">Premium Only</span>
+          </div>
+          <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 16px;">
+            Activates Andromeda's specialized Citation Engine (<code>ai_cite_engine</code>) to search online academic literature across Google Scholar, arXiv, PubMed, and Crossref.
+          </p>
+          <p style="font-weight: 600; color: var(--text-primary); margin-bottom: 6px;">Usage Examples:</p>
+          <pre style="background: var(--bg-surface); padding: 12px; border-radius: 6px; border: 1px solid var(--border-medium); font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 14px; overflow-x: auto;"><code>@scholarly search recent peer-reviewed articles on quantum error correction
+@scholarly find benchmark literature on transformer attention mechanisms
+@scholarly "Graph Neural Networks for Drug Discovery"</code></pre>
+          <p style="font-weight: 600; color: var(--text-primary); margin-bottom: 6px;">Expected Outcome:</p>
+          <ul style="color: var(--text-secondary); margin-left: 20px; line-height: 1.7; font-size: 0.9rem;">
+            <li>Retrieves peer-reviewed publications with verified DOIs, author lists, and publication venues.</li>
+            <li>Generates standard BibTeX entries formatted for direct inclusion into your project references.</li>
+            <li>Non-premium accounts receive an upgrade prompt: <em>"Please upgrade to Premium to use this feature"</em>.</li>
+          </ul>
+        </div>
       </section>
 
       <!-- 8. Keyboard Shortcuts Table -->
