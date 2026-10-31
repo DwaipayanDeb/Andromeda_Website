@@ -142,9 +142,15 @@
         Your download should begin automatically. If it doesn't start in a few moments, please <a href="bin/Andromeda_Setup.exe" id="manual-download-link" class="gradient-text" style="font-weight: 700; text-decoration: underline;">click here to download directly</a>.
       </p>
 
-      <div class="redirect-status-box">
+      <div class="redirect-status-box" style="margin: 22px 0 14px;">
         <span class="pulse-indicator"></span>
-        <span>Redirecting to Installation Instructions in <strong id="countdown-num">2</strong>s...</span>
+        <span>Redirecting to installation page in <strong id="countdown-num">4</strong> sec...</span>
+      </div>
+
+      <div style="margin-bottom: 24px;">
+        <p style="color: var(--accent-cyan); font-size: 0.92rem; margin: 0; font-weight: 500; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 8px; padding: 8px 16px; display: inline-block;">
+          📌 Note: Automatically redirecting to the installation page in <strong id="countdown-note" style="color: #ffffff; font-size: 1rem;">4</strong> sec
+        </p>
       </div>
 
       <div>
@@ -231,14 +237,15 @@
         }
       }
 
-      // Wait 2 seconds, then auto-redirect to the corresponding installation section on Docs page
-      let secondsLeft = 2;
+      // Wait 4 seconds, then auto-redirect to the corresponding installation section on Docs page
+      let secondsLeft = 4;
       const countEl = document.getElementById('countdown-num');
+      const countNote = document.getElementById('countdown-note');
       const timer = setInterval(() => {
         secondsLeft--;
-        if (countEl) {
-          countEl.textContent = secondsLeft > 0 ? secondsLeft : '0';
-        }
+        const displayVal = secondsLeft > 0 ? secondsLeft : '0';
+        if (countEl) countEl.textContent = displayVal;
+        if (countNote) countNote.textContent = displayVal;
         if (secondsLeft <= 0) {
           clearInterval(timer);
           window.location.href = docsTarget;
