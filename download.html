@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Download Andromeda Writer — Windows & Linux</title>
-  <meta name="description" content="Download Andromeda Writer for Windows 10/11 and Linux distributions. Microsoft Store, Standalone EXE, Portable ZIP, DEB, Flatpak, Snap, AppImage, and AUR.">
+  <meta name="description" content="Download Andromeda Writer for Windows 10/11 and Linux distributions. Microsoft Store, Standalone EXE, DEB, AppImage, and RPM.">
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" type="image/png" href="assets/images/logo.png">
   <style>
@@ -207,10 +207,10 @@
           </div>
         </div>
 
-        <!-- Additional Windows Options Grid -->
+        <!-- Windows Standalone Direct Download -->
         <div class="distro-grid">
           
-          <!-- 1. Standalone Setup EXE -->
+          <!-- Standalone Setup (.exe) -->
           <div class="distro-card">
             <div>
               <div class="distro-header">
@@ -229,61 +229,9 @@
               </p>
             </div>
             <div class="btn-group" style="margin-top: 20px;">
-              <a href="bin/Andromeda-Writer-Setup.exe" id="win-setup-download-btn" download="Andromeda-Writer-Setup.exe" class="btn btn-primary" style="width: 100%;">
-                <span>Download Setup.exe</span>
+              <a href="bin/Andromeda_Setup.exe" id="win-setup-download-btn" download="Andromeda_Setup.exe" class="btn btn-primary" style="width: 100%;">
+                <span>Download</span>
               </a>
-            </div>
-          </div>
-
-          <!-- 2. Portable ZIP -->
-          <div class="distro-card">
-            <div>
-              <div class="distro-header">
-                <div class="distro-icon" style="color: var(--accent-purple);">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                    <polyline points="21 8 21 21 3 21 3 8"/>
-                    <rect x="1" y="3" width="22" height="5"/>
-                    <line x1="10" y1="12" x2="14" y2="12"/>
-                  </svg>
-                </div>
-                <div class="distro-meta">
-                  <div class="distro-name">Portable Package (.zip)</div>
-                  <span class="distro-badge">Zero Install • Portable</span>
-                </div>
-              </div>
-              <p style="color: var(--text-secondary); font-size: 0.9rem;">
-                No admin privileges or installation required. Extract to any folder or USB flash drive and run.
-              </p>
-            </div>
-            <div class="btn-group" style="margin-top: 20px;">
-              <a href="bin/Andromeda-Writer-Portable.zip" id="win-zip-download-btn" download="Andromeda-Writer-Portable.zip" class="btn btn-outline" style="width: 100%;">
-                <span>Download Portable .zip</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- 3. Winget Package Manager -->
-          <div class="distro-card">
-            <div>
-              <div class="distro-header">
-                <div class="distro-icon" style="color: #059669;">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                    <polyline points="4 17 10 11 4 5"/>
-                    <line x1="12" y1="19" x2="20" y2="19"/>
-                  </svg>
-                </div>
-                <div class="distro-meta">
-                  <div class="distro-name">Windows Package Manager</div>
-                  <span class="distro-badge">winget CLI</span>
-                </div>
-              </div>
-              <p style="color: var(--text-secondary); font-size: 0.9rem;">
-                Install and update directly from PowerShell or Command Prompt.
-              </p>
-              <div class="terminal-box">
-                <span class="terminal-code" id="cmd-winget">winget install Andromeda.Writer</span>
-                <button class="btn-copy" data-target="cmd-winget">Copy</button>
-              </div>
             </div>
           </div>
 
@@ -335,78 +283,15 @@
               <p style="color: var(--text-secondary); font-size: 0.9rem;">
                 Recommended for Ubuntu 22.04+, Debian 12+, Linux Mint, and Pop!_OS. Resolves WebKitGTK in one shot.
               </p>
-              <div class="terminal-box">
-                <span class="terminal-code" id="cmd-apt">sudo apt install ./andromeda-writer_1.0.0_amd64.deb</span>
-                <button class="btn-copy" data-target="cmd-apt">Copy</button>
-              </div>
             </div>
-            <div class="btn-group" style="margin-top: 16px;">
-              <a href="bin/andromeda-writer_1.1.0_amd64.deb" id="deb-download-btn" download="andromeda-writer_1.1.0_amd64.deb" class="btn btn-primary" style="width: 100%;">
-                <span>Download .deb (64-bit)</span>
+            <div class="btn-group" style="margin-top: 20px;">
+              <a href="bin/andromeda-writer_1.0.0_amd64.deb" id="deb-download-btn" download="andromeda-writer_1.0.0_amd64.deb" class="btn btn-primary" style="width: 100%;">
+                <span>Download .deb</span>
               </a>
             </div>
           </div>
 
-          <!-- 2. Flatpak / Flathub -->
-          <div class="distro-card" id="flatpak">
-            <div>
-              <div class="distro-header">
-                <div class="distro-icon" style="color: #4a90e2;">
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-                    <rect width="24" height="24" rx="6" fill="#4A90E2"/>
-                    <path d="M6 8l6-4 6 4v8l-6 4-6-4V8z" fill="#FFF"/>
-                  </svg>
-                </div>
-                <div class="distro-meta">
-                  <div class="distro-name">Flatpak / Flathub</div>
-                  <span class="distro-badge">Sandboxed Universal</span>
-                </div>
-              </div>
-              <p style="color: var(--text-secondary); font-size: 0.9rem;">
-                Full sandboxing and automatic updates across all modern Linux desktop environments.
-              </p>
-              <div class="terminal-box">
-                <span class="terminal-code" id="cmd-flatpak">flatpak install flathub dev.andromeda.Writer</span>
-                <button class="btn-copy" data-target="cmd-flatpak">Copy</button>
-              </div>
-            </div>
-            <div class="btn-group" style="margin-top: 16px;">
-              <a href="https://flathub.org" target="_blank" class="btn btn-outline" style="width: 100%;">
-                <span>View on Flathub</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- 3. Snapcraft -->
-          <div class="distro-card" id="snap">
-            <div>
-              <div class="distro-header">
-                <div class="distro-icon" style="color: #82be00;">
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2L2 8l10 6 10-6-10-6zm0 8.5L5.5 8 12 4.1 18.5 8 12 10.5zM2 10.5L12 17l10-6.5v3L12 20 2 13.5v-3z" fill="#E95420"/>
-                  </svg>
-                </div>
-                <div class="distro-meta">
-                  <div class="distro-name">Snap Store</div>
-                  <span class="distro-badge">Canonical Snapcraft</span>
-                </div>
-              </div>
-              <p style="color: var(--text-secondary); font-size: 0.9rem;">
-                One-line install for Ubuntu, Manjaro, Zorin, and distributions with snapd.
-              </p>
-              <div class="terminal-box">
-                <span class="terminal-code" id="cmd-snap">sudo snap install andromeda-writer</span>
-                <button class="btn-copy" data-target="cmd-snap">Copy</button>
-              </div>
-            </div>
-            <div class="btn-group" style="margin-top: 16px;">
-              <a href="https://snapcraft.io" target="_blank" class="btn btn-outline" style="width: 100%;">
-                <span>Snap Store Page</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- 4. Universal AppImage -->
+          <!-- 2. Universal AppImage -->
           <div class="distro-card" id="appimage">
             <div>
               <div class="distro-header">
@@ -424,48 +309,15 @@
               <p style="color: var(--text-secondary); font-size: 0.9rem;">
                 Single executable that runs immediately on any Linux distro without root privileges.
               </p>
-              <div class="terminal-box">
-                <span class="terminal-code" id="cmd-appimage">chmod +x Andromeda-x86_64.AppImage && ./Andromeda-x86_64.AppImage</span>
-                <button class="btn-copy" data-target="cmd-appimage">Copy</button>
-              </div>
             </div>
-            <div class="btn-group" style="margin-top: 16px;">
+            <div class="btn-group" style="margin-top: 20px;">
               <a href="bin/Andromeda-x86_64.AppImage" id="appimage-download-btn" download="Andromeda-x86_64.AppImage" class="btn btn-primary" style="width: 100%;">
                 <span>Download .AppImage</span>
               </a>
             </div>
           </div>
 
-          <!-- 5. Arch Linux / Manjaro (AUR) -->
-          <div class="distro-card" id="aur">
-            <div>
-              <div class="distro-header">
-                <div class="distro-icon" style="color: #1793d1;">
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 3L2 21h20L12 3zm0 4.5l6.5 11.5H5.5L12 7.5z" fill="#1793D1"/>
-                  </svg>
-                </div>
-                <div class="distro-meta">
-                  <div class="distro-name">Arch Linux / Manjaro</div>
-                  <span class="distro-badge">AUR Package</span>
-                </div>
-              </div>
-              <p style="color: var(--text-secondary); font-size: 0.9rem;">
-                Available via the Arch User Repository (AUR). Build and update effortlessly using yay.
-              </p>
-              <div class="terminal-box">
-                <span class="terminal-code" id="cmd-aur">yay -S andromeda-writer-bin</span>
-                <button class="btn-copy" data-target="cmd-aur">Copy</button>
-              </div>
-            </div>
-            <div class="btn-group" style="margin-top: 16px;">
-              <a href="https://aur.archlinux.org" target="_blank" class="btn btn-outline" style="width: 100%;">
-                <span>View AUR Package</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- 6. Fedora / RHEL / openSUSE (.rpm) -->
+          <!-- 3. Fedora / RHEL / openSUSE (.rpm) -->
           <div class="distro-card" id="rpm">
             <div>
               <div class="distro-header">
@@ -483,17 +335,15 @@
               <p style="color: var(--text-secondary); font-size: 0.9rem;">
                 Native RPM package for Fedora 38+, Red Hat Enterprise Linux, CentOS Stream, and openSUSE.
               </p>
-              <div class="terminal-box">
-                <span class="terminal-code" id="cmd-dnf">sudo dnf install ./andromeda-writer-1.1.0.x86_64.rpm</span>
-                <button class="btn-copy" data-target="cmd-dnf">Copy</button>
-              </div>
             </div>
-            <div class="btn-group" style="margin-top: 16px;">
-              <a href="bin/andromeda-writer-1.1.0.x86_64.rpm" id="rpm-download-btn" download="andromeda-writer-1.1.0.x86_64.rpm" class="btn btn-primary" style="width: 100%;">
+            <div class="btn-group" style="margin-top: 20px;">
+              <a href="bin/andromeda-writer-1.0.0.x86_64.rpm" id="rpm-download-btn" download="andromeda-writer-1.0.0.x86_64.rpm" class="btn btn-primary" style="width: 100%;">
                 <span>Download .rpm</span>
               </a>
             </div>
           </div>
+
+        </div>
 
         <!-- Announcements & Release Notes Banner -->
         <div style="margin-top: 40px; background: rgba(139, 92, 246, 0.08); border: 1px solid rgba(139, 92, 246, 0.25); border-radius: var(--radius-md, 8px); padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
@@ -519,7 +369,7 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-bottom">
-        <p>&copy; 2026 Andromeda Writer Project. Official Download Hub. • <a href="announcements.html" style="color: var(--accent-purple-light, #c084fc); text-decoration: none; margin-right: 8px;">📢 Announcements</a> • <a href="contact.html" style="color: var(--accent-cyan); text-decoration: none;">Contact Support</a></p>
+        <p>&copy; 2026 Andromeda Projects. Official Download Hub. • <a href="announcements.html" style="color: var(--accent-purple-light, #c084fc); text-decoration: none; margin-right: 8px;">📢 Announcements</a> • <a href="contact.html" style="color: var(--accent-cyan); text-decoration: none;">Contact Support</a></p>
         <a href="index.html" style="color: var(--accent-purple); font-weight: 600;">← Back to Home</a>
       </div>
     </div>
@@ -555,12 +405,6 @@
         if (data.app_version) {
           const vTag = document.getElementById('version-tag');
           if (vTag) vTag.textContent = `Latest Version: v${data.app_version}`;
-          
-          const debCode = document.getElementById('cmd-apt');
-          if (debCode) debCode.textContent = `sudo apt install ./andromeda-writer_${data.app_version}_amd64.deb`;
-          
-          const dnfCode = document.getElementById('cmd-dnf');
-          if (dnfCode) dnfCode.textContent = `sudo dnf install ./andromeda-writer-${data.app_version}.x86_64.rpm`;
         }
 
         if (data.release_date) {
@@ -585,11 +429,10 @@
         if (data.binaries) {
           if (data.binaries.windows_setup) {
             const el = document.getElementById('win-setup-download-btn');
-            if (el) el.href = data.binaries.windows_setup;
-          }
-          if (data.binaries.windows_portable) {
-            const el = document.getElementById('win-zip-download-btn');
-            if (el) el.href = data.binaries.windows_portable;
+            if (el) {
+              el.href = data.binaries.windows_setup;
+              el.setAttribute('download', data.binaries.windows_setup.split('/').pop());
+            }
           }
           if (data.binaries.linux_deb) {
             const el = document.getElementById('deb-download-btn');
@@ -600,7 +443,10 @@
           }
           if (data.binaries.linux_appimage) {
             const el = document.getElementById('appimage-download-btn');
-            if (el) el.href = data.binaries.linux_appimage;
+            if (el) {
+              el.href = data.binaries.linux_appimage;
+              el.setAttribute('download', data.binaries.linux_appimage.split('/').pop());
+            }
           }
           if (data.binaries.linux_rpm) {
             const el = document.getElementById('rpm-download-btn');

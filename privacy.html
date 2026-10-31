@@ -90,7 +90,7 @@
   <main class="container legal-page">
     <article class="legal-card">
       <h1>Privacy Policy</h1>
-      <div class="last-updated">Last Updated: September 17, 2026</div>
+      <div class="last-updated">Last Updated: October 25, 2026</div>
 
       <h2>1. Overview: Local Architecture & User Privacy</h2>
       <p>
@@ -114,11 +114,13 @@
         <li><strong>Prompt Transmission:</strong> When you explicitly request AI drafting, mathematical formula derivation, or syntax generation, the specific prompt inputs and selected text snippets are transmitted via encrypted HTTPS to Google Gemini API servers to generate the completion.</li>
         <li><strong>Model Training Exemption:</strong> According to API data protection standards, user prompt data submitted through official developer APIs is not retained to train or fine-tune public foundation models.</li>
         <li><strong>Third-Party Cloud Liability Disclaimer:</strong> While transmissions use industry-standard encryption, Andromeda Writer and its developers shall NOT be held responsible or liable for any data loss, service disruptions, latency, or security breaches originating on third-party cloud infrastructure or external AI provider servers (such as Google Cloud).</li>
+        <li><strong>User-Supplied API Keys (BYOK):</strong> When using your own Gemini API key, your AI queries are dispatched directly to Google's endpoints using your personal account credentials. Andromeda Writer does not proxy, intercept, record, or retain your personal API keys on our cloud infrastructure.</li>
       </ul>
 
       <h2>4. Information We DO NOT Collect</h2>
       <ul>
         <li>We <strong>do not</strong> access, inspect, store, or transmit your private LaTeX source code, research papers, equations, bibliographies, or PDF files during standard offline editing and compilation.</li>
+        <li>We <strong>do not</strong> collect, transmit, inspect, or store your personal Gemini API keys if you choose to configure them in the desktop application settings. User-supplied API keys remain strictly stored on your local device.</li>
         <li>We <strong>do not</strong> store credit card or bank payment credentials on our servers. All transactions are processed securely through PCI-compliant Merchant of Record gateways (Lemon Squeezy for global transactions, Razorpay for domestic transactions).</li>
         <li>We <strong>do not</strong> sell or lease your personal information to third parties or advertising networks.</li>
       </ul>
@@ -148,7 +150,7 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-bottom">
-        <div>© 2026 Andromeda Writer. All rights reserved. • <a href="mailto:contact@andromedawriter.com" style="color: var(--text-muted); text-decoration: none;">contact@andromedawriter.com</a></div>
+        <div>© 2026 Andromeda Projects. All rights reserved. • <a href="mailto:contact@andromedawriter.com" style="color: var(--text-muted); text-decoration: none;">contact@andromedawriter.com</a></div>
         <div>
           <a href="contact.html" style="color: var(--text-muted); text-decoration: none; margin-right: 12px;">Contact Us</a>
           <a href="docs.html#troubleshooting" style="color: var(--text-muted); text-decoration: none; margin-right: 12px;">FAQs & Cancellation</a>
