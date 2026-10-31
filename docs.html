@@ -55,6 +55,8 @@
         <div class="docs-nav-title">Getting Started</div>
         <ul class="docs-nav-list">
           <li class="docs-nav-item"><a href="#quickstart" class="docs-nav-link active">Quick Start Guide</a></li>
+          <li class="docs-nav-item"><a href="#windows-installation" class="docs-nav-link">Windows Installation Guide</a></li>
+          <li class="docs-nav-item"><a href="#linux-installation" class="docs-nav-link">Linux Installation Guide</a></li>
           <li class="docs-nav-item"><a href="#tex-engine" class="docs-nav-link">TeX Engine Auto-Detection</a></li>
           <li class="docs-nav-item"><a href="#first-document" class="docs-nav-link">Compiling First Document</a></li>
         </ul>
@@ -104,7 +106,239 @@
         </div>
       </section>
 
-      <!-- 2. TeX Engine Setup -->
+      <!-- 2. Windows Installation Guide -->
+      <section id="windows-installation" class="doc-section">
+        <span class="doc-badge">Installation • Windows</span>
+        <h2 class="doc-title">Windows Installation Guide</h2>
+        <p class="doc-lead">
+          Complete beginner-friendly walkthrough for installing Andromeda Writer and setting up a local TeX distribution (TeX Live or MiKTeX) on Windows 10 and Windows 11.
+        </p>
+
+        <h3 class="doc-h3">1. Understanding LaTeX for First-Time Users</h3>
+        <p class="doc-text">
+          If you are new to LaTeX, think of it as a professional typesetting compiler. Unlike traditional word processors (such as Microsoft Word) where layout, formatting, and equations frequently shift, LaTeX compiles plain text code into crisp, publication-grade academic papers, books, and mathematical proofs.
+        </p>
+        <p class="doc-text">
+          To create and compile documents on Windows, you need two complementary components:
+        </p>
+        <ul style="color: var(--text-secondary); margin-left: 24px; margin-bottom: 18px; line-height: 1.7;">
+          <li><strong>A TeX Distribution (Backend Compiler Engine):</strong> The underlying software (such as <strong>MiKTeX</strong> or <strong>TeX Live</strong>) that translates your LaTeX code into PDF.</li>
+          <li><strong>Andromeda Writer (Frontend Desktop Suite):</strong> Your fast Monaco-powered editor with live PDF preview, math hover tooltips, and AI research co-pilots.</li>
+        </ul>
+
+        <h3 class="doc-h3">2. Installing a TeX Distribution on Windows</h3>
+        <p class="doc-text">
+          You must install at least one TeX distribution on your Windows PC so Andromeda can compile your manuscripts. Both distributions are completely free and open-source. Choose one of the two options below:
+        </p>
+
+        <div class="install-guide-grid">
+          <!-- MiKTeX Card -->
+          <div class="install-option-card recommended">
+            <div>
+              <div class="install-option-header">
+                <h4 class="install-option-title">MiKTeX</h4>
+                <span class="install-option-badge badge-recommended">Recommended for Beginners</span>
+              </div>
+              <p class="doc-text" style="font-size: 0.88rem; margin-bottom: 12px;">
+                Lightweight initial download (~200 MB). Features an <strong>automatic on-the-fly package installer</strong> that seamlessly downloads missing packages whenever you reference them in your paper.
+              </p>
+              <ol style="color: var(--text-secondary); font-size: 0.86rem; margin-left: 18px; line-height: 1.6; margin-bottom: 14px;">
+                <li>Visit the official download link below and click <strong>Download</strong> for Windows.</li>
+                <li>Run <code>basic-miktex-*.exe</code> and accept the license terms.</li>
+                <li>When prompted for <em>"Install missing packages on-the-fly"</em>, choose <strong>Yes</strong> (or <em>"Ask me first"</em>).</li>
+                <li>Complete the wizard. MiKTeX automatically adds itself to your system <code>PATH</code>.</li>
+              </ol>
+            </div>
+            <a href="https://miktex.org/download" target="_blank" rel="noopener noreferrer" class="btn-external-download">
+              <span>MiKTeX Windows Download Page</span>
+              <span>↗</span>
+            </a>
+          </div>
+
+          <!-- TeX Live Card -->
+          <div class="install-option-card">
+            <div>
+              <div class="install-option-header">
+                <h4 class="install-option-title">TeX Live</h4>
+                <span class="install-option-badge badge-comprehensive">Comprehensive / Full Suite</span>
+              </div>
+              <p class="doc-text" style="font-size: 0.88rem; margin-bottom: 12px;">
+                The standard distribution from the TeX Users Group (TUG). Contains virtually every known LaTeX package pre-installed offline (~5 GB). Best for computers with fast connections and plenty of disk space.
+              </p>
+              <ol style="color: var(--text-secondary); font-size: 0.86rem; margin-left: 18px; line-height: 1.6; margin-bottom: 14px;">
+                <li>Visit the official TUG download link below.</li>
+                <li>Download and run <code>install-tl-windows.exe</code> as Administrator.</li>
+                <li>Click <strong>Install</strong> in the graphical installer wizard.</li>
+                <li>Installation may take 20–50 minutes. Once done, all TeX binaries are permanently ready.</li>
+              </ol>
+            </div>
+            <a href="https://www.tug.org/texlive/windows.html" target="_blank" rel="noopener noreferrer" class="btn-external-download">
+              <span>TeX Live Windows Download (TUG)</span>
+              <span>↗</span>
+            </a>
+          </div>
+        </div>
+
+        <h3 class="doc-h3">3. Installing Andromeda Writer & Bypassing SmartScreen</h3>
+        <p class="doc-text">
+          Download <code>Andromeda_setup.exe</code> from the <a href="download.html?os=windows" style="color: var(--accent-cyan);">Download Page</a>. Because Andromeda Writer is an independent scientific desktop software release, Microsoft Defender SmartScreen on Windows 10/11 may display an initial notification screen when running the installer for the first time.
+        </p>
+
+        <p class="doc-text">
+          Follow these two simple steps to proceed with the installation:
+        </p>
+
+        <div class="doc-screenshot-row">
+          <!-- Step 1 Card -->
+          <div class="doc-screenshot-card">
+            <img src="assets/images/docs/smartscreen-step1.png" alt="Windows Defender SmartScreen - Click More info" class="doc-screenshot-img">
+            <div class="doc-screenshot-caption">
+              <strong>Step 1:</strong> On the <em>"Windows protected your PC"</em> screen, click the underlined <strong>More info</strong> link on the left side.
+            </div>
+          </div>
+
+          <!-- Step 2 Card -->
+          <div class="doc-screenshot-card">
+            <img src="assets/images/docs/smartscreen-step2.png" alt="Windows Defender SmartScreen - Click Run anyway" class="doc-screenshot-img">
+            <div class="doc-screenshot-caption">
+              <strong>Step 2:</strong> The dialog will reveal the application details. Click the <strong>Run anyway</strong> button to launch the setup wizard.
+            </div>
+          </div>
+        </div>
+
+        <div class="callout callout-tip">
+          <div class="callout-title">🎉 Complete the Setup Wizard</div>
+          <p>
+            The setup wizard will now guide you through choosing your installation folder and creating desktop/start menu shortcuts. Once installed, launch <strong>Andromeda Writer</strong>. It will immediately discover your installed TeX Live or MiKTeX engine and display a green indicator in the header!
+          </p>
+        </div>
+      </section>
+
+      <!-- 3. Linux Installation Guide -->
+      <section id="linux-installation" class="doc-section">
+        <span class="doc-badge">Installation • Linux</span>
+        <h2 class="doc-title">Linux Installation Guide</h2>
+        <p class="doc-lead">
+          Complete instructions for setting up TeX distributions and installing Andromeda Writer on Ubuntu, Debian, Linux Mint, Fedora, RHEL, openSUSE, and Arch Linux.
+        </p>
+
+        <h3 class="doc-h3">1. Installing a TeX Distribution on Linux</h3>
+        <p class="doc-text">
+          Just like on Windows, Andromeda Writer uses a local TeX engine (such as TeX Live or MiKTeX) to compile <code>.tex</code> source files into PDFs. On Linux, TeX Live is available natively via your system's package manager.
+        </p>
+
+        <h4 style="font-size: 0.98rem; font-weight: 700; color: var(--accent-cyan); margin: 16px 0 8px;">Option A: TeX Live (Native System Packages)</h4>
+        <p class="doc-text">
+          Run the terminal command matching your Linux distribution:
+        </p>
+
+        <div class="code-block" style="margin-bottom: 14px;">
+          <div class="code-block-header">
+            <span>Ubuntu / Debian / Linux Mint / Pop!_OS</span>
+            <span>Bash</span>
+          </div>
+          <pre><code># Update repositories and install core LaTeX packages:
+sudo apt update
+sudo apt install -y texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-bibtex-extra
+
+# Optional: To install the full comprehensive suite (~4GB):
+# sudo apt install -y texlive-full</code></pre>
+        </div>
+
+        <div class="code-block" style="margin-bottom: 14px;">
+          <div class="code-block-header">
+            <span>Fedora / RHEL / CentOS Stream</span>
+            <span>Bash</span>
+          </div>
+          <pre><code># Install TeX Live scheme via DNF:
+sudo dnf install -y texlive-scheme-medium
+
+# Optional: To install the full collection:
+# sudo dnf install -y texlive-scheme-full</code></pre>
+        </div>
+
+        <div class="code-block" style="margin-bottom: 14px;">
+          <div class="code-block-header">
+            <span>Arch Linux / Manjaro</span>
+            <span>Bash</span>
+          </div>
+          <pre><code>sudo pacman -S texlive-meta texlive-fontsextra</code></pre>
+        </div>
+
+        <p class="doc-text">
+          Alternatively, you can install the upstream vanilla distribution from the official <a href="https://www.tug.org/texlive/quickinstall.html" target="_blank" rel="noopener noreferrer" style="color: var(--accent-cyan);">TeX Live Quick Install Guide</a>.
+        </p>
+
+        <h4 style="font-size: 0.98rem; font-weight: 700; color: var(--accent-purple-light); margin: 20px 0 8px;">Option B: MiKTeX for Linux</h4>
+        <p class="doc-text">
+          If you prefer MiKTeX's automatic on-the-fly package management on Linux, follow the repository setup instructions on the official <a href="https://miktex.org/download#linux" target="_blank" rel="noopener noreferrer" style="color: var(--accent-purple-light);">MiKTeX Linux Download Portal</a>.
+        </p>
+
+        <h3 class="doc-h3">2. Installing Andromeda Writer on Linux</h3>
+        <p class="doc-text">
+          Grab your package from our <a href="download.html?os=linux" style="color: var(--accent-cyan);">Download Page</a>. We provide native <code>.deb</code>, <code>.rpm</code>, and standalone <code>.AppImage</code> packages:
+        </p>
+
+        <!-- DEB Installation -->
+        <h4 style="font-size: 0.96rem; font-weight: 700; color: #e95420; margin: 18px 0 6px;">1. Debian / Ubuntu / Linux Mint (.deb)</h4>
+        <p class="doc-text">
+          Open your terminal in the directory where the <code>.deb</code> file was downloaded (e.g., <code>~/Downloads</code>) and execute:
+        </p>
+        <div class="code-block" style="margin-bottom: 18px;">
+          <div class="code-block-header">
+            <span>Terminal</span>
+            <span>Bash</span>
+          </div>
+          <pre><code># Install the package:
+sudo dpkg -i andromeda-writer_1.0.0_amd64.deb
+
+# If any dependencies (e.g., webkit2gtk) are missing, resolve them automatically:
+sudo apt update && sudo apt install -f -y</code></pre>
+        </div>
+
+        <!-- RPM Installation -->
+        <h4 style="font-size: 0.96rem; font-weight: 700; color: #51a2da; margin: 18px 0 6px;">2. Fedora / RHEL / openSUSE (.rpm)</h4>
+        <p class="doc-text">
+          Install the RPM package using <code>dnf</code> (recommended) or <code>rpm</code>:
+        </p>
+        <div class="code-block" style="margin-bottom: 18px;">
+          <div class="code-block-header">
+            <span>Terminal</span>
+            <span>Bash</span>
+          </div>
+          <pre><code># Using DNF (automatically handles dependencies):
+sudo dnf install ./andromeda-writer-1.0.0.x86_64.rpm
+
+# Or using rpm directly:
+sudo rpm -ivh andromeda-writer-1.0.0.x86_64.rpm</code></pre>
+        </div>
+
+        <!-- AppImage Installation -->
+        <h4 style="font-size: 0.96rem; font-weight: 700; color: #10b981; margin: 18px 0 6px;">3. Universal Linux (.AppImage)</h4>
+        <p class="doc-text">
+          The AppImage is a portable, self-contained binary that runs on any modern Linux distribution without installation:
+        </p>
+        <div class="code-block" style="margin-bottom: 14px;">
+          <div class="code-block-header">
+            <span>Terminal</span>
+            <span>Bash</span>
+          </div>
+          <pre><code># Make the downloaded AppImage executable:
+chmod +x Andromeda-x86_64.AppImage
+
+# Run Andromeda Writer:
+./Andromeda-x86_64.AppImage</code></pre>
+        </div>
+
+        <div class="callout callout-info">
+          <div class="callout-title">💡 Ubuntu 22.04+ AppImage Note</div>
+          <p>
+            If the AppImage does not launch on Ubuntu 22.04 or later, install the standard FUSE 2 library: <code>sudo apt install -y libfuse2</code>.
+          </p>
+        </div>
+      </section>
+
+      <!-- 4. TeX Engine Setup -->
       <section id="tex-engine" class="doc-section">
         <span class="doc-badge">Toolchain</span>
         <h2 class="doc-title">TeX Engine Auto-Detection & Config</h2>

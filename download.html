@@ -229,7 +229,7 @@
               </p>
             </div>
             <div class="btn-group" style="margin-top: 20px;">
-              <a href="bin/Andromeda_Setup.exe" id="win-setup-download-btn" download="Andromeda_Setup.exe" class="btn btn-primary" style="width: 100%;">
+              <a href="thanks.html?os=windows&file=bin/Andromeda_Setup.exe" target="_blank" id="win-setup-download-btn" class="btn btn-primary" style="width: 100%;">
                 <span>Download</span>
               </a>
             </div>
@@ -285,7 +285,7 @@
               </p>
             </div>
             <div class="btn-group" style="margin-top: 20px;">
-              <a href="bin/andromeda-writer_1.0.0_amd64.deb" id="deb-download-btn" download="andromeda-writer_1.0.0_amd64.deb" class="btn btn-primary" style="width: 100%;">
+              <a href="thanks.html?os=linux&pkg=deb&file=bin/andromeda-writer_1.0.0_amd64.deb" target="_blank" id="deb-download-btn" class="btn btn-primary" style="width: 100%;">
                 <span>Download .deb</span>
               </a>
             </div>
@@ -311,7 +311,7 @@
               </p>
             </div>
             <div class="btn-group" style="margin-top: 20px;">
-              <a href="bin/Andromeda-x86_64.AppImage" id="appimage-download-btn" download="Andromeda-x86_64.AppImage" class="btn btn-primary" style="width: 100%;">
+              <a href="thanks.html?os=linux&pkg=appimage&file=bin/Andromeda-x86_64.AppImage" target="_blank" id="appimage-download-btn" class="btn btn-primary" style="width: 100%;">
                 <span>Download .AppImage</span>
               </a>
             </div>
@@ -337,7 +337,7 @@
               </p>
             </div>
             <div class="btn-group" style="margin-top: 20px;">
-              <a href="bin/andromeda-writer-1.0.0.x86_64.rpm" id="rpm-download-btn" download="andromeda-writer-1.0.0.x86_64.rpm" class="btn btn-primary" style="width: 100%;">
+              <a href="thanks.html?os=linux&pkg=rpm&file=bin/andromeda-writer-1.0.0.x86_64.rpm" target="_blank" id="rpm-download-btn" class="btn btn-primary" style="width: 100%;">
                 <span>Download .rpm</span>
               </a>
             </div>
@@ -430,29 +430,25 @@
           if (data.binaries.windows_setup) {
             const el = document.getElementById('win-setup-download-btn');
             if (el) {
-              el.href = data.binaries.windows_setup;
-              el.setAttribute('download', data.binaries.windows_setup.split('/').pop());
+              el.href = `thanks.html?os=windows&file=${encodeURIComponent(data.binaries.windows_setup)}`;
             }
           }
           if (data.binaries.linux_deb) {
             const el = document.getElementById('deb-download-btn');
             if (el) {
-              el.href = data.binaries.linux_deb;
-              el.setAttribute('download', data.binaries.linux_deb.split('/').pop());
+              el.href = `thanks.html?os=linux&pkg=deb&file=${encodeURIComponent(data.binaries.linux_deb)}`;
             }
           }
           if (data.binaries.linux_appimage) {
             const el = document.getElementById('appimage-download-btn');
             if (el) {
-              el.href = data.binaries.linux_appimage;
-              el.setAttribute('download', data.binaries.linux_appimage.split('/').pop());
+              el.href = `thanks.html?os=linux&pkg=appimage&file=${encodeURIComponent(data.binaries.linux_appimage)}`;
             }
           }
           if (data.binaries.linux_rpm) {
             const el = document.getElementById('rpm-download-btn');
             if (el) {
-              el.href = data.binaries.linux_rpm;
-              el.setAttribute('download', data.binaries.linux_rpm.split('/').pop());
+              el.href = `thanks.html?os=linux&pkg=rpm&file=${encodeURIComponent(data.binaries.linux_rpm)}`;
             }
           }
         }
