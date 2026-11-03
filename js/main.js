@@ -46,8 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       // Attempt ms-windows-store URI first, then fallback to web
-      const storeUri = "ms-windows-store://pdp/?productid=Andromeda";
-      const webFallback = "https://apps.microsoft.com/detail/Andromeda";
+      const storeUri = "ms-windows-store://pdp/?productid=9NK9D7FWJ31V";
+      const webFallback = "https://apps.microsoft.com/detail/9NK9D7FWJ31V";
       
       const iframe = document.createElement("iframe");
       iframe.style.display = "none";
