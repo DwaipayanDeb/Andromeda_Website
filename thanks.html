@@ -160,7 +160,7 @@
       <p class="section-desc"
         style="max-width: 540px; margin: 0 auto; color: var(--text-secondary); font-size: 0.98rem; line-height: 1.6;">
         Your download should begin automatically. If it doesn't start in a few moments, please <a
-          href="bin/Andromeda_Setup.exe" id="manual-download-link" class="gradient-text"
+          href="https://github.com/DwaipayanDeb/Andromeda_Website/releases/download/v1.0.1/Andromeda_Setup.exe" id="manual-download-link" class="gradient-text"
           style="font-weight: 700; text-decoration: underline;">click here to download directly</a>.
       </p>
 
@@ -223,11 +223,11 @@
       if (!file) {
         if (os === 'linux') {
           const pkg = (params.get('pkg') || 'deb').toLowerCase();
-          if (pkg === 'rpm') file = 'bin/andromeda-writer-1.0.0.x86_64.rpm';
-          else if (pkg === 'appimage') file = 'bin/Andromeda-x86_64.AppImage';
-          else file = 'bin/andromeda-writer_1.0.0_amd64.deb';
+          if (pkg === 'rpm') file = 'https://github.com/DwaipayanDeb/Andromeda_Website/releases/download/v1.0.1/andromeda-writer-x86_64.rpm';
+          else if (pkg === 'appimage') file = 'https://github.com/DwaipayanDeb/Andromeda_Website/releases/download/v1.0.1/Andromeda-x86_64.AppImage';
+          else file = 'https://github.com/DwaipayanDeb/Andromeda_Website/releases/download/v1.0.1/andromeda-writer_amd64.deb';
         } else {
-          file = 'bin/Andromeda_Setup.exe';
+          file = 'https://github.com/DwaipayanDeb/Andromeda_Website/releases/download/v1.0.1/Andromeda_Setup.exe';
         }
       }
 

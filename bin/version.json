@@ -1,18 +1,18 @@
 {
-  "app_version": "1.0.0",
-  "release_date": "2026-11-01",
+  "app_version": "1.0.1",
+  "release_date": "2026-11-06",
   "critical": false,
-  "title": "Andromeda Writer v1.0.0 Released",
+  "title": "Andromeda Writer v1.0.1 Released",
   "message": "Official cross-platform release with high-speed TeX engine integration and multi-agent AI LaTeX tools.",
   "release_notes_url": "https://andromedawriter.com/download.html",
   "binaries": {
-    "windows_setup": "bin/Andromeda_Setup.exe",
-    "linux_deb": "bin/andromeda-writer_1.0.0_amd64.deb",
-    "linux_appimage": "bin/Andromeda-x86_64.AppImage",
-    "linux_rpm": "bin/andromeda-writer-1.0.0.x86_64.rpm"
+    "windows_setup": "https://github.com/DwaipayanDeb/Andromeda_Website/releases/download/v1.0.1/Andromeda_Setup.exe",
+    "linux_deb": "https://github.com/DwaipayanDeb/Andromeda_Website/releases/download/v1.0.1/andromeda-writer_amd64.deb",
+    "linux_rpm": "https://github.com/DwaipayanDeb/Andromeda_Website/releases/download/v1.0.1/andromeda-writer-x86_64.rpm",
+    "linux_appimage": "https://github.com/DwaipayanDeb/Andromeda_Website/releases/download/v1.0.1/Andromeda-x86_64.AppImage"
   },
   "models": {
     "manifest_url": "https://firebasestorage.googleapis.com/v0/b/andromeda-latex-editor.appspot.com/o/models%2Fmanifest.json?alt=media",
-    "version": "1.1.0"
+    "version": "1.0.2"
   }
 }

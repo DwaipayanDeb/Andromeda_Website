@@ -1,2 +1,8 @@
 # Ignore the auto push/commit script itself
 push.bat
+
+# Large installer binaries (hosted on GitHub Releases)
+bin/*.exe
+bin/*.deb
+bin/*.rpm
+bin/*.AppImage
